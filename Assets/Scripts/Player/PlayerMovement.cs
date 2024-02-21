@@ -21,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask Ground;
     bool grounded;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    
+    [SerializeField] private AudioClip[] walkingClips;
+    [SerializeField] private float stepSpeed;
+    private float footstepTimer;
+
+
     
     public Transform orientation;
     float horizontalInput;
@@ -36,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        footstepTimer = 0;
     }
 
     // Update is called once per frame
@@ -74,13 +83,23 @@ public class PlayerMovement : MonoBehaviour
         
         moveDirection = orientation.forward * verticleInput + orientation.right * horizontalInput; // Move the direction you are looking
        
-        // While on the ground
-        if(grounded)
+        // While on the ground 
+        if(grounded) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Actually move the player in that direction
-        // in the air
-        else
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
 
+            // Play footstep sound
+            footstepTimer -= Time.deltaTime;
+            if(rb.velocity.magnitude > 0.15f) {
+                if(footstepTimer <= 0) {
+                    audioSource.PlayOneShot(walkingClips[Random.Range(0,walkingClips.Length-1)]);
+                    footstepTimer = stepSpeed;
+                }
+            }
+        }
+        // in the air
+        else {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
+        }
     }
 
     // Limit the max speed
