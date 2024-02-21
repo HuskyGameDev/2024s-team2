@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private AudioClip[] walkingClips;
     [SerializeField] private float stepSpeed;
+    [SerializeField] private AudioClip[] jumpingClips;
     private float footstepTimer;
 
 
@@ -118,6 +119,8 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        audioSource.PlayOneShot(jumpingClips[Random.Range(0,jumpingClips.Length-1)]);
+
     }
 
     private void ResetJump() {

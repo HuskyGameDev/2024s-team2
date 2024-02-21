@@ -226,6 +226,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc068b1a95db05841bc9c15f2af7cc12, type: 3}
   - {fileID: 8300000, guid: 0d5e960e0e72c394eb44008b3ded549b, type: 3}
   stepSpeed: 0.4
+  jumpingClips:
+  - {fileID: 8300000, guid: f8d78169fb7ec4b4fbea885bf1de0827, type: 3}
   orientation: {fileID: 7336726703355144139}
 --- !u!82 &6258864259520031699
 AudioSource:
