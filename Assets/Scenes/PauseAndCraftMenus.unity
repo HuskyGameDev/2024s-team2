@@ -918,6 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 159342836}
   masterMixer: {fileID: 24100000, guid: d0e56801b7c9bd54c8cb251af661d854, type: 2}
+  setSlider: 2
 --- !u!1 &169967285
 GameObject:
   m_ObjectHideFlags: 0
@@ -8539,6 +8540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1337077104}
   masterMixer: {fileID: 24100000, guid: d0e56801b7c9bd54c8cb251af661d854, type: 2}
+  setSlider: 3
 --- !u!1 &1347889047
 GameObject:
   m_ObjectHideFlags: 0
@@ -10230,6 +10232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1537993100}
   masterMixer: {fileID: 24100000, guid: d0e56801b7c9bd54c8cb251af661d854, type: 2}
+  setSlider: 1
 --- !u!1 &1582086626
 GameObject:
   m_ObjectHideFlags: 0
