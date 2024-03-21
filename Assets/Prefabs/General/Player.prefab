@@ -116,7 +116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6228577905738171563}
-  - component: {fileID: 3291801669015777919}
   - component: {fileID: 3803589470382711254}
   - component: {fileID: 5640548483204426120}
   - component: {fileID: 6258864259520031699}
@@ -145,32 +144,6 @@ Transform:
   - {fileID: 8457788951916840548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &3291801669015777919
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571167951490669006}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3803589470382711254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -221,7 +194,6 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
-  playerHeight: 2
   Ground:
     serializedVersion: 2
     m_Bits: 128
@@ -342,7 +314,7 @@ GameObject:
   - component: {fileID: 7336726703355144139}
   - component: {fileID: 3250983269206284789}
   - component: {fileID: 8982728899803927926}
-  - component: {fileID: 4696393078876733886}
+  - component: {fileID: 6935200478591596953}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -359,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 1977695791428788273}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0221, y: -0.08160007, z: 0.012}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9559, y: 2.0767708, z: 0.6324}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -415,8 +387,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4696393078876733886
-BoxCollider:
+--- !u!136 &6935200478591596953
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -433,8 +405,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  serializedVersion: 2
+  m_Radius: 0.50000006
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2770003894117935858
 GameObject:
