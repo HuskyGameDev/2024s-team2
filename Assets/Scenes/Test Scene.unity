@@ -456,7 +456,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1561960528}
-  m_VersionIndex: 8632
+  m_VersionIndex: 8635
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -811,13 +811,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: maxSlopeAngle
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 6228577905738171563, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228577905738171563, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6228577905738171563, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -849,6 +853,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6228577905738171563, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336726703355144139, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336726703355144139, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336726703355144139, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

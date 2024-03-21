@@ -210,12 +210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6ebf8c519c6924889f4f08a50ceb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkSpeed: 7
+  sprintSpeed: 14
+  crouchSpeed: 3.5
+  crouchYScale: 0.65
   groundDrag: 6
   jumpForce: 5.25
   jumpCooldown: 1
   airMultiplier: 0.1
   jumpKey: 32
+  sprintKey: 304
+  crouchKey: 306
   playerHeight: 2
   Ground:
     serializedVersion: 2
@@ -229,6 +234,7 @@ MonoBehaviour:
   jumpingClips:
   - {fileID: 8300000, guid: f8d78169fb7ec4b4fbea885bf1de0827, type: 3}
   orientation: {fileID: 7336726703355144139}
+  state: 0
 --- !u!82 &6258864259520031699
 AudioSource:
   m_ObjectHideFlags: 0

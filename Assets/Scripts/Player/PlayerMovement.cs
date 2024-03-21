@@ -5,21 +5,31 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
-    public float groundDrag;
-
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
+    private float moveSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float sprintSpeed;
+    [SerializeField] private float crouchSpeed;
+    [SerializeField] private float crouchYScale;
+    private float startYScale;
+    [SerializeField] private float groundDrag;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpCooldown;
+    [SerializeField] private float airMultiplier;
     bool readyToJump;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask Ground;
+    private float playerHeight;
+    [SerializeField] private LayerMask Ground;
     bool grounded;
+
+    // [Header("Slope Handling")]
+    // [SerializeField] private float maxSlopeAngle;
+    // private RaycastHit slopeHit;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
@@ -38,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    
+    public MovementState state;
+    public enum MovementState {walking, sprinting, crouching, air}
 
     // Start is called before the first frame update
     void Start()
@@ -46,16 +59,19 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         footstepTimer = 0;
+        startYScale = transform.localScale.y;
+        playerHeight = transform.Find("PlayerBody").localScale.y;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Ground Check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, Ground); 
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, Ground); 
 
         MyInput();
-        SpeedControl();
+        //SpeedControl();
+        StateHandler();
 
         // Apply drag
         if(grounded)
@@ -78,41 +94,62 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown); // Wait for the jump to cooldown before allowing a second jump
         }
+
+        // Crouch
+        if(Input.GetKeyDown(crouchKey)) {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            // Debug.Log("Crouch down");
+            //  rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
+        }
+
+        // Stop crouching
+        if(Input.GetKeyUp(crouchKey)) {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            // Debug.Log("Uncrouch");
+        }
     }
 
     private void MovePlayer(){
         
         moveDirection = orientation.forward * verticleInput + orientation.right * horizontalInput; // Move the direction you are looking
-       
+               
         // While on the ground 
         if(grounded) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Actually move the player in that direction
+            Debug.Log("Movin on the ground" + moveDirection.normalized * moveSpeed * 10f);
 
             // Play footstep sound
             footstepTimer -= Time.deltaTime;
             if(rb.velocity.magnitude > 0.15f) {
                 if(footstepTimer <= 0) {
                     audioSource.PlayOneShot(walkingClips[Random.Range(0,walkingClips.Length-1)]);
-                    footstepTimer = stepSpeed;
+                    if(state == MovementState.sprinting){
+                        footstepTimer = stepSpeed * (walkSpeed/sprintSpeed); // Adjust by a factor of walk speed over sprint speed
+                    } else if(state == MovementState.crouching){
+                        footstepTimer = stepSpeed * (walkSpeed/crouchSpeed); // Adjust by a factor of walk speed over crouch speed
+                    } else {
+                        footstepTimer = stepSpeed;
+                    }
                 }
             }
         }
         // in the air
         else {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
+            // Debug.Log("Movin the air" + moveDirection.normalized * moveSpeed * 10f * airMultiplier);
         }
     }
 
     // Limit the max speed
-    private void SpeedControl() {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    // private void SpeedControl() {
+    //     Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        // Determine if the speed is too fast and limit it
-        if(flatVel.magnitude > moveSpeed) {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
+    //     // Determine if the speed is too fast and limit it
+    //     if(flatVel.magnitude > moveSpeed) {
+    //         Vector3 limitedVel = flatVel.normalized * moveSpeed;
+    //         rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+    //     }
+    // }
 
     private void Jump() {
         // Reset the y velocity for consistent jump
@@ -125,5 +162,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump() {
         readyToJump = true;
+    }
+
+    private void StateHandler() {
+        // Crouching
+        if(grounded && Input.GetKey(crouchKey)) {
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed;
+        }
+        // Sprinting
+        else if(grounded && Input.GetKey(sprintKey)) {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        // Walking
+        else if (grounded) {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        // In the air
+        else {
+            state = MovementState.air;
+        }
+        Debug.Log("State: " + state);
     }
 }
