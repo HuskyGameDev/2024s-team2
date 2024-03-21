@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, Ground); 
 
         MyInput();
-        //SpeedControl();
+        SpeedControl();
         StateHandler();
 
         // Apply drag
@@ -98,14 +98,12 @@ public class PlayerMovement : MonoBehaviour
         // Crouch
         if(Input.GetKeyDown(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            // Debug.Log("Crouch down");
-            //  rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
+             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
         }
 
         // Stop crouching
         if(Input.GetKeyUp(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-            // Debug.Log("Uncrouch");
         }
     }
 
@@ -116,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
         // While on the ground 
         if(grounded) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Actually move the player in that direction
-            Debug.Log("Movin on the ground" + moveDirection.normalized * moveSpeed * 10f);
 
             // Play footstep sound
             footstepTimer -= Time.deltaTime;
@@ -136,20 +133,19 @@ public class PlayerMovement : MonoBehaviour
         // in the air
         else {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
-            // Debug.Log("Movin the air" + moveDirection.normalized * moveSpeed * 10f * airMultiplier);
         }
     }
 
     // Limit the max speed
-    // private void SpeedControl() {
-    //     Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    private void SpeedControl() {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-    //     // Determine if the speed is too fast and limit it
-    //     if(flatVel.magnitude > moveSpeed) {
-    //         Vector3 limitedVel = flatVel.normalized * moveSpeed;
-    //         rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-    //     }
-    // }
+        // Determine if the speed is too fast and limit it
+        if(flatVel.magnitude > moveSpeed) {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
 
     private void Jump() {
         // Reset the y velocity for consistent jump
@@ -184,6 +180,5 @@ public class PlayerMovement : MonoBehaviour
         else {
             state = MovementState.air;
         }
-        Debug.Log("State: " + state);
     }
 }
