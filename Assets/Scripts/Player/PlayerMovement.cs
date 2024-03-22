@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Ground Check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, Ground); 
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.3f, Ground); 
 
         MyInput();
         SpeedControl();
@@ -150,7 +150,6 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
         // Reset the y velocity for consistent jump
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         audioSource.PlayOneShot(jumpingClips[Random.Range(0,jumpingClips.Length-1)]);
 
