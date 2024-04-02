@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 
 public class WeaponRollingPinState : WeaponBaseState
@@ -7,6 +8,7 @@ public class WeaponRollingPinState : WeaponBaseState
     public override void EnterState(WeaponsStateMachine weapon)
     {
         Debug.Log("Player equipped with rolling pin");
+        theStateMachine = weapon;
         primaryCooldown = 5f;
         secondaryCooldown = 10f;
     }
@@ -24,9 +26,10 @@ public class WeaponRollingPinState : WeaponBaseState
     {
         Debug.Log("Do secondary attack");
     }
-    //protected override void chargeAttack();
+    //protected override void chargeAttack(); TODO
     protected override void block() 
     {
         Debug.Log("Do Block");
-    }
+    }    
+
 }

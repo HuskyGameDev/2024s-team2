@@ -4,7 +4,7 @@ public class WeaponKnifeState : WeaponBaseState
 {
     public override void EnterState(WeaponsStateMachine weapon)
     {
-        Debug.Log("Player equipped with rolling pin");
+        Debug.Log("Player equipped with the Knife");
 
     }
     public override void UpdateState(WeaponsStateMachine weapon)
@@ -24,6 +24,7 @@ public class WeaponKnifeState : WeaponBaseState
     //protected override void chargeAttack();
     protected override void block()
     {
-        
+
     }
+
 }

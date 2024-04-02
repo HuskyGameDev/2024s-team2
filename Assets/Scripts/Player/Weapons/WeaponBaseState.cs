@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class WeaponBaseState
 {
+    protected WeaponsStateMachine theStateMachine;
     protected float primaryCooldown = 0.0f; // Update in the EnterState Method
     protected float secondaryCooldown = 0.0f; // Update in the EnterState Method
     protected bool attackReady = true;
@@ -30,9 +31,8 @@ public abstract class WeaponBaseState
             return -1;
         } 
         return -1;
-    }
-    public void resetAttack() 
-    {
+    } 
+    public void resetAttack() {
         attackReady = true;
     }
 
