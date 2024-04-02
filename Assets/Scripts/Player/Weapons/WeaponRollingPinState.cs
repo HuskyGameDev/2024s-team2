@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 
 public class WeaponRollingPinState : WeaponBaseState
@@ -14,7 +13,7 @@ public class WeaponRollingPinState : WeaponBaseState
     }
     public override void UpdateState(WeaponsStateMachine weapon)
     {
-       
+       base.UpdateState(weapon);
     }
    
     protected override void primaryAttack()
@@ -30,6 +29,5 @@ public class WeaponRollingPinState : WeaponBaseState
     protected override void block() 
     {
         Debug.Log("Do Block");
-    }    
-
+    }
 }

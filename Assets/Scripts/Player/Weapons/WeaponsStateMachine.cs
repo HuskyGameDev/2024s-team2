@@ -7,7 +7,6 @@ public class WeaponsStateMachine : MonoBehaviour
     WeaponBaseState currentState;
     public WeaponRollingPinState RollingPinState = new WeaponRollingPinState();
     public WeaponKnifeState KnifeState = new WeaponKnifeState();
-    private float cooldown;
 
 
     // Start is called before the first frame update
@@ -23,16 +22,16 @@ public class WeaponsStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-        cooldown = currentState.attackInput();
-        
-        if(cooldown >= 0) {
-            StartCoroutine(resetAttack());
-        }
     }
 
-    private IEnumerator resetAttack() 
-    {
-        yield return new WaitForSeconds(cooldown);
-        currentState.resetAttack();
+    // Use this method rather than "StartCoroutine()" from the 
+    // weapon states because they do not inherate from Monobehavior.
+    // You can still put your IEnumerator in the Weapon state file
+    // as long as you import from "System.Collections". See "WeaponBaseState.cs"
+    // for examples on how to use coroutines in the weapon states.
+    public void StartWeaponCoroutine(IEnumerator routine) {
+        StartCoroutine(routine);
     }
+
+    
 }
