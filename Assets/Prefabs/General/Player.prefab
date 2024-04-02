@@ -205,7 +205,6 @@ MonoBehaviour:
   stepSpeed: 0.4
   jumpingClips:
   - {fileID: 8300000, guid: f8d78169fb7ec4b4fbea885bf1de0827, type: 3}
-  orientation: {fileID: 7149075026611234489}
   state: 0
 --- !u!82 &6258864259520031699
 AudioSource:
@@ -621,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5574197830763578179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     
-    public Transform orientation;
+    private Transform orientation;
+    private Transform weapon;
     float horizontalInput;
     float verticleInput;
 
@@ -60,7 +61,9 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         footstepTimer = 0;
         startYScale = transform.localScale.y;
-        playerHeight = transform.Find("PlayerBody").localScale.y;
+        orientation = transform.Find("PlayerBody");
+        playerHeight = orientation.localScale.y;
+        weapon = transform.Find("PlayerBody").Find("Weapon");
     }
 
     // Update is called once per frame
@@ -98,12 +101,21 @@ public class PlayerMovement : MonoBehaviour
         // Crouch
         if(Input.GetKeyDown(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            Vector3 playerScale = transform.localScale;
+            Vector3 inverseScale = new Vector3(1/playerScale.x, 1/playerScale.y, 1/playerScale.z);
+            weapon.localScale = inverseScale;
+            weapon.localPosition = new Vector3(weapon.localPosition.x, crouchYScale - startYScale, weapon.localPosition.z);
+
              rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
         }
-
+        
         // Stop crouching
         if(Input.GetKeyUp(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            Vector3 playerScale = transform.localScale;
+            Vector3 inverseScale = new Vector3(1/playerScale.x, 1/playerScale.y, 1/playerScale.z);
+            weapon.localScale = inverseScale;
+            weapon.localPosition = new Vector3(weapon.localPosition.x, weapon.localPosition.y + startYScale - crouchYScale, weapon.localPosition.z);
         }
     }
 
