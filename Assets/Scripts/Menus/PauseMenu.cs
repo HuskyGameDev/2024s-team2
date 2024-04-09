@@ -33,6 +33,7 @@ public class PauseMenu : MonoBehaviour
     void Stop()
     {
         PauseMenuCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         paused = true;
     }
@@ -40,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     public void Play()
     {
         PauseMenuCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         paused = false;
     }
