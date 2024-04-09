@@ -6,8 +6,9 @@ public abstract class WeaponBaseState
     protected WeaponsStateMachine theStateMachine;
     protected float primaryCooldown = 0.0f; // Update in the EnterState Method
     protected float secondaryCooldown = 0.0f; // Update in the EnterState Method
-    
-    protected float cooldown  = 0.0f; // Set when a primary or secondary attack occurs
+    protected float chargeCooldown = 0.0f; // Update in the EnterState Method
+    protected float chargeTime = 0.0f; // The time it takes to charge for the charge attack
+    protected float cooldown  = 0.0f; // Set when a primary, secondary attack, or charge attack occurs
     protected bool attackReady = true;
     public abstract void EnterState(WeaponsStateMachine weapon); // Like Monobehavior's Start() method
     public virtual void UpdateState(WeaponsStateMachine weapon) // Like Monobehavior's Update() method
@@ -16,9 +17,9 @@ public abstract class WeaponBaseState
     }
     protected abstract void primaryAttack();
     protected abstract void secondaryAttack();
-    //protected abstract void chargeAttack();
+    protected abstract void chargeAttack();
     protected abstract void block();
-    protected void attackInput() // 
+    protected void attackInput() 
     {
         if(Input.GetMouseButtonDown(0) && attackReady) {
             if(Input.GetKey(KeyCode.CapsLock)) {

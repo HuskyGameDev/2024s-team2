@@ -9,7 +9,9 @@ public class WeaponRollingPinState : WeaponBaseState
         Debug.Log("Player equipped with rolling pin");
         theStateMachine = weapon;
         primaryCooldown = 5f;
-        secondaryCooldown = 10f;
+        secondaryCooldown = 7f;
+        chargeCooldown = 10f;
+        chargeTime = 3f;
     }
     public override void UpdateState(WeaponsStateMachine weapon)
     {
@@ -25,7 +27,10 @@ public class WeaponRollingPinState : WeaponBaseState
     {
         Debug.Log("Do secondary attack");
     }
-    //protected override void chargeAttack(); TODO
+    protected override void chargeAttack()
+    {
+        Debug.Log("Do secondary attack");
+    }
     protected override void block() 
     {
         Debug.Log("Do Block");

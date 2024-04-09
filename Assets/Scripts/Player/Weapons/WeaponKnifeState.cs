@@ -21,7 +21,10 @@ public class WeaponKnifeState : WeaponBaseState
     {
 
     }
-    //protected override void chargeAttack();
+    protected override void chargeAttack()
+    {
+        
+    }
     protected override void block()
     {
 
