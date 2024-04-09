@@ -11,7 +11,6 @@ TagManager:
   - Room4
   - Room5
   - Room6
-  - Enemy
   layers:
   - Default
   - TransparentFX

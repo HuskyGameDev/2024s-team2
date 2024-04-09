@@ -14,7 +14,7 @@ public class WeaponsStateMachine : MonoBehaviour
     {
         // Equip the player with the weapon of choice
         currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
-         
+
         currentState.EnterState(this);
     }
 

@@ -4,18 +4,12 @@ using System.Collections;
 public abstract class WeaponBaseState
 {
     protected WeaponsStateMachine theStateMachine;
-    protected GameObject player;
     protected float primaryCooldown = 0.0f; // Update in the EnterState Method
-    protected int primaryAttackDamage = 0; // Update in the EnterState Method
     protected float secondaryCooldown = 0.0f; // Update in the EnterState Method
-    protected int secondaryAttackDamage = 0; // Update in the EnterState Method
     protected float chargeCooldown = 0.0f; // Update in the EnterState Method
-    protected int chargeAttackDamage = 0; // Update in the EnterState Method
     protected float chargeTime = 0.0f; // The time it takes to charge for the charge attack
     protected float cooldown  = 0.0f; // Set when a primary, secondary attack, or charge attack occurs
     protected bool attackReady = true;
-    protected AudioSource audioSource;
-    
     public abstract void EnterState(WeaponsStateMachine weapon); // Like Monobehavior's Start() method
     public virtual void UpdateState(WeaponsStateMachine weapon) // Like Monobehavior's Update() method
     {
