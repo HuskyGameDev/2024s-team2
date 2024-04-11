@@ -24,21 +24,24 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //if statement below are for testing only
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //item = item name for the item in 1 key
-          //UseItem(item);
+            item = item name for the item in 1 key
+            UseItem(item);
         }
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    TakeDamage(10);
-           //Damage(damage);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10);
+            Damage(damage);
+        }
+        */
     }
 
     public void AddHealth(int amount, bool temporary)
     {
+        //need to put in code that remove the temporary health when getting out from dungeon...
         if (temporary == true)
         {
             if (currentHealth + amount <= maxHealth)
@@ -67,6 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
     void KillPlayer()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
         // above line may not be right...
     }
