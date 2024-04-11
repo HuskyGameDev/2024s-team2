@@ -70,6 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
     void KillPlayer()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
         // above line may not be right...
     }
