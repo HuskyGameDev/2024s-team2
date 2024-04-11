@@ -2,30 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageScrip : MonoBehaviour
+public class DamageScript : MonoBehaviour
 {
-    public PlayerHealth PlayerHealth;
+
     public int damage = 10;
-    void Start()
+   
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
-            /*
-            var clas = new PlayerHealth();
-            int damage = 10;
-            clas.TakeDamage(damage);
-            */
-            PlayerHealth.TakeDamage(damage);
+            
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 }
