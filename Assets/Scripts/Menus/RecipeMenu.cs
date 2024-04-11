@@ -19,8 +19,8 @@ public class RecipeMenu : MonoBehaviour
     void Start()
     {
         //ingredient and dish values set here for testing purposes
-        PlayerPrefs.SetInt("ingredientA", 4);
-        PlayerPrefs.SetInt("ingredientB", 2);
+        //PlayerPrefs.SetInt("ingredientA", 4);
+        //PlayerPrefs.SetInt("ingredientB", 2);
         PlayerPrefs.SetInt("dish1", 0);
         PlayerPrefs.SetInt("dish2", 0);
         PlayerPrefs.SetInt("dish3", 0);
