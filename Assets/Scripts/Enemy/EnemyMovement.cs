@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         //StartCoroutine(TakingDamage());
+        Player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
