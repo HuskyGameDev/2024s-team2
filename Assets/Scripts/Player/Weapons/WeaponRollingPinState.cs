@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WeaponRollingPinState : WeaponBaseState
 {
-    
 
+    public Animator animator;
     private Camera playerCam;
     private float hitDistance;
     
@@ -13,7 +13,7 @@ public class WeaponRollingPinState : WeaponBaseState
     {
         Debug.Log("Player equipped with rolling pin");
         theStateMachine = weapon;
-        primaryCooldown = 0.25f;
+        primaryCooldown = 1f;
         primaryAttackDamage = 1;
         secondaryCooldown = 0.5f;
         secondaryAttackDamage = 1;
@@ -23,6 +23,7 @@ public class WeaponRollingPinState : WeaponBaseState
         hitDistance = 3f;
         playerCam = Camera.main;
         audioSource = GameObject.Find("Weapon").GetComponent<AudioSource>();
+        animator = GameObject.Find("Weapon").GetComponent<Animator>();
     }
     public override void UpdateState(WeaponsStateMachine weapon)
     {
@@ -33,6 +34,7 @@ public class WeaponRollingPinState : WeaponBaseState
     {
         Debug.Log("Do primary attack");
         Debug.Log(playerCam.transform.forward);
+        animator.SetTrigger("Active");
         int layerMask = 0;
         layerMask = ~layerMask;
         RaycastHit hit;

@@ -35,6 +35,7 @@ public abstract class WeaponBaseState
                 theStateMachine.StartWeaponCoroutine(resetAttack());
             }
             else {
+                
                 attackReady = false;
                 primaryAttack();
                 cooldown = primaryCooldown;
