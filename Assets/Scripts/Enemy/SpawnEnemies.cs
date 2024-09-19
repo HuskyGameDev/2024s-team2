@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -11,12 +13,14 @@ public class SpawnEnemies : MonoBehaviour
     public GameObject enemy;
     public int xpos;
     public int zpos;
+    public TextMeshProUGUI numEnemiesLeft;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerPrefs.SetInt("enemyCount", 0);
         PlayerPrefs.SetInt("enemiesLeft", 20);
+        PlayerPrefs.SetInt("enemiesNotKilled", 20);
         Debug.Log("starting");
         StartCoroutine(SpawnEnemy());
     }
@@ -24,26 +28,32 @@ public class SpawnEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("enemies: " + PlayerPrefs.GetInt("enemyCount"));
+        //Debug.Log("enemies left: " + PlayerPrefs.GetInt("enemiesLeft"));
+        numEnemiesLeft.text = "Enemies Left: " + PlayerPrefs.GetInt("enemiesNotKilled");
     }
 
     private IEnumerator SpawnEnemy()
     {
-        Debug.Log("spawnenemy function");
-        //while(PlayerPrefs.GetInt("enemiesLeft") > 0)
-       // {
-
-            while (PlayerPrefs.GetInt("enemyCount") < 10)
+        while(PlayerPrefs.GetInt("enemiesLeft") > 0)
+        {
+            for(int i = 0; i < 10; i++)
             {
-                Debug.Log("enemies < 10");
-                xpos = Random.Range(-5, 5);
-                zpos = Random.Range(4, 4);
-                GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
-                PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
-                Debug.Log("spawned");
-                yield return new WaitForSeconds(1);
-                Debug.Log("waited");
+                if (PlayerPrefs.GetInt("enemyCount") < 10)
+                {
+                    Debug.Log("enemies < 10");
+                    xpos = Random.Range(-5, 5);
+                    zpos = Random.Range(4, 4);
+                    GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
+                    PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
+                    PlayerPrefs.SetInt("enemiesLeft", PlayerPrefs.GetInt("enemiesLeft") - 1);
+                    Debug.Log("spawned");
+                    yield return new WaitForSeconds(1);
+                    Debug.Log("waited");
+                }
             }
-       // }
+            yield return new WaitForSeconds(3);
+        }
+        Debug.Log("end spawn enemy");
     }
 }

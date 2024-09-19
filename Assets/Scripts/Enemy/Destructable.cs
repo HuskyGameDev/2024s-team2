@@ -41,5 +41,8 @@ public class Destructable : MonoBehaviour
                 break;
         }
         Debug.Log("ingredient " + ingr + " : " + amount + " amount added: " + num);
+        PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") - 1);
+        PlayerPrefs.SetInt("enemiesNotKilled", PlayerPrefs.GetInt("enemiesNotKilled") - 1);
+        //Debug.Log("KILLED");
     }
 }
