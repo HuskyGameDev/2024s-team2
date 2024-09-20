@@ -44,12 +44,15 @@ public class SpawnEnemies : MonoBehaviour
                     Debug.Log("enemies < 10");
                     xpos = Random.Range(-5, 5);
                     zpos = Random.Range(4, 4);
-                    GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
-                    PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
-                    PlayerPrefs.SetInt("enemiesLeft", PlayerPrefs.GetInt("enemiesLeft") - 1);
-                    Debug.Log("spawned");
-                    yield return new WaitForSeconds(1);
-                    Debug.Log("waited");
+                    if ((PlayerPrefs.GetInt("enemyCount") < 10) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
+                    {
+                        GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
+                        PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
+                        PlayerPrefs.SetInt("enemiesLeft", PlayerPrefs.GetInt("enemiesLeft") - 1);
+                        Debug.Log("spawned");
+                        yield return new WaitForSeconds(1);
+                        Debug.Log("waited");
+                    }
                 }
             }
             yield return new WaitForSeconds(3);
