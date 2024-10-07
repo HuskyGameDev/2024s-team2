@@ -30,7 +30,14 @@ public class SpawnEnemies : MonoBehaviour
     {
         //Debug.Log("enemies: " + PlayerPrefs.GetInt("enemyCount"));
         //Debug.Log("enemies left: " + PlayerPrefs.GetInt("enemiesLeft"));
-        numEnemiesLeft.text = "Enemies Left: " + PlayerPrefs.GetInt("enemiesNotKilled");
+        if(PlayerPrefs.GetInt("enemiesNotKilled") > 0)
+        {
+            numEnemiesLeft.text = "Enemies Left: " + PlayerPrefs.GetInt("enemiesNotKilled");
+        }
+        else
+        {
+            numEnemiesLeft.text = "A Boss has spawned!";
+        }
     }
 
     private IEnumerator SpawnEnemy()
@@ -42,8 +49,16 @@ public class SpawnEnemies : MonoBehaviour
                 if (PlayerPrefs.GetInt("enemyCount") < 10)
                 {
                     Debug.Log("enemies < 10");
-                    xpos = Random.Range(-5, 5);
-                    zpos = Random.Range(4, 4);
+                    if (Random.Range(0, 100) > 50)
+                    { 
+                        xpos = Random.Range(-33, -24);
+                        zpos = Random.Range(-31, 3);
+                    }
+                    else
+                    {
+                        xpos = Random.Range(26, 35);
+                        zpos = Random.Range(-31, 3);
+                    }
                     if ((PlayerPrefs.GetInt("enemyCount") < 10) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
                     {
                         GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);

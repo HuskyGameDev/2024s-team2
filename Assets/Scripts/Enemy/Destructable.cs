@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Destructable : MonoBehaviour
 {
@@ -24,15 +25,17 @@ public class Destructable : MonoBehaviour
         int amount;
         switch (enemyType)
         {
-            case 0:
-                ingr = "A";
-                PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") + num);
-                amount = PlayerPrefs.GetInt("ingredientA");
+            case 0: //goblin enemy
+                ingr = "goblinMeat";
+                PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") + num);
+                amount = PlayerPrefs.GetInt("goblinMeat");
+                Notify("+" + num + " Goblin Meat");
                 break;
-            case 1:
-                ingr = "B";
-                PlayerPrefs.SetInt("ingredientB", PlayerPrefs.GetInt("ingredientB") + num);
-                amount = PlayerPrefs.GetInt("ingredientB");
+            case 1: //slime enemy
+                ingr = "slimeJelly";
+                PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num);
+                amount = PlayerPrefs.GetInt("slimeJelly");
+                Notify("+" + num + " Slime Jelly");
                 break;
             default:
                 ingr = "A";
@@ -44,5 +47,15 @@ public class Destructable : MonoBehaviour
         PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") - 1);
         PlayerPrefs.SetInt("enemiesNotKilled", PlayerPrefs.GetInt("enemiesNotKilled") - 1);
         //Debug.Log("KILLED");
+    }
+
+    public GameObject notificationText;
+
+    public void Notify(string message)
+    {
+        GameObject newNotification = Instantiate(notificationText);
+        newNotification.GetComponent<RectTransform>().SetParent(GameObject.FindWithTag("NotifHolder").GetComponent<Transform>());
+        newNotification.GetComponent<RectTransform>().localScale = Vector3.one;
+        newNotification.GetComponent<TextMeshProUGUI>().text = message;
     }
 }

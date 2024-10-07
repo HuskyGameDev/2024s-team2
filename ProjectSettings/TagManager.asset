@@ -12,6 +12,7 @@ TagManager:
   - Room5
   - Room6
   - Enemy
+  - NotifHolder
   layers:
   - Default
   - TransparentFX
