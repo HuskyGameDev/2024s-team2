@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7102180103340723814}
   - component: {fileID: 1010319098658607299}
   m_Layer: 5
-  m_Name: NotifTextAndImage
+  m_Name: NotifTextAndImageGoblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
