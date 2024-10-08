@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip[] walkingClips;
     [SerializeField] private float stepSpeed;
     [SerializeField] private AudioClip[] jumpingClips;
+    [SerializeField] public AudioClip[] backgroundMusic;
     private float footstepTimer;
 
 
@@ -131,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
             footstepTimer -= Time.deltaTime;
             if(rb.velocity.magnitude > 0.15f) {
                 if(footstepTimer <= 0) {
+                    audioSource.pitch = Random.Range(0.9f, 1f);
                     audioSource.PlayOneShot(walkingClips[Random.Range(0,walkingClips.Length-1)]);
                     if(state == MovementState.sprinting){
                         footstepTimer = stepSpeed * (walkSpeed/sprintSpeed); // Adjust by a factor of walk speed over sprint speed

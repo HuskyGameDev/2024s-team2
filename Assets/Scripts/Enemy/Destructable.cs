@@ -6,14 +6,17 @@ using TMPro;
 public class Destructable : MonoBehaviour
 {
 
-    [SerializeField] private int health;
+    private int health = 1;
     private int enemyType;
+    public AudioSource audioSource;
+    public AudioClip[] damageSounds;
 
     public void takeDamage(int damageDone) {
         health = health - damageDone;
-
+        audioSource.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length - 1)]);
         if(health <= 0) {
             DropIngredient();
+            AudioSource.PlayClipAtPoint(damageSounds[Random.Range(0, damageSounds.Length - 1)], gameObject.transform.position);
             Destroy(gameObject, 0f);
         }
     }

@@ -7,6 +7,7 @@ public class WeaponRollingPinState : WeaponBaseState
     public Animator animator;
     private Camera playerCam;
     private float hitDistance;
+    private WeaponsStateMachine machineScript;
     
     
     public override void EnterState(WeaponsStateMachine weapon)
@@ -23,6 +24,7 @@ public class WeaponRollingPinState : WeaponBaseState
         hitDistance = 3f;
         playerCam = Camera.main;
         audioSource = GameObject.Find("Weapon").GetComponent<AudioSource>();
+        machineScript = GameObject.Find("Weapon").GetComponent<WeaponsStateMachine>();
         animator = GameObject.Find("Weapon").GetComponent<Animator>();
     }
     public override void UpdateState(WeaponsStateMachine weapon)
@@ -38,7 +40,8 @@ public class WeaponRollingPinState : WeaponBaseState
         int layerMask = 0;
         layerMask = ~layerMask;
         RaycastHit hit;
-        audioSource.Play();
+        //audioSource.Play();
+        audioSource.PlayOneShot(machineScript.rollingPinClips[Random.Range(0, machineScript.rollingPinClips.Length - 1)]);
         if ( Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, hitDistance, layerMask)) {
             //Debug.DrawRay(playerCam.transform.position, playerCam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");

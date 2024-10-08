@@ -13,6 +13,8 @@ public class SpawnBoss : MonoBehaviour
     public Transform door5;
     public Transform door6;
     public TextMeshProUGUI numEnemiesLeft;
+    public AudioSource audioSource;
+    public PlayerMovement Player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class SpawnBoss : MonoBehaviour
         {
             bossNotSpawned = false;
             OpenDoors();
-            
+            BossSpawn();
         }
     }
 
@@ -43,6 +45,7 @@ public class SpawnBoss : MonoBehaviour
 
     public void BossSpawn()
     {
-        
+        audioSource.clip = Player.backgroundMusic[0];
+        audioSource.Play();
     }
 }

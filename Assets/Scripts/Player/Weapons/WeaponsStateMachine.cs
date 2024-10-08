@@ -8,13 +8,17 @@ public class WeaponsStateMachine : MonoBehaviour
     public WeaponRollingPinState RollingPinState = new WeaponRollingPinState();
     public WeaponKnifeState KnifeState = new WeaponKnifeState();
 
+    public AudioClip[] rollingPinClips;
+    public AudioClip[] knifeClips;
+    public int myInt = 100;
+
 
     // Start is called before the first frame update
     void Start()
     {
         // Equip the player with the weapon of choice
         currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
-         
+        
         currentState.EnterState(this);
     }
 
