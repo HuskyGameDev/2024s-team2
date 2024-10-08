@@ -118,7 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5847995773529005250}
   Player: {fileID: 0}
-  health: 1
   enemyType: 0
 --- !u!114 &8850296358663562232
 MonoBehaviour:
@@ -132,7 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cf74f1e9a031a4a8cdd81577e7e709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  audioSource: {fileID: 0}
+  damageSounds: []
+  notificationText: {fileID: 0}
 --- !u!54 &2646720702605940827
 Rigidbody:
   m_ObjectHideFlags: 0
