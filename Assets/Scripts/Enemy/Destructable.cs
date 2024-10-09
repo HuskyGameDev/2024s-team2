@@ -6,8 +6,8 @@ using TMPro;
 public class Destructable : MonoBehaviour
 {
 
-    private int health = 1;
-    private int enemyType;
+    public int health;
+    public int enemyType;
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
 
@@ -18,6 +18,10 @@ public class Destructable : MonoBehaviour
             DropIngredient();
             AudioSource.PlayClipAtPoint(damageSounds[Random.Range(0, damageSounds.Length - 1)], gameObject.transform.position);
             Destroy(gameObject, 0f);
+            if(enemyType == 2)
+            {
+                PlayerPrefs.SetInt("bossKilled", 1);
+            }
         }
     }
 
@@ -40,6 +44,17 @@ public class Destructable : MonoBehaviour
                 amount = PlayerPrefs.GetInt("slimeJelly");
                 Notify("+" + num + " Slime Jelly");
                 break;
+            case 2: //slime boss
+                int bonus = Random.Range(5, 10);
+                ingr = "slimeJelly";
+                PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num + bonus);
+                PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num + bonus);
+                amount = PlayerPrefs.GetInt("slimeJelly");
+                enemyType = 1;
+                Notify("+" + (num + bonus) + " Slime Jelly");
+                enemyType = 2;
+                Notify("+" + 1 + " Slime Boss Jelly");
+                break;
             default:
                 ingr = "A";
                 PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") + num);
@@ -52,11 +67,11 @@ public class Destructable : MonoBehaviour
         //Debug.Log("KILLED");
     }
 
-    public GameObject notificationText;
+    public GameObject[] notificationText;
 
     public void Notify(string message)
     {
-        GameObject newNotification = Instantiate(notificationText);
+        GameObject newNotification = Instantiate(notificationText[enemyType]);
         newNotification.GetComponent<RectTransform>().SetParent(GameObject.FindWithTag("NotifHolder").GetComponent<Transform>());
         newNotification.GetComponent<RectTransform>().localScale = Vector3.one;
         newNotification.GetComponent<TextMeshProUGUI>().text = message;

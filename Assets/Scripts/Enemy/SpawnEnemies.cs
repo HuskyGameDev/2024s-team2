@@ -34,9 +34,13 @@ public class SpawnEnemies : MonoBehaviour
         {
             numEnemiesLeft.text = "Enemies Left: " + PlayerPrefs.GetInt("enemiesNotKilled");
         }
-        else
+        else if(PlayerPrefs.GetInt("bossKilled") == 0)
         {
             numEnemiesLeft.text = "A Boss has spawned!";
+        }
+        else
+        {
+            numEnemiesLeft.text = "Boss defeated!";
         }
     }
 
@@ -51,12 +55,12 @@ public class SpawnEnemies : MonoBehaviour
                     Debug.Log("enemies < 10");
                     if (Random.Range(0, 100) > 50)
                     { 
-                        xpos = Random.Range(-33, -24);
+                        xpos = Random.Range(-31, -24);
                         zpos = Random.Range(-31, 3);
                     }
                     else
                     {
-                        xpos = Random.Range(26, 35);
+                        xpos = Random.Range(30, 35);
                         zpos = Random.Range(-31, 3);
                     }
                     if ((PlayerPrefs.GetInt("enemyCount") < 10) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
