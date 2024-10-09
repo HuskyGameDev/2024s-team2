@@ -15,6 +15,7 @@ public class SpawnBoss : MonoBehaviour
     public TextMeshProUGUI numEnemiesLeft;
     public AudioSource audioSource;
     public PlayerMovement Player;
+    public GameObject bossEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +48,7 @@ public class SpawnBoss : MonoBehaviour
     {
         audioSource.clip = Player.backgroundMusic[0];
         audioSource.Play();
+        bossEnemy.SetActive(true);
+        PlayerPrefs.SetInt("bossKilled", 0);
     }
 }
