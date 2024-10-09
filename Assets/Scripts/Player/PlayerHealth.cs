@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
   //public bool EnterDungeonItemUse = false; //can change depending on how the item use before the dungeon is made
   //public bool playerHit = false; //can change depending on the Player/weapon code
     public HealthBar healthBar;
+    public BloodEffect bloodEffect;
+    //[SerializeField] ParticleSystem Stretched = null;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +64,8 @@ public class PlayerHealth : MonoBehaviour
         //add armor, buff/debuff, item, and weapons? ability's code too.
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        bloodEffect.Blood();
+        //Stretched.Play();
         if (currentHealth < 1)
         {
             KillPlayer();
