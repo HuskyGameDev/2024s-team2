@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 690d585cb8a5a3c4988a411377f60f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.74
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 690d585cb8a5a3c4988a411377f60f55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -221,10 +221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cf74f1e9a031a4a8cdd81577e7e709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  enemyType: 0
   audioSource: {fileID: 4837792240708942595}
   damageSounds:
   - {fileID: 8300000, guid: b25a005ffec7348409965d55eca86387, type: 3}
-  notificationText: {fileID: 7988736980644947080, guid: f4a4797f4b723134aa27a9b973261902, type: 3}
+  notificationText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &1768010823781655447
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -296,7 +301,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8061693463496285926}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 45be9dba3e6946b4a852b79e85dfbb91, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 0957f5a2d4813a744ae23af71d1cebb8, type: 3}
   m_Controller: {fileID: 9100000, guid: a4789d0dacbadb245aa2eac46c3cec51, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
