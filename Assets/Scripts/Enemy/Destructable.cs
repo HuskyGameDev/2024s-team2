@@ -48,7 +48,7 @@ public class Destructable : MonoBehaviour
                 int bonus = Random.Range(5, 10);
                 ingr = "slimeJelly";
                 PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num + bonus);
-                PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num + bonus);
+                PlayerPrefs.SetInt("bossSlimeJelly", PlayerPrefs.GetInt("bossSlimeJelly") + 1);
                 amount = PlayerPrefs.GetInt("slimeJelly");
                 enemyType = 1;
                 Notify("+" + (num + bonus) + " Slime Jelly");

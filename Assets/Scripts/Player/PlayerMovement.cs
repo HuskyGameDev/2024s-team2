@@ -40,8 +40,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public AudioClip[] backgroundMusic;
     private float footstepTimer;
 
+    [Header("Other")]
+    public int levelNum;
 
-    
     private Transform orientation;
     private Transform weapon;
     float horizontalInput;
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("lastLevel", levelNum);
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
