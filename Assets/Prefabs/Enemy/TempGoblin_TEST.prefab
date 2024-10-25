@@ -220,7 +220,7 @@ MonoBehaviour:
   enemyType: 0
   audioSource: {fileID: 6397578299233791569}
   damageSounds:
-  - {fileID: 8300000, guid: b25a005ffec7348409965d55eca86387, type: 3}
+  - {fileID: 8300000, guid: bfa8dee16d9c8b440ad8f86662978b0e, type: 3}
   notificationText:
   - {fileID: 7988736980644947080, guid: f4a4797f4b723134aa27a9b973261902, type: 3}
   - {fileID: 8041212197288696551, guid: 9b1be302d2ecbd04caa5d192a0dc4292, type: 3}
