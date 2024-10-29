@@ -16,6 +16,13 @@ public class SpawnBoss : MonoBehaviour
     public AudioSource audioSource;
     public PlayerMovement Player;
     public GameObject bossEnemy;
+    public Transform bDoor1;
+    public Transform bDoor2;
+    public Transform bDoor3;
+    public Transform bDoor4;
+    public Transform bDoor5;
+    public Transform bDoor6;
+    public bool bClosed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,5 +57,23 @@ public class SpawnBoss : MonoBehaviour
         audioSource.Play();
         bossEnemy.SetActive(true);
         PlayerPrefs.SetInt("bossKilled", 0);
+    }
+
+    public void CloseBossDoors() {
+        bDoor1.transform.Rotate(0, 90, 0, Space.Self);
+        bDoor2.transform.Rotate(0, 90, 0, Space.Self);
+        bDoor3.transform.Rotate(0, 90, 0, Space.Self);
+        bDoor4.transform.Rotate(0, 90, 0, Space.Self);
+        bDoor5.transform.Rotate(0, 90, 0, Space.Self);
+        bDoor6.transform.Rotate(0, 90, 0, Space.Self);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && bClosed==false)
+        {
+            CloseBossDoors();
+            bClosed = true;
+        }
     }
 }
