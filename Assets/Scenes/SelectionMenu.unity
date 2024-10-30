@@ -458,6 +458,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 0
   currentItem: 1
   item: {fileID: 191596402}
@@ -653,6 +654,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 3
   currentItem: 0
   item: {fileID: 191596402}
@@ -1113,9 +1115,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322274552}
-        m_TargetAssemblyTypeName: RecipeMenu, Assembly-CSharp
-        m_MethodName: Craft
+      - m_Target: {fileID: 322274553}
+        m_TargetAssemblyTypeName: SelectionMenu, Assembly-CSharp
+        m_MethodName: EquipWeapon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1534,6 +1536,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 877114281}
   currentWeapon: 1
   currentItem: 1
   item: {fileID: 191596402}
@@ -1728,6 +1731,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 0
   currentItem: 3
   item: {fileID: 191596402}
@@ -4620,9 +4624,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -5507,6 +5511,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 0
   currentItem: 5
   item: {fileID: 191596402}
@@ -6283,8 +6288,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322274552}
-        m_TargetAssemblyTypeName: RecipeMenu, Assembly-CSharp
+      - m_Target: {fileID: 322274553}
+        m_TargetAssemblyTypeName: SelectionMenu, Assembly-CSharp
         m_MethodName: IncrAmount
         m_Mode: 1
         m_Arguments:
@@ -7330,8 +7335,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322274552}
-        m_TargetAssemblyTypeName: RecipeMenu, Assembly-CSharp
+      - m_Target: {fileID: 322274553}
+        m_TargetAssemblyTypeName: SelectionMenu, Assembly-CSharp
         m_MethodName: DecrAmount
         m_Mode: 1
         m_Arguments:
@@ -7729,6 +7734,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 2
   currentItem: 0
   item: {fileID: 191596402}
@@ -8953,6 +8959,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 1
   currentItem: 0
   item: {fileID: 191596402}
@@ -9258,6 +9265,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 0
   currentItem: 4
   item: {fileID: 191596402}
@@ -9901,9 +9909,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 322274552}
-        m_TargetAssemblyTypeName: RecipeMenu, Assembly-CSharp
-        m_MethodName: Craft
+      - m_Target: {fileID: 322274553}
+        m_TargetAssemblyTypeName: SelectionMenu, Assembly-CSharp
+        m_MethodName: EquipItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10468,9 +10476,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -11109,6 +11117,7 @@ MonoBehaviour:
   itemName: {fileID: 1567380489}
   itemDescription: {fileID: 1232174727}
   selectItemConfirm: {fileID: 930536124}
+  slotNum: {fileID: 0}
   currentWeapon: 0
   currentItem: 2
   item: {fileID: 191596402}

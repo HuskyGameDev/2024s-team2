@@ -13,6 +13,7 @@ public class SelectionMenu : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
     public TextMeshProUGUI selectItemConfirm;
+    public TextMeshProUGUI slotNum;
     public int currentWeapon;
     public int currentItem;
     public Image item;
@@ -20,20 +21,14 @@ public class SelectionMenu : MonoBehaviour
     public RawImage weapon;
     public RenderTexture[] weapons;
 
-    private int amount;
+    private int slot;
 
     void Start()
     {
-        //ingredient and dish values set here for testing purposes
-        //PlayerPrefs.SetInt("ingredientA", 4);
-        //PlayerPrefs.SetInt("ingredientB", 2);
-        PlayerPrefs.SetInt("dish1", 0); //for default cases
-        PlayerPrefs.SetInt("dish4", 0);
-        PlayerPrefs.SetInt("dish5", 0);
         //initialize everything :)
         PlayerPrefs.SetInt("weaponNum", 1);
         PlayerPrefs.SetInt("itemNum", 1);
-        amount = 1;
+        slot = 1;
         weaponName.text = "Rolling Pin";
         weaponDescription.text = "Your rolling pin, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
         itemName.text = "Goblin Steak";
@@ -43,7 +38,7 @@ public class SelectionMenu : MonoBehaviour
 
     public void SelectWeapon()
     {
-        amount = 1;
+        slot = 1;
         selectWeaponConfirm.text = "";
 
         switch (currentWeapon)
@@ -78,7 +73,7 @@ public class SelectionMenu : MonoBehaviour
 
     public void SelectItem()
     {
-        amount = 1;
+        slot = 1;
         //amountText.text = "" + amount;
         selectItemConfirm.text = "";
 
@@ -122,6 +117,198 @@ public class SelectionMenu : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void EquipWeapon()
+    {
+        switch (PlayerPrefs.GetInt("weaponNum"))
+        {
+            case 1:
+                PlayerPrefs.SetInt("equippedWeapon", 1);
+                selectWeaponConfirm.text = "Rolling pin equipped";
+                break;
+            case 2:
+                PlayerPrefs.SetInt("equippedWeapon", 2);
+                selectWeaponConfirm.text = "Cleaver equipped";
+                break;
+            case 3:
+                PlayerPrefs.SetInt("equippedWeapon", 3);
+                selectWeaponConfirm.text = "Weapon3 equipped";
+                break;
+            default:
+                PlayerPrefs.SetInt("equippedWeapon", 1);
+                selectWeaponConfirm.text = "Rolling pin equipped";
+                break;
+        }
+    }
+
+    public void EquipItem() 
+    {
+        switch (PlayerPrefs.GetInt("itemNum"))
+        {
+            case 1:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 1);
+                        PlayerPrefs.SetInt("slot1amount", 1);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 1);
+                        PlayerPrefs.SetInt("slot2amount", 1);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 1);
+                        PlayerPrefs.SetInt("slot3amount", 1);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 1);
+                        PlayerPrefs.SetInt("slot1amount", 1);
+                        break;
+                }
+                selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
+                break;
+            case 2:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 2);
+                        PlayerPrefs.SetInt("slot1amount", 2);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 2);
+                        PlayerPrefs.SetInt("slot2amount", 2);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 2);
+                        PlayerPrefs.SetInt("slot3amount", 2);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 2);
+                        PlayerPrefs.SetInt("slot1amount", 2);
+                        break;
+                }
+                selectItemConfirm.text = "Peanut Butter & Slime Jelly Sandwich selected for slot " + slot;
+                break;
+            case 3:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 3);
+                        PlayerPrefs.SetInt("slot1amount", 3);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 3);
+                        PlayerPrefs.SetInt("slot2amount", 3);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 3);
+                        PlayerPrefs.SetInt("slot3amount", 3);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 3);
+                        PlayerPrefs.SetInt("slot1amount", 3);
+                        break;
+                }
+                selectItemConfirm.text = "Peanut Butter & Boss Slime Jelly Sandwich selected for slot " + slot;
+                break;
+            case 4:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 4);
+                        PlayerPrefs.SetInt("slot1amount", 4);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 4);
+                        PlayerPrefs.SetInt("slot2amount", 4);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 4);
+                        PlayerPrefs.SetInt("slot3amount", 4);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 4);
+                        PlayerPrefs.SetInt("slot1amount", 4);
+                        break;
+                }
+                selectItemConfirm.text = "Dish 4 selected for slot " + slot;
+                break;
+            case 5:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 5);
+                        PlayerPrefs.SetInt("slot1amount", 5);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 5);
+                        PlayerPrefs.SetInt("slot2amount", 5);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 5);
+                        PlayerPrefs.SetInt("slot3amount", 5);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 5);
+                        PlayerPrefs.SetInt("slot1amount", 5);
+                        break;
+                }
+                selectItemConfirm.text = "Dish 5 selected for slot " + slot;
+                break;
+            default:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 1);
+                        PlayerPrefs.SetInt("slot1amount", 1);
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 1);
+                        PlayerPrefs.SetInt("slot2amount", 1);
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 1);
+                        PlayerPrefs.SetInt("slot3amount", 1);
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 1);
+                        PlayerPrefs.SetInt("slot1amount", 1);
+                        break;
+                }
+                selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
+                break;
+        }
+    }
+
+    public void IncrAmount()
+    {
+        slot++;
+        if (slot > 3)
+        {
+            selectItemConfirm.text = "Cannot choose a higher slot";
+            slot = 3;
+        }
+        else
+        {
+            selectItemConfirm.text = "";
+        }
+        slotNum.text = "" + slot;
+    }
+
+    public void DecrAmount()
+    {
+        slot--;
+        if (slot <= 0)
+        {
+            slot = 1;
+            selectItemConfirm.text = "Cannot choose a lower slot";
+        }
+        else
+        {
+            selectItemConfirm.text = "";
+        }
+        slotNum.text = "" + slot;
     }
 
     public void NextLevel()
