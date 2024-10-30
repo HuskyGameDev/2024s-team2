@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,9 @@ public class PlayerHealth : MonoBehaviour
   //public bool playerHit = false; //can change depending on the Player/weapon code
     public HealthBar healthBar;
     public BloodEffect bloodEffect;
-    //[SerializeField] ParticleSystem Stretched = null;
+    public int dam;
+    public string gob = "TempGoblin_TEST(Clone)";
+    public string sli_b = "Slime_Boss";
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +62,21 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) //make public
+    public void TakeDamage(int damage, string enemy_name) //make public
     {
+        float ran_dam = 0.0f;
+        Debug.Log("this is for the dam" + enemy_name);
         //add armor, buff/debuff, item, and weapons? ability's code too.
-        currentHealth -= damage;
+        if (String.Compare(enemy_name, gob) == 0)
+        {
+            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
+            dam = (int)(damage * ran_dam);
+        } else if (enemy_name == "Slime_Boss")
+        {
+            ran_dam = UnityEngine.Random.Range(0.7f, 1.5f);
+            dam = (int)(damage * ran_dam);
+        }
+        currentHealth -= dam;
         healthBar.SetHealth(currentHealth);
         bloodEffect.Blood();
         //Stretched.Play();

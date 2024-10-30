@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class DamageScript : MonoBehaviour
 {
     Animator animator;
-    public int damage = 10;
+    public int damage;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,8 +16,8 @@ public class DamageScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            damage = 10;
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, gameObject.name);
             animator.SetTrigger("Attack");
            // WaitForSeconds waitForSeconds = new WaitForSeconds(1);
         }
