@@ -11,7 +11,7 @@ public abstract class WeaponBaseState
     protected int secondaryAttackDamage = 0; // Update in the EnterState Method
     protected float chargeCooldown = 0.0f; // Update in the EnterState Method
     protected int chargeAttackDamage = 0; // Update in the EnterState Method
-    protected float chargeTime = 0.002f; // The time it takes to charge for the charge attack
+    protected float chargeTime = 0.0f; // The time it takes to charge for the charge attack
     protected float cooldown  = 0.0f; // Set when a primary, secondary attack, or charge attack occurs
     protected bool attackReady = true;
     protected AudioSource audioSource;

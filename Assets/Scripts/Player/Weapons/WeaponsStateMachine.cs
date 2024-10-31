@@ -7,6 +7,7 @@ public class WeaponsStateMachine : MonoBehaviour
     WeaponBaseState currentState;
     public WeaponRollingPinState RollingPinState = new WeaponRollingPinState();
     public WeaponKnifeState KnifeState = new WeaponKnifeState();
+    public WeaponCleaverState CleaverState = new WeaponCleaverState();
 
     public AudioClip[] rollingPinClips;
     public AudioClip[] knifeClips;
@@ -23,7 +24,7 @@ public class WeaponsStateMachine : MonoBehaviour
                 currentState = RollingPinState;
                 break;
             case 2://change to cleaver once ready
-                currentState = RollingPinState;
+                currentState = CleaverState;
                 break;
             case 3:
                 currentState = RollingPinState;

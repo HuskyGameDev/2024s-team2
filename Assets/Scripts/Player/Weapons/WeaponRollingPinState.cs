@@ -18,7 +18,7 @@ public class WeaponRollingPinState : WeaponBaseState
         primaryAttackDamage = 1;
         secondaryCooldown = 0.5f;
         secondaryAttackDamage = 1;
-        chargeCooldown = 3f;
+        chargeCooldown = .2f;
         chargeAttackDamage = 1;
         chargeTime = 3f;
         hitDistance = 3f;
