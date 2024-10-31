@@ -17,7 +17,24 @@ public class WeaponsStateMachine : MonoBehaviour
     void Start()
     {
         // Equip the player with the weapon of choice
-        currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
+        //currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
+        switch (PlayerPrefs.GetInt("weaponNum")){
+            case 1:
+                currentState = RollingPinState;
+                break;
+            case 2://change to cleaver once ready
+                currentState = RollingPinState;
+                break;
+            case 3:
+                currentState = RollingPinState;
+                break;
+            case 4:
+                currentState = RollingPinState;
+                break;
+            default:
+                currentState = RollingPinState;
+                break;
+        }
         
         currentState.EnterState(this);
     }

@@ -53,7 +53,7 @@ public class SelectionMenu : MonoBehaviour
                 PlayerPrefs.SetInt("weaponNum", 2);
                 weaponName.text = "Cleaver";
                 weaponDescription.text = "Your cleaver, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
-                weapon.texture = weapons[0];
+                weapon.texture = weapons[1];
                 break;
             case 3:
                 PlayerPrefs.SetInt("weaponNum", 3);
