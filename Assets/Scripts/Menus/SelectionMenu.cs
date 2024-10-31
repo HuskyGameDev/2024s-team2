@@ -84,36 +84,42 @@ public class SelectionMenu : MonoBehaviour
                 itemName.text = "Goblin Steak";
                 itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 2:
                 PlayerPrefs.SetInt("itemNum", 2);
                 itemName.text = "Peanut Butter & Slime Jelly Sandwich";
                 itemDescription.text = "Eating this dish will increase your walk speed for a bit, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("pbnjelly");
                 item.sprite = items[1];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 3:
                 PlayerPrefs.SetInt("itemNum", 3);
                 itemName.text = "Peanut Butter & Boss Slime Jelly Sandwich";
                 itemDescription.text = "Eating this dish will reduce the amount of damage you take for a bit, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("pbnbossjelly");
                 item.sprite = items[2];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 4:
                 PlayerPrefs.SetInt("itemNum", 4);
                 itemName.text = "Dish 4";
                 itemDescription.text = "Eating this dish will _, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("dish4");
                 item.sprite = items[0];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 5:
                 PlayerPrefs.SetInt("itemNum", 5);
                 itemName.text = "Dish 5";
                 itemDescription.text = "Eating this dish will _, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("dish5");
                 item.sprite = items[0];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
             default:
                 PlayerPrefs.SetInt("itemNum", 1);
                 itemName.text = "Goblin Steak";
                 itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
+                PlayerPrefs.SetInt("maxHold", 3);
                 break;
         }
 
@@ -128,12 +134,26 @@ public class SelectionMenu : MonoBehaviour
                 selectWeaponConfirm.text = "Rolling pin equipped";
                 break;
             case 2:
-                PlayerPrefs.SetInt("equippedWeapon", 2);
-                selectWeaponConfirm.text = "Cleaver equipped";
+                if (PlayerPrefs.GetInt("haveCleaver") == 1)
+                {
+                    PlayerPrefs.SetInt("equippedWeapon", 2);
+                    selectWeaponConfirm.text = "Cleaver equipped";
+                }
+                else
+                {
+                    selectWeaponConfirm.text = "Weapon not unlocked yet";
+                }
                 break;
             case 3:
-                PlayerPrefs.SetInt("equippedWeapon", 3);
-                selectWeaponConfirm.text = "Weapon3 equipped";
+                if (PlayerPrefs.GetInt("haveWeapon2") == 1)
+                {
+                    PlayerPrefs.SetInt("equippedWeapon", 3);
+                    selectWeaponConfirm.text = "Weapon3 equipped";
+                }
+                else
+                {
+                    selectWeaponConfirm.text = "Weapon not unlocked yet";
+                }
                 break;
             default:
                 PlayerPrefs.SetInt("equippedWeapon", 1);
@@ -151,19 +171,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 1);
-                        PlayerPrefs.SetInt("slot1amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 1);
-                        PlayerPrefs.SetInt("slot2amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 1);
-                        PlayerPrefs.SetInt("slot3amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 1);
-                        PlayerPrefs.SetInt("slot1amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
@@ -173,19 +221,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 2);
-                        PlayerPrefs.SetInt("slot1amount", 2);
+                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 2);
-                        PlayerPrefs.SetInt("slot2amount", 2);
+                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 2);
-                        PlayerPrefs.SetInt("slot3amount", 2);
+                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 2);
-                        PlayerPrefs.SetInt("slot1amount", 2);
+                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Peanut Butter & Slime Jelly Sandwich selected for slot " + slot;
@@ -195,19 +271,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 3);
-                        PlayerPrefs.SetInt("slot1amount", 3);
+                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 3);
-                        PlayerPrefs.SetInt("slot2amount", 3);
+                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 3);
-                        PlayerPrefs.SetInt("slot3amount", 3);
+                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 3);
-                        PlayerPrefs.SetInt("slot1amount", 3);
+                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Peanut Butter & Boss Slime Jelly Sandwich selected for slot " + slot;
@@ -217,19 +321,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 4);
-                        PlayerPrefs.SetInt("slot1amount", 4);
+                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 4);
-                        PlayerPrefs.SetInt("slot2amount", 4);
+                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 4);
-                        PlayerPrefs.SetInt("slot3amount", 4);
+                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 4);
-                        PlayerPrefs.SetInt("slot1amount", 4);
+                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Dish 4 selected for slot " + slot;
@@ -239,19 +371,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 5);
-                        PlayerPrefs.SetInt("slot1amount", 5);
+                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 5);
-                        PlayerPrefs.SetInt("slot2amount", 5);
+                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 5);
-                        PlayerPrefs.SetInt("slot3amount", 5);
+                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 5);
-                        PlayerPrefs.SetInt("slot1amount", 5);
+                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Dish 5 selected for slot " + slot;
@@ -261,19 +421,47 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 1);
-                        PlayerPrefs.SetInt("slot1amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 1);
-                        PlayerPrefs.SetInt("slot2amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 1);
-                        PlayerPrefs.SetInt("slot3amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 1);
-                        PlayerPrefs.SetInt("slot1amount", 1);
+                        if (PlayerPrefs.GetInt("goblinSteak") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                        }
                         break;
                 }
                 selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
@@ -316,10 +504,10 @@ public class SelectionMenu : MonoBehaviour
         switch (PlayerPrefs.GetInt("lastLevel"))
         {
             case 1:
-                SceneManager.LoadScene("Level One");
+                SceneManager.LoadScene("Level Two");
                 break;
             case 2:
-                SceneManager.LoadScene("Level Two");
+                SceneManager.LoadScene("Level Three");
                 break;
             case 3:
                 SceneManager.LoadScene("MainMenu");
