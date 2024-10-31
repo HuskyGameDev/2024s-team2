@@ -32,6 +32,7 @@ public class RecipeMenu : MonoBehaviour
         recipeDescription.text = "Goblin Steak: Eating this dish will let you regain a bit of health\nOwned: " + PlayerPrefs.GetInt("goblinSteak"); 
         ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
         amountText.text = "" + amount;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     //increase amount of dishes to craft

@@ -14,6 +14,8 @@ public class SpawnEnemies : MonoBehaviour
     public int xpos;
     public int zpos;
     public TextMeshProUGUI numEnemiesLeft;
+    public int level;
+    public GameObject endLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +39,24 @@ public class SpawnEnemies : MonoBehaviour
         else if(PlayerPrefs.GetInt("bossKilled") == 0)
         {
             numEnemiesLeft.text = "A Boss has spawned!";
+            endLevel.SetActive(false);
         }
         else
         {
             numEnemiesLeft.text = "Boss defeated!";
+            endLevel.SetActive(true);
+            if (level == 1)
+            {
+                PlayerPrefs.SetInt("haveCleaver",1);
+            }
+            else if(level == 2)
+            {
+                PlayerPrefs.SetInt("haveWeapon2", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("haveWeapon3", 1);
+            }
         }
     }
 
