@@ -96,14 +96,11 @@ public class WeaponCleaverState : WeaponBaseState
     {
         Debug.Log("Do Charge attack");
 
-        // Define the radius for the charge attack and the angle for the arc
         float chargeRadius = hitDistance;
         float arcAngle = 90f; // Horizontal arc angle in degrees
 
-        // Play charge attack animation
         animator.SetTrigger("ChargeAttack");
 
-        // Optionally play a sound effect for the charge attack
         audioSource.PlayOneShot(machineScript.rollingPinClips[Random.Range(0, machineScript.rollingPinClips.Length - 1)]);
 
         // Detect enemies within a sphere centered at the player's position
@@ -112,19 +109,16 @@ public class WeaponCleaverState : WeaponBaseState
 
         foreach (Collider hitCollider in hitColliders)
         {
-            // Check if the object has the "Enemy" tag
+
             if (hitCollider.CompareTag("Enemy"))
             {
-                // Calculate direction from player to enemy
                 Vector3 directionToEnemy = (hitCollider.transform.position - playerCam.transform.position).normalized;
 
-                // Calculate angle between player's forward direction and direction to enemy
                 float angle = Vector3.Angle(playerCam.transform.forward, directionToEnemy);
 
                 // Check if the enemy is within the arc in front of the player
                 if (angle <= arcAngle / 2)
                 {
-                    // Damage the enemy
                     hitCollider.GetComponent<Destructable>().takeDamage(chargeAttackDamage);
                     Debug.Log("An Enemy was hit by charge attack");
                     enemyHit = true;
