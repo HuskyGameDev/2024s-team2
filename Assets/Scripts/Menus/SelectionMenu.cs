@@ -73,7 +73,15 @@ public class SelectionMenu : MonoBehaviour
 
     public void SelectItem()
     {
-        slot = 1;
+        if (PlayerPrefs.GetInt("craftNum") >= 1 && PlayerPrefs.GetInt("craftNum") <= 3)
+        {
+            slot = PlayerPrefs.GetInt("craftNum");
+        }
+        else
+        {
+            slot = 1;
+            PlayerPrefs.SetInt("craftNum", slot);
+        }
         //amountText.text = "" + amount;
         selectItemConfirm.text = "";
 
@@ -164,6 +172,7 @@ public class SelectionMenu : MonoBehaviour
 
     public void EquipItem() 
     {
+        slot = PlayerPrefs.GetInt("craftNum");
         switch (PlayerPrefs.GetInt("itemNum"))
         {
             case 1:
@@ -482,6 +491,7 @@ public class SelectionMenu : MonoBehaviour
             selectItemConfirm.text = "";
         }
         slotNum.text = "" + slot;
+        PlayerPrefs.SetInt("craftNum", slot);
     }
 
     public void DecrAmount()
@@ -497,6 +507,7 @@ public class SelectionMenu : MonoBehaviour
             selectItemConfirm.text = "";
         }
         slotNum.text = "" + slot;
+        PlayerPrefs.SetInt("craftNum", slot);
     }
 
     public void NextLevel()
