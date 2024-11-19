@@ -7,6 +7,9 @@ public class DamageScript : MonoBehaviour
 {
     Animator animator;
     public int damage;
+    public AudioSource audioSource;
+    public AudioClip[] attackSounds;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,7 +22,8 @@ public class DamageScript : MonoBehaviour
             damage = 10;
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, gameObject.name);
             animator.SetTrigger("Attack");
-           // WaitForSeconds waitForSeconds = new WaitForSeconds(1);
+            audioSource.PlayOneShot(attackSounds[Random.Range(0, attackSounds.Length - 1)]);
+            // WaitForSeconds waitForSeconds = new WaitForSeconds(1);
         }
 
     }
