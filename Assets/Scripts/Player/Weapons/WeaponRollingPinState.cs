@@ -23,7 +23,7 @@ public class WeaponRollingPinState : WeaponBaseState
         chargeTime = 3f;
         hitDistance = 3f;
         playerCam = Camera.main;
-        audioSource = GameObject.Find("Weapon").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("WeaponHolder").GetComponent<AudioSource>();
         machineScript = GameObject.Find("Weapon").GetComponent<WeaponsStateMachine>();
         animator = GameObject.Find("Weapon").GetComponent<Animator>();
     }

@@ -10,9 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public int enemyType;
     public AudioSource audioSource;
     public AudioClip[] stepSounds;
-    private float stepSpeed = 2f;
     private float footstepTimer = 0;
-    public Rigidbody rb;
 
 
     // Start is called before the first frame update
