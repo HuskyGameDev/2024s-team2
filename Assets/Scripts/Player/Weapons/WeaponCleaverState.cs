@@ -12,7 +12,7 @@ public class WeaponCleaverState : WeaponBaseState
 
     public override void EnterState(WeaponsStateMachine weapon)
     {
-        Debug.Log("Player equipped with rolling pin");
+        Debug.Log("Player equipped with cleaver");
         theStateMachine = weapon;
         primaryCooldown = .8f;
         primaryAttackDamage = 1;
@@ -23,7 +23,8 @@ public class WeaponCleaverState : WeaponBaseState
         chargeTime = 3f;
         hitDistance = 3f;
         playerCam = Camera.main;
-        audioSource = GameObject.Find("Weapon").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("WeaponHolder").GetComponent<AudioSource>();
+        audioSource.pitch = 2;
         machineScript = GameObject.Find("Weapon").GetComponent<WeaponsStateMachine>();
         animator = GameObject.Find("Weapon").GetComponent<Animator>();
     }
@@ -41,7 +42,7 @@ public class WeaponCleaverState : WeaponBaseState
         layerMask = ~layerMask;
         RaycastHit hit;
         //audioSource.Play();
-        audioSource.PlayOneShot(machineScript.rollingPinClips[Random.Range(0, machineScript.rollingPinClips.Length - 1)]);
+        audioSource.PlayOneShot(machineScript.knifeClips[Random.Range(0, machineScript.knifeClips.Length - 1)]);
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, hitDistance, layerMask))
         {
             //Debug.DrawRay(playerCam.transform.position, playerCam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -71,7 +72,7 @@ public class WeaponCleaverState : WeaponBaseState
         layerMask = ~layerMask;
         RaycastHit hit;
         //audioSource.Play();
-        audioSource.PlayOneShot(machineScript.rollingPinClips[Random.Range(0, machineScript.rollingPinClips.Length - 1)]);
+        audioSource.PlayOneShot(machineScript.knifeClips[Random.Range(0, machineScript.knifeClips.Length - 1)]);
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, hitDistance, layerMask))
         {
             //Debug.DrawRay(playerCam.transform.position, playerCam.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -101,7 +102,7 @@ public class WeaponCleaverState : WeaponBaseState
 
         animator.SetTrigger("ChargeAttack");
 
-        audioSource.PlayOneShot(machineScript.rollingPinClips[Random.Range(0, machineScript.rollingPinClips.Length - 1)]);
+        audioSource.PlayOneShot(machineScript.knifeClips[Random.Range(0, machineScript.knifeClips.Length - 1)]);
 
         // Detect enemies within a sphere centered at the player's position
         Collider[] hitColliders = Physics.OverlapSphere(playerCam.transform.position, chargeRadius);

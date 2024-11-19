@@ -16,6 +16,7 @@ public class SpawnEnemies : MonoBehaviour
     public TextMeshProUGUI numEnemiesLeft;
     public int level;
     public GameObject endLevel;
+    private int enemyAmount = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class SpawnEnemies : MonoBehaviour
         PlayerPrefs.SetInt("enemiesNotKilled", 20);
         Debug.Log("starting");
         StartCoroutine(SpawnEnemy());
+        PlayerPrefs.SetInt("bossKilled", 0);
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class SpawnEnemies : MonoBehaviour
         if(PlayerPrefs.GetInt("enemiesNotKilled") > 0)
         {
             numEnemiesLeft.text = "Enemies Left: " + PlayerPrefs.GetInt("enemiesNotKilled");
+            endLevel.SetActive(false);
         }
         else if(PlayerPrefs.GetInt("bossKilled") == 0)
         {
@@ -64,11 +67,11 @@ public class SpawnEnemies : MonoBehaviour
     {
         while(PlayerPrefs.GetInt("enemiesLeft") > 0)
         {
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < enemyAmount; i++)
             {
-                if (PlayerPrefs.GetInt("enemyCount") < 10)
+                if (PlayerPrefs.GetInt("enemyCount") < enemyAmount)
                 {
-                    Debug.Log("enemies < 10");
+                    Debug.Log("enemies < " + enemyAmount);
                     if (Random.Range(0, 100) > 50)
                     { 
                         xpos = Random.Range(-31, -24);
@@ -79,7 +82,7 @@ public class SpawnEnemies : MonoBehaviour
                         xpos = Random.Range(30, 35);
                         zpos = Random.Range(-31, 3);
                     }
-                    if ((PlayerPrefs.GetInt("enemyCount") < 10) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
+                    if ((PlayerPrefs.GetInt("enemyCount") < enemyAmount) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
                     {
                         GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
                         PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
