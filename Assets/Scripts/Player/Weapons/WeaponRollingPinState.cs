@@ -41,7 +41,7 @@ public class WeaponRollingPinState : WeaponBaseState
         //machineScript.img.enabled = true;
         Debug.Log(playerCam.transform.forward);
         animator.SetTrigger("Active");
-        animatorUI.Play("weaponCooldown");
+        animatorUI.Play("weaponCooldownRollingPin");
         int layerMask = 0;
         layerMask = ~layerMask;
         RaycastHit hit;

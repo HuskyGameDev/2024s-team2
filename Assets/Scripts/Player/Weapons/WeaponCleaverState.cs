@@ -41,8 +41,8 @@ public class WeaponCleaverState : WeaponBaseState
     {
         Debug.Log("Do primary attack");
         Debug.Log(playerCam.transform.forward);
-         animator.SetTrigger("Active");
-        animatorUI.Play("weaponCooldown");
+        animator.SetTrigger("Active");
+        animatorUI.Play("weaponCooldownCleaver");
         int layerMask = 0;
         layerMask = ~layerMask;
         RaycastHit hit;
