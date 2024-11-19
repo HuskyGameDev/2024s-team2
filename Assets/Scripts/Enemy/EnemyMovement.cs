@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
         footstepTimer -= Time.deltaTime;
         if (footstepTimer <= 0)
         {
-            audioSource.pitch = Random.Range(0.9f, 1f);
+            //audioSource.pitch = Random.Range(0.9f, 1f);
             audioSource.PlayOneShot(stepSounds[Random.Range(0, stepSounds.Length - 1)]);
             footstepTimer = Random.Range(3f, 5f);
         }

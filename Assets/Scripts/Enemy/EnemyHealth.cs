@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     public string gob = "TempGoblin_TEST(Clone)";
     public string sla_b = "Slime_Boss";
     public Destructable destructable;
+    public AudioSource audioSource;
+    public AudioClip[] damageSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
         float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);
         ene_dam = (int)(damage * ran_dam);
         ene_HP = ene_HP - ene_dam;
+        audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
         if (ene_HP <= 0)
         {
             destructable.takeDamage(ene_dam);
