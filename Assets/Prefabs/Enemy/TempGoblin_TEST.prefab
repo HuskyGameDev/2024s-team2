@@ -160,6 +160,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a5fac63d73553f49a083cc08fbe7475, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6397578299233791569}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a5fac63d73553f49a083cc08fbe7475, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 992639856416437153}
   m_SourcePrefab: {fileID: 100100000, guid: 9a5fac63d73553f49a083cc08fbe7475, type: 3}
 --- !u!1 &4659309321943825024 stripped
 GameObject:
@@ -216,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cf74f1e9a031a4a8cdd81577e7e709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
   enemyType: 0
   audioSource: {fileID: 6397578299233791569}
   damageSounds:
@@ -404,6 +406,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &992639856416437153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4659309321943825024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbf042bbc8c2c04f87472887f7bad4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ene_HP: 0
+  ene_dam: 0
+  ran_HP: 0
+  gob: TempGoblin_TEST(Clone)
+  sla_b: Slime_Boss
+  destructable: {fileID: 1868451173784473915}
 --- !u!4 &5468180875899363386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9a5fac63d73553f49a083cc08fbe7475, type: 3}

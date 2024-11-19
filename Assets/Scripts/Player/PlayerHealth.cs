@@ -79,7 +79,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= dam;
         healthBar.SetHealth(currentHealth);
         bloodEffect.Blood();
-        //Stretched.Play();
         if (currentHealth < 1)
         {
             KillPlayer();

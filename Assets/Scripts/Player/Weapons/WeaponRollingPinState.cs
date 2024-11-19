@@ -15,7 +15,7 @@ public class WeaponRollingPinState : WeaponBaseState
         Debug.Log("Player equipped with rolling pin");
         theStateMachine = weapon;
         primaryCooldown = 1f;
-        primaryAttackDamage = 1;
+        primaryAttackDamage = 7;
         secondaryCooldown = 0.5f;
         secondaryAttackDamage = 1;
         chargeCooldown = 3f;
@@ -47,7 +47,7 @@ public class WeaponRollingPinState : WeaponBaseState
             Debug.Log("Did Hit");
             if(hit.collider.tag == "Enemy") {
                 Debug.Log("An Enemy was hit");
-                hit.collider.gameObject.GetComponent<Destructable>().takeDamage(primaryAttackDamage); // Deal one damage 
+                hit.collider.gameObject.GetComponent<EnemyHealth>().Damaging(primaryAttackDamage); // Deal one damage 
             } else {
                 Debug.Log("An Enemy was not hit");
             }
