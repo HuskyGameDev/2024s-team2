@@ -37,7 +37,6 @@ public class SpawnBoss : MonoBehaviour
         {
             bossNotSpawned = false;
             OpenDoors();
-            BossSpawn();
         }
     }
 
@@ -66,6 +65,7 @@ public class SpawnBoss : MonoBehaviour
         bDoor4.transform.Rotate(0, 90, 0, Space.Self);
         bDoor5.transform.Rotate(0, 90, 0, Space.Self);
         bDoor6.transform.Rotate(0, 90, 0, Space.Self);
+        BossSpawn();
     }
 
     public void OnTriggerEnter(Collider other)

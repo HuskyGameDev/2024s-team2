@@ -7,6 +7,10 @@ public class WeaponsStateMachine : MonoBehaviour
     WeaponBaseState currentState;
     public WeaponRollingPinState RollingPinState = new WeaponRollingPinState();
     public WeaponKnifeState KnifeState = new WeaponKnifeState();
+    public WeaponCleaverState CleaverState = new WeaponCleaverState();
+
+    public GameObject rollingPin;
+    public GameObject cleaver;
 
     public AudioClip[] rollingPinClips;
     public AudioClip[] knifeClips;
@@ -17,7 +21,30 @@ public class WeaponsStateMachine : MonoBehaviour
     void Start()
     {
         // Equip the player with the weapon of choice
-        currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
+        //currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
+        rollingPin.SetActive(false);
+        cleaver.SetActive(false);
+
+        switch (PlayerPrefs.GetInt("equippedWeapon")){
+            case 1:
+                currentState = RollingPinState;
+                rollingPin.SetActive(true);
+                break;
+            case 2://change to cleaver once ready
+                currentState = CleaverState;
+                cleaver.SetActive(true);
+                break;
+            case 3:
+                currentState = RollingPinState;
+                break;
+            case 4:
+                currentState = RollingPinState;
+                break;
+            default:
+                currentState = RollingPinState;
+                rollingPin.SetActive(true);
+                break;
+        }
         
         currentState.EnterState(this);
     }

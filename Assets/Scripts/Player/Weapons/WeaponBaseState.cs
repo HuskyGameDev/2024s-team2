@@ -15,7 +15,8 @@ public abstract class WeaponBaseState
     protected float cooldown  = 0.0f; // Set when a primary, secondary attack, or charge attack occurs
     protected bool attackReady = true;
     protected AudioSource audioSource;
-    
+    private float holdTime = 0.0f; // Tracks how long the left mouse button is held
+
     public abstract void EnterState(WeaponsStateMachine weapon); // Like Monobehavior's Start() method
     public virtual void UpdateState(WeaponsStateMachine weapon) // Like Monobehavior's Update() method
     {
@@ -25,27 +26,59 @@ public abstract class WeaponBaseState
     protected abstract void secondaryAttack();
     protected abstract void chargeAttack();
     protected abstract void block();
-    protected void attackInput() 
+    protected void attackInput()
     {
-        if(Input.GetMouseButtonDown(0) && attackReady) {
-            if(Input.GetKey(KeyCode.CapsLock)) {
-                attackReady = false;
-                secondaryAttack();
-                cooldown = secondaryCooldown;
-                theStateMachine.StartWeaponCoroutine(resetAttack());
+        if (attackReady)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                holdTime = 0.0f; // Reset hold time when the button is first pressed
             }
-            else {
-                
-                attackReady = false;
-                primaryAttack();
-                cooldown = primaryCooldown;
-                theStateMachine.StartWeaponCoroutine(resetAttack());
+
+            if (Input.GetMouseButton(0))
+            {
+                holdTime += Time.deltaTime; // Increment hold time while button is held
+
+                if (holdTime >= chargeTime) // Charge attack
+                {
+                    // Charge attack
+                    attackReady = false;
+                    chargeAttack();
+                    cooldown = chargeCooldown;
+                    theStateMachine.StartWeaponCoroutine(resetAttack());
+                    holdTime = 0.0f; // Reset hold time after charge attack
+                }
             }
-        } else if(Input.GetMouseButton(1)) {
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (holdTime < chargeTime) // Check if the button was released before the charge time
+                {
+                    if (Input.GetKey(KeyCode.LeftAlt)) // Check if the left alt key is held down
+                    {
+                        // Secondary attack
+                        attackReady = false;
+                        secondaryAttack();
+                        cooldown = secondaryCooldown;
+                        theStateMachine.StartWeaponCoroutine(resetAttack());
+                    }
+                    else
+                    {
+                        // Primary attack
+                        attackReady = false;
+                        primaryAttack();
+                        cooldown = primaryCooldown;
+                        theStateMachine.StartWeaponCoroutine(resetAttack());
+                    }
+                }
+            }
+        }
+        else if (Input.GetMouseButton(1))
+        {
             block();
-        } 
-    } 
-   
+        }
+    }
+
     private IEnumerator resetAttack() 
     {
         yield return new WaitForSeconds(cooldown);

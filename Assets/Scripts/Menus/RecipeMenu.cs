@@ -32,6 +32,7 @@ public class RecipeMenu : MonoBehaviour
         recipeDescription.text = "Goblin Steak: Eating this dish will let you regain a bit of health\nOwned: " + PlayerPrefs.GetInt("goblinSteak"); 
         ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
         amountText.text = "" + amount;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     //increase amount of dishes to craft
@@ -65,6 +66,7 @@ public class RecipeMenu : MonoBehaviour
                 ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " ingredientA\t" + (1 * amount) + " ingredientB";
                 break;
         }
+        PlayerPrefs.SetInt("craftNum", amount);
     }
 
     //decrease amount of dishes to craft
@@ -103,6 +105,7 @@ public class RecipeMenu : MonoBehaviour
                 ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " ingredientA\t" + (1 * amount) + " ingredientB"; 
                 break;
         }
+        PlayerPrefs.SetInt("craftNum", amount);
     }
 
     //try to craft a dish
@@ -111,6 +114,8 @@ public class RecipeMenu : MonoBehaviour
         int aNeeded = 0; //goblin meat
         int bNeeded = 0; //slime jelly
         int cNeeded = 0; //boss slime jelly
+
+        amount = PlayerPrefs.GetInt("craftNum");
 
         switch (PlayerPrefs.GetInt("recipeNum"))
         {
@@ -121,8 +126,8 @@ public class RecipeMenu : MonoBehaviour
                 bNeeded = 3 * amount;
                 break;
             case 3://pb&boss slime jelly sandwich
-                aNeeded = 3 * amount;
-                bNeeded = 1 * amount;
+                bNeeded = 3 * amount;
+                cNeeded = 1 * amount;
                 break;
             case 4:
                 aNeeded = 2 * amount;
@@ -148,36 +153,36 @@ public class RecipeMenu : MonoBehaviour
             {
                 case 1:
                     PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") - aNeeded);
-                    PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") + 1);
+                    PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") + amount);
                     recipeDescription.text = "Goblin Steak: Eating this dish will let you regain a bit of health\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                     break;
                 case 2:
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
-                    PlayerPrefs.SetInt("pbnjelly", PlayerPrefs.GetInt("pbnjelly") + 1);
+                    PlayerPrefs.SetInt("pbnjelly", PlayerPrefs.GetInt("pbnjelly") + amount);
                     recipeDescription.text = "Peanut Butter & Slime Jelly Sandwich: Eating this dish will increase your walk speed for a bit\nOwned: " + PlayerPrefs.GetInt("pbnjelly");
                     break;
                 case 3:
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
                     PlayerPrefs.SetInt("bossSlimeJelly", PlayerPrefs.GetInt("bossSlimeJelly") - cNeeded);
-                    PlayerPrefs.SetInt("pbnbossjelly", PlayerPrefs.GetInt("pbnbossjelly") + 1);
+                    PlayerPrefs.SetInt("pbnbossjelly", PlayerPrefs.GetInt("pbnbossjelly") + amount);
                     recipeDescription.text = "Peanut Butter & Boss Slime Jelly Sandwich: Eating this dish will reduce the amount of damage you take for a bit\nOwned: " + PlayerPrefs.GetInt("pbnbossjelly");
                     break;
                 case 4:
                     PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") - aNeeded);
                     PlayerPrefs.SetInt("ingredientB", PlayerPrefs.GetInt("ingredientB") - bNeeded);
-                    PlayerPrefs.SetInt("dish4", PlayerPrefs.GetInt("dish4") + 1);
+                    PlayerPrefs.SetInt("dish4", PlayerPrefs.GetInt("dish4") + amount);
                     recipeDescription.text = "Recipe 4: describe the effects provided by the dish\nOwned: " + PlayerPrefs.GetInt("dish4");
                     break;
                 case 5:
                     PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") - aNeeded);
                     PlayerPrefs.SetInt("ingredientB", PlayerPrefs.GetInt("ingredientB") - bNeeded);
-                    PlayerPrefs.SetInt("dish5", PlayerPrefs.GetInt("dish5") + 1);
+                    PlayerPrefs.SetInt("dish5", PlayerPrefs.GetInt("dish5") + amount);
                     recipeDescription.text = "Recipe 5: describe the effects provided by the dish\nOwned: " + PlayerPrefs.GetInt("dish5");
                     break;
                 default:
                     PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") - aNeeded);
                     PlayerPrefs.SetInt("ingredientB", PlayerPrefs.GetInt("ingredientB") - bNeeded);
-                    PlayerPrefs.SetInt("dish1", PlayerPrefs.GetInt("dish1") + 1);
+                    PlayerPrefs.SetInt("dish1", PlayerPrefs.GetInt("dish1") + amount);
                     recipeDescription.text = "Recipe 1: describe the effects provided by the dish\nOwned: " + PlayerPrefs.GetInt("dish1");
                     break;
             }
@@ -191,7 +196,15 @@ public class RecipeMenu : MonoBehaviour
     //update descriptions for a recipe
     public void SelectRecipe()
     {
-        amount = 1;
+        if (PlayerPrefs.GetInt("craftNum") >= 1)
+        {
+            amount = PlayerPrefs.GetInt("craftNum");
+        }
+        else
+        {
+            amount = 1;
+            PlayerPrefs.SetInt("craftNum", amount);
+        }
         amountText.text = "" + amount;
         craftResult.text = "";
 

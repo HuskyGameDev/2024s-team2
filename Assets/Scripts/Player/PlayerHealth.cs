@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     public int dam;
     public string gob = "TempGoblin_TEST(Clone)";
     public string sli_b = "Slime_Boss";
+    public AudioSource audioSource;
+    public AudioClip[] damageSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +80,7 @@ public class PlayerHealth : MonoBehaviour
         }
         currentHealth -= dam;
         healthBar.SetHealth(currentHealth);
+        audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
         bloodEffect.Blood();
         if (currentHealth < 1)
         {
