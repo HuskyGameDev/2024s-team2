@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class WeaponRollingPinState : WeaponBaseState
 {
 
     public Animator animator;
+    public Animator animatorUI;
     private Camera playerCam;
     private float hitDistance;
     private WeaponsStateMachine machineScript;
@@ -26,6 +28,7 @@ public class WeaponRollingPinState : WeaponBaseState
         audioSource = GameObject.Find("WeaponHolder").GetComponent<AudioSource>();
         machineScript = GameObject.Find("Weapon").GetComponent<WeaponsStateMachine>();
         animator = GameObject.Find("Weapon").GetComponent<Animator>();
+        animatorUI = GameObject.Find("WeaponUICooldown").GetComponent<Animator>();
     }
     public override void UpdateState(WeaponsStateMachine weapon)
     {
@@ -35,8 +38,10 @@ public class WeaponRollingPinState : WeaponBaseState
     protected override void primaryAttack()
     {
         Debug.Log("Do primary attack");
+        //machineScript.img.enabled = true;
         Debug.Log(playerCam.transform.forward);
         animator.SetTrigger("Active");
+        animatorUI.Play("weaponCooldown");
         int layerMask = 0;
         layerMask = ~layerMask;
         RaycastHit hit;

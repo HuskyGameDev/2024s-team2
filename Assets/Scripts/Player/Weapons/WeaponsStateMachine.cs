@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponsStateMachine : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class WeaponsStateMachine : MonoBehaviour
     public WeaponKnifeState KnifeState = new WeaponKnifeState();
     public WeaponCleaverState CleaverState = new WeaponCleaverState();
 
+    public Image img;
     public GameObject rollingPin;
     public GameObject cleaver;
+    public GameObject rollingPinUI;
+    public GameObject cleaverUI;
 
     public AudioClip[] rollingPinClips;
     public AudioClip[] knifeClips;
@@ -24,15 +28,19 @@ public class WeaponsStateMachine : MonoBehaviour
         //currentState = RollingPinState; // TODO This will eventually be set to whichever weapon the player selected before beginning the level
         rollingPin.SetActive(false);
         cleaver.SetActive(false);
+        rollingPinUI.SetActive(false);
+        cleaverUI.SetActive(false);
 
         switch (PlayerPrefs.GetInt("equippedWeapon")){
             case 1:
                 currentState = RollingPinState;
                 rollingPin.SetActive(true);
+                rollingPinUI.SetActive(true);
                 break;
             case 2://change to cleaver once ready
                 currentState = CleaverState;
                 cleaver.SetActive(true);
+                cleaverUI.SetActive(true);
                 break;
             case 3:
                 currentState = RollingPinState;
