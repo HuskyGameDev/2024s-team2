@@ -32,7 +32,7 @@ public class SelectionMenu : MonoBehaviour
         weaponName.text = "Rolling Pin";
         weaponDescription.text = "Your rolling pin, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
         itemName.text = "Goblin Steak";
-        itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+        itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
         //amountText.text = "" + amount;
     }
 
@@ -90,42 +90,42 @@ public class SelectionMenu : MonoBehaviour
             case 1:
                 PlayerPrefs.SetInt("itemNum", 1);
                 itemName.text = "Goblin Steak";
-                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 2:
                 PlayerPrefs.SetInt("itemNum", 2);
                 itemName.text = "Peanut Butter & Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will increase your walk speed for a bit, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("pbnjelly");
+                itemDescription.text = "Eating this dish will increase your walk speed for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("pbnjelly");
                 item.sprite = items[1];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 3:
                 PlayerPrefs.SetInt("itemNum", 3);
                 itemName.text = "Peanut Butter & Boss Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will reduce the amount of damage you take for a bit, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("pbnbossjelly");
+                itemDescription.text = "Eating this dish will reduce the amount of damage you take for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("pbnbossjelly");
                 item.sprite = items[2];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 4:
                 PlayerPrefs.SetInt("itemNum", 4);
                 itemName.text = "Dish 4";
-                itemDescription.text = "Eating this dish will _, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("dish4");
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dish4");
                 item.sprite = items[0];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 5:
                 PlayerPrefs.SetInt("itemNum", 5);
                 itemName.text = "Dish 5";
-                itemDescription.text = "Eating this dish will _, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("dish5");
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dish5");
                 item.sprite = items[0];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             default:
                 PlayerPrefs.SetInt("itemNum", 1);
                 itemName.text = "Goblin Steak";
-                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry __ at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;

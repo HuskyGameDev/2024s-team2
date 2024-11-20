@@ -37,7 +37,13 @@ public class Items : MonoBehaviour
                 count = PlayerPrefs.GetInt("slot1amount");
                 break;
         }
-        item.sprite = items[type - 1];
+        if (type != 0)
+        {
+            item.sprite = items[type - 1];
+        }
+        else{
+            item.enabled = false;
+        }
         syncAmount();
         displayCount.text = "" + count;
     }
@@ -132,6 +138,7 @@ public class Items : MonoBehaviour
                 break;
         }
         displayCount.text = "" + final;
+        count = final;
     }
 
     // Update is called once per frame

@@ -79,7 +79,7 @@ public class SpawnEnemies : MonoBehaviour
                     }
                     else
                     {
-                        xpos = Random.Range(30, 35);
+                        xpos = Random.Range(32, 35);
                         zpos = Random.Range(-31, 3);
                     }
                     if ((PlayerPrefs.GetInt("enemyCount") < enemyAmount) && (PlayerPrefs.GetInt("enemiesLeft") > 0))
