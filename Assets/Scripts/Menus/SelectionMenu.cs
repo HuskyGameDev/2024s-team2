@@ -186,7 +186,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     case 2:
@@ -197,7 +197,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     case 3:
@@ -208,7 +208,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     default:
@@ -219,7 +219,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                 }
@@ -236,7 +236,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly"));
                         }
                         break;
                     case 2:
@@ -247,7 +247,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnjelly"));
                         }
                         break;
                     case 3:
@@ -258,7 +258,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnjelly"));
                         }
                         break;
                     default:
@@ -269,7 +269,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly"));
                         }
                         break;
                 }
@@ -286,7 +286,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly"));
                         }
                         break;
                     case 2:
@@ -297,7 +297,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnbossjelly"));
                         }
                         break;
                     case 3:
@@ -308,7 +308,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnbossjelly"));
                         }
                         break;
                     default:
@@ -319,7 +319,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly"));
                         }
                         break;
                 }
@@ -336,7 +336,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4"));
                         }
                         break;
                     case 2:
@@ -347,7 +347,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish4"));
                         }
                         break;
                     case 3:
@@ -358,7 +358,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish4"));
                         }
                         break;
                     default:
@@ -369,7 +369,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4"));
                         }
                         break;
                 }
@@ -386,7 +386,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5"));
                         }
                         break;
                     case 2:
@@ -397,7 +397,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish5"));
                         }
                         break;
                     case 3:
@@ -408,7 +408,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish5"));
                         }
                         break;
                     default:
@@ -419,7 +419,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5"));
                         }
                         break;
                 }
@@ -436,7 +436,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     case 2:
@@ -447,7 +447,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     case 3:
@@ -458,7 +458,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                     default:
@@ -469,7 +469,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold") - PlayerPrefs.GetInt("goblinSteak"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("goblinSteak"));
                         }
                         break;
                 }
