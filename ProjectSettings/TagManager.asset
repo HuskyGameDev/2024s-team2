@@ -13,6 +13,7 @@ TagManager:
   - Room6
   - Enemy
   - NotifHolder
+  - Interactable
   layers:
   - Default
   - TransparentFX
