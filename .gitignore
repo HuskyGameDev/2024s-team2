@@ -73,3 +73,6 @@ crashlytics-build.properties
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json

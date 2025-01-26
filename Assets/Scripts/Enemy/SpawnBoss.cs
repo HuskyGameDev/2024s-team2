@@ -27,7 +27,7 @@ public class SpawnBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerPrefs.SetInt("enemiesNotKilled", 0); //For testing the slime
     }
 
     // Update is called once per frame

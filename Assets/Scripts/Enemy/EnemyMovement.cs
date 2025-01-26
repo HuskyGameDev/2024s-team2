@@ -22,7 +22,9 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemy.SetDestination(Player.position);
+        if (enemy != null && enemy.enabled) {
+            enemy.SetDestination(Player.position);
+        }
     }
 
     void FixedUpdate()

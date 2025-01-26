@@ -16,7 +16,8 @@ public class SpawnEnemies : MonoBehaviour
     public TextMeshProUGUI numEnemiesLeft;
     public int level;
     public GameObject endLevel;
-    private int enemyAmount = 7;
+    // private int enemyAmount = 7; 
+    private int enemyAmount = 0; //For testing the slime
 
     // Start is called before the first frame update
     void Start()
