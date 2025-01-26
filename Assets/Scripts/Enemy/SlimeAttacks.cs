@@ -7,6 +7,10 @@ using UnityEngine.AI;
 
 public class SlimeAttacks : MonoBehaviour
 {
+    [SerializeField] ParticleSystem impactParticles;
+    public AudioSource audioSource;
+    public AudioClip slamSound;
+
     public float slamDamage;
     public float slamCooldown;
     public float slamHoverDuration;
@@ -60,6 +64,9 @@ public class SlimeAttacks : MonoBehaviour
         // Go up a bit, then slam down.
         yield return StartCoroutine(Tween(transform.position + Vector3.up * 0.2f, 20f));
         yield return StartCoroutine(Tween(savedPlayerPos, slamSpeed));
+
+        impactParticles.Play();
+        audioSource.PlayOneShot(slamSound);
 
         rb.useGravity = true;
         // rb.AddForce(Vector3.down * slamForce); // Would've been cool to use actual physics, but I don't think it would've worked with NavMeshAgent or whatever rigidbody settings.
