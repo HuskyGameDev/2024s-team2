@@ -510,22 +510,21 @@ public class SelectionMenu : MonoBehaviour
         PlayerPrefs.SetInt("craftNum", slot);
     }
 
-    public void NextLevel()
+    public void LevelOne()
     {
-        switch (PlayerPrefs.GetInt("lastLevel"))
-        {
-            case 1:
-                SceneManager.LoadScene("Level Two");
-                break;
-            case 2:
-                SceneManager.LoadScene("Level Three");
-                break;
-            case 3:
-                SceneManager.LoadScene("MainMenu");
-                break;
-            default:
-                SceneManager.LoadScene("MainMenu");
-                break;
-        }
+        int level = PlayerPrefs.GetInt("lastLevel");
+        SceneManager.LoadScene("Level One");
+    }
+
+    public void LevelTwo()
+    {
+        int level = PlayerPrefs.GetInt("lastLevel");
+        SceneManager.LoadScene("Level Two");
+    }
+
+    public void LevelThree()
+    {
+        int level = PlayerPrefs.GetInt("lastLevel");
+        SceneManager.LoadScene("Level Three");
     }
 }
