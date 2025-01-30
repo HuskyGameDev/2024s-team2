@@ -10,6 +10,7 @@ public class SlimeAttacks : MonoBehaviour
     [SerializeField] ParticleSystem impactParticles;
     public AudioSource audioSource;
     public AudioClip slamSound;
+    public DamageScript damageScript;
 
     public float slamDamage;
     public float slamCooldown;
@@ -27,6 +28,7 @@ public class SlimeAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageScript = gameObject.GetComponent<DamageScript>();
         rb = GetComponent<Rigidbody>();
         Player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
@@ -60,7 +62,7 @@ public class SlimeAttacks : MonoBehaviour
 
         // Wait a few seconds
         yield return new WaitForSeconds(slamHoverDuration);
-
+        damageScript.slam = true;
         // Go up a bit, then slam down.
         yield return StartCoroutine(Tween(transform.position + Vector3.up * 0.2f, 20f));
         yield return StartCoroutine(Tween(savedPlayerPos, slamSpeed));
@@ -74,6 +76,7 @@ public class SlimeAttacks : MonoBehaviour
         if (agent != null) agent.enabled = true;  // I had inteference from the NavMeshAgent, so I temporarily disable it.
         isSlamming = false;
         slamTimer = 0;
+        damageScript.slam = false;
         Debug.Log("SlimeAttack: Slam attack finished");
     }
 
