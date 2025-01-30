@@ -96,30 +96,65 @@ public class SelectionMenu : MonoBehaviour
                 break;
             case 2:
                 PlayerPrefs.SetInt("itemNum", 2);
-                itemName.text = "Peanut Butter & Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will increase your walk speed for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("pbnjelly");
+                itemName.text = "Slime Jelly Sandwich";
+                itemDescription.text = "Eating this dish will increase your walk speed for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("jellysand");
                 item.sprite = items[1];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 3:
                 PlayerPrefs.SetInt("itemNum", 3);
-                itemName.text = "Peanut Butter & Boss Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will reduce the amount of damage you take for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("pbnbossjelly");
+                itemName.text = "Blood Berry Slime Jelly Sandwich";
+                itemDescription.text = "Eating this dish will reduce the amount of damage you take for a bit, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bbsand");
                 item.sprite = items[2];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 4:
                 PlayerPrefs.SetInt("itemNum", 4);
-                itemName.text = "Dish 4";
-                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dish4");
-                item.sprite = items[0];
+                itemName.text = "Fried Mushroom";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("friedmush");
+                item.sprite = items[3];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             case 5:
                 PlayerPrefs.SetInt("itemNum", 5);
-                itemName.text = "Dish 5";
-                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dish5");
-                item.sprite = items[0];
+                itemName.text = "Blood Berry Soup";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup");
+                item.sprite = items[4];
+                PlayerPrefs.SetInt("maxHold", 3);
+                break;
+            case 6:
+                PlayerPrefs.SetInt("itemNum", 6);
+                itemName.text = "Royal Blood Berry Soup";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("royalbbsoup");
+                item.sprite = items[5];
+                PlayerPrefs.SetInt("maxHold", 3);
+                break;
+            case 7:
+                PlayerPrefs.SetInt("itemNum", 7);
+                itemName.text = "Boss Drink";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bossdrink");
+                item.sprite = items[6];
+                PlayerPrefs.SetInt("maxHold", 3);
+                break;
+            case 8:
+                PlayerPrefs.SetInt("itemNum", 8);
+                itemName.text = "Roasted Bone Marrow";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("roastbone");
+                item.sprite = items[7];
+                PlayerPrefs.SetInt("maxHold", 3);
+                break;
+            case 9:
+                PlayerPrefs.SetInt("itemNum", 9);
+                itemName.text = "Dungeon Dinner";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dundinner");
+                item.sprite = items[8];
+                PlayerPrefs.SetInt("maxHold", 3);
+                break;
+            case 10:
+                PlayerPrefs.SetInt("itemNum", 10);
+                itemName.text = "Dungeon Feast";
+                itemDescription.text = "Eating this dish will _, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast");
+                item.sprite = items[9];
                 PlayerPrefs.SetInt("maxHold", 3);
                 break;
             default:
@@ -230,146 +265,146 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 2);
-                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("jellysand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("jellysand"));
                         }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 2);
-                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("jellysand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnjelly"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("jellysand"));
                         }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 2);
-                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("jellysand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnjelly"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("jellysand"));
                         }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 2);
-                        if (PlayerPrefs.GetInt("pbnjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("jellysand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnjelly"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("jellysand"));
                         }
                         break;
                 }
-                selectItemConfirm.text = "Peanut Butter & Slime Jelly Sandwich selected for slot " + slot;
+                selectItemConfirm.text = "Slime Jelly Sandwich selected for slot " + slot;
                 break;
             case 3:
                 switch (slot)
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 3);
-                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bbsand"));
                         }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 3);
-                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("pbnbossjelly"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("bbsand"));
                         }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 3);
-                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("pbnbossjelly"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("bbsand"));
                         }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 3);
-                        if (PlayerPrefs.GetInt("pbnbossjelly") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsand") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("pbnbossjelly"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bbsand"));
                         }
                         break;
                 }
-                selectItemConfirm.text = "Peanut Butter & Boss Slime Jelly Sandwich selected for slot " + slot;
+                selectItemConfirm.text = "Blood Berry Slime Jelly Sandwich selected for slot " + slot;
                 break;
             case 4:
                 switch (slot)
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 4);
-                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("friedmush") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("friedmush"));
                         }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 4);
-                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("friedmush") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish4"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("friedmush"));
                         }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 4);
-                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("friedmush") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish4"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("friedmush"));
                         }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 4);
-                        if (PlayerPrefs.GetInt("dish4") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("friedmush") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish4"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("friedmush"));
                         }
                         break;
                 }
@@ -380,50 +415,300 @@ public class SelectionMenu : MonoBehaviour
                 {
                     case 1:
                         PlayerPrefs.SetInt("slot1", 5);
-                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsoup") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bbsoup"));
                         }
                         break;
                     case 2:
                         PlayerPrefs.SetInt("slot2", 5);
-                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsoup") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dish5"));
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("bbsoup"));
                         }
                         break;
                     case 3:
                         PlayerPrefs.SetInt("slot3", 5);
-                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsoup") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dish5"));
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("bbsoup"));
                         }
                         break;
                     default:
                         PlayerPrefs.SetInt("slot1", 5);
-                        if (PlayerPrefs.GetInt("dish5") >= PlayerPrefs.GetInt("maxHold"))
+                        if (PlayerPrefs.GetInt("bbsoup") >= PlayerPrefs.GetInt("maxHold"))
                         {
                             PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
                         }
                         else
                         {
-                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dish5"));
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bbsoup"));
                         }
                         break;
                 }
-                selectItemConfirm.text = "Dish 5 selected for slot " + slot;
+                selectItemConfirm.text = "Blood Berry Soup selected for slot " + slot;
+                break;
+            case 6:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 6);
+                        if (PlayerPrefs.GetInt("royalbbsoup") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("royalbbsoup"));
+                        }
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 6);
+                        if (PlayerPrefs.GetInt("royalbbsoup") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("royalbbsoup"));
+                        }
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 6);
+                        if (PlayerPrefs.GetInt("royalbbsoup") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("royalbbsoup"));
+                        }
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 6);
+                        if (PlayerPrefs.GetInt("royalbbsoup") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("royalbbsoup"));
+                        }
+                        break;
+                }
+                selectItemConfirm.text = "Royal Blood Berry Soup selected for slot " + slot;
+                break;
+            case 7:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 7);
+                        if (PlayerPrefs.GetInt("bossdrink") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bossdrink"));
+                        }
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 7);
+                        if (PlayerPrefs.GetInt("bossdrink") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("bossdrink"));
+                        }
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 7);
+                        if (PlayerPrefs.GetInt("bossdrink") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("bossdrink"));
+                        }
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 7);
+                        if (PlayerPrefs.GetInt("bossdrink") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("bossdrink"));
+                        }
+                        break;
+                }
+                selectItemConfirm.text = "Boss Drink selected for slot " + slot;
+                break;
+            case 8:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 8);
+                        if (PlayerPrefs.GetInt("roastbone") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("roastbone"));
+                        }
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 8);
+                        if (PlayerPrefs.GetInt("roastbone") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("roastbone"));
+                        }
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 8);
+                        if (PlayerPrefs.GetInt("roastbone") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("roastbone"));
+                        }
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 8);
+                        if (PlayerPrefs.GetInt("roastbone") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("roastbone"));
+                        }
+                        break;
+                }
+                selectItemConfirm.text = "Roasted Bone Marrow selected for slot " + slot;
+                break;
+            case 9:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 9);
+                        if (PlayerPrefs.GetInt("dundinner") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dundinner"));
+                        }
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 9);
+                        if (PlayerPrefs.GetInt("dundinner") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dundinner"));
+                        }
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 9);
+                        if (PlayerPrefs.GetInt("dundinner") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dundinner"));
+                        }
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 9);
+                        if (PlayerPrefs.GetInt("dundinner") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dundinner"));
+                        }
+                        break;
+                }
+                selectItemConfirm.text = "Dungeon Dinner selected for slot " + slot;
+                break;
+            case 10:
+                switch (slot)
+                {
+                    case 1:
+                        PlayerPrefs.SetInt("slot1", 10);
+                        if (PlayerPrefs.GetInt("dunfeast") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dunfeast"));
+                        }
+                        break;
+                    case 2:
+                        PlayerPrefs.SetInt("slot2", 10);
+                        if (PlayerPrefs.GetInt("dunfeast") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot2amount", PlayerPrefs.GetInt("dunfeast"));
+                        }
+                        break;
+                    case 3:
+                        PlayerPrefs.SetInt("slot3", 10);
+                        if (PlayerPrefs.GetInt("dunfeast") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot3amount", PlayerPrefs.GetInt("dunfeast"));
+                        }
+                        break;
+                    default:
+                        PlayerPrefs.SetInt("slot1", 10);
+                        if (PlayerPrefs.GetInt("dunfeast") >= PlayerPrefs.GetInt("maxHold"))
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("maxHold"));
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("slot1amount", PlayerPrefs.GetInt("dunfeast"));
+                        }
+                        break;
+                }
+                selectItemConfirm.text = "Dungeon Feast selected for slot " + slot;
                 break;
             default:
                 switch (slot)
