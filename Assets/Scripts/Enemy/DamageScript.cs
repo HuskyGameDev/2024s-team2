@@ -7,8 +7,10 @@ public class DamageScript : MonoBehaviour
 {
     Animator animator;
     public int damage;
+    public int slamDamage;
     public AudioSource audioSource;
     public AudioClip[] attackSounds;
+    public bool slam = false;
 
     private void Start()
     {
@@ -17,14 +19,24 @@ public class DamageScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("Player"))
         {
             damage = 10;
+            if (slam)
+            {
+                damage = slamDamage;
+                Debug.Log(damage);
+            }
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, gameObject.name);
-            animator.SetTrigger("Attack");
-            audioSource.PlayOneShot(attackSounds[Random.Range(0, attackSounds.Length - 1)]);
+            if (slam == false)
+            {
+                animator.SetTrigger("Attack");
+                audioSource.PlayOneShot(attackSounds[Random.Range(0, attackSounds.Length - 1)]);
+            }
+            slam = false;
             // WaitForSeconds waitForSeconds = new WaitForSeconds(1);
         }
-
+        //slam = false;
     }
 }
