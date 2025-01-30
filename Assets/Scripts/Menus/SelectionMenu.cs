@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Diagnostics;
 
 public class SelectionMenu : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SelectionMenu : MonoBehaviour
     public TextMeshProUGUI itemDescription;
     public TextMeshProUGUI selectItemConfirm;
     public TextMeshProUGUI slotNum;
+    public TextMeshProUGUI levelMessage;
     public int currentWeapon;
     public int currentItem;
     public Image item;
@@ -797,19 +799,30 @@ public class SelectionMenu : MonoBehaviour
 
     public void LevelOne()
     {
-        int level = PlayerPrefs.GetInt("lastLevel");
         SceneManager.LoadScene("Level One");
     }
 
     public void LevelTwo()
     {
-        int level = PlayerPrefs.GetInt("lastLevel");
-        SceneManager.LoadScene("Level Two");
+        if (PlayerPrefs.GetInt("haveCleaver") == 1)
+        {
+            SceneManager.LoadScene("Level Two");
+        }
+        else
+        {
+            levelMessage.text = "Level not unlocked!";
+        }
     }
 
     public void LevelThree()
     {
-        int level = PlayerPrefs.GetInt("lastLevel");
-        SceneManager.LoadScene("Level Three");
+        if (PlayerPrefs.GetInt("haveW3") == 1)
+        {
+            SceneManager.LoadScene("Level Three");
+        }
+        else
+        {
+            levelMessage.text = "Level not unlocked!";
+        }
     }
 }
