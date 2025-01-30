@@ -19,6 +19,8 @@ public class SlimeAttacks : MonoBehaviour
     public float slamSpeed;
     public Transform Player;
 
+    public float tweenTimeout;
+
     private bool isSlamming;
     private float tweenLeniency = 0.1f;
     private float slamTimer;
@@ -54,7 +56,7 @@ public class SlimeAttacks : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Tween above player
-        yield return StartCoroutine(Tween(Player, Vector3.up * slamHoverHeight, hoverSpeed));
+        yield return StartCoroutine(Tween(Player, Vector3.up * slamHoverHeight, hoverSpeed, tweenTimeout));
         
         Vector3 savedPlayerPos = Player.position + Vector3.down * 0.2f; //This is saved so that we just slam straight down (0.2f down since Player.position is the center)
 
@@ -62,8 +64,8 @@ public class SlimeAttacks : MonoBehaviour
         yield return new WaitForSeconds(slamHoverDuration);
 
         // Go up a bit, then slam down.
-        yield return StartCoroutine(Tween(transform.position + Vector3.up * 0.2f, 20f));
-        yield return StartCoroutine(Tween(savedPlayerPos, slamSpeed));
+        yield return StartCoroutine(Tween(transform.position + Vector3.up * 0.2f, 20f, tweenTimeout));
+        yield return StartCoroutine(Tween(savedPlayerPos, slamSpeed, tweenTimeout));
 
         impactParticles.Play();
         audioSource.PlayOneShot(slamSound);
@@ -77,19 +79,29 @@ public class SlimeAttacks : MonoBehaviour
         Debug.Log("SlimeAttack: Slam attack finished");
     }
 
-    // Overloaded tween for moving to a static point
-    private IEnumerator Tween(Vector3 targetPos, float speed) {
+    // Overloaded tween for moving to a static point. Has a timeout to avoid getting stuck.
+    private IEnumerator Tween(Vector3 targetPos, float speed, float timeoutSeconds) {
+        float timeoutTime = Time.time + timeoutSeconds;
         while (Vector3.Distance(transform.position, targetPos) > tweenLeniency) {
+            if (Time.time >= timeoutTime) {
+                Debug.Log("SlimeAttack: Timout reached on Tween!");
+                yield break;
+            }
             rb.MovePosition(Vector3.MoveTowards(transform.position, targetPos, speed*Time.fixedDeltaTime));
             yield return new WaitForFixedUpdate();
         }
         yield break;
     }
     
-    // Overloaded tween for transforms, allowing you to track a moving player
-    private IEnumerator Tween(Transform targetTransform, Vector3 offset, float speed) {
+    // Overloaded tween for transforms, allowing you to track a moving game object. Has a timeout to avoid getting stuck.
+    private IEnumerator Tween(Transform targetTransform, Vector3 offset, float speed, float timeoutSeconds) {
         Vector3 targetPosition = targetTransform.position + offset;
+        float timeoutTime = Time.time + timeoutSeconds;
         while (Vector3.Distance(transform.position, targetPosition) > tweenLeniency) {
+            if (Time.time >= timeoutTime) {
+                Debug.Log("SlimeAttack: Timout reached on Tween!");
+                yield break;
+            }
             targetPosition = targetTransform.position + offset;
             rb.MovePosition(Vector3.MoveTowards(transform.position, targetPosition, speed*Time.fixedDeltaTime));
             yield return new WaitForFixedUpdate();
