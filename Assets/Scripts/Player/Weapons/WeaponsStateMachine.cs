@@ -51,6 +51,7 @@ public class WeaponsStateMachine : MonoBehaviour
             default:
                 currentState = RollingPinState;
                 rollingPin.SetActive(true);
+                rollingPinUI.SetActive(true);
                 break;
         }
         

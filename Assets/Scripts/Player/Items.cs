@@ -60,20 +60,40 @@ public class Items : MonoBehaviour
                 value = PlayerPrefs.GetInt("goblinSteak");
                 maxVal = PlayerPrefs.GetInt("maxHold");
                 break;
-            case 2: //pbnjelly
-                value = PlayerPrefs.GetInt("pbnjelly");
+            case 2: //jellysand
+                value = PlayerPrefs.GetInt("jellysand");
                 maxVal = PlayerPrefs.GetInt("maxHold");
                 break;
-            case 3: //pbnbossjelly
-                value = PlayerPrefs.GetInt("pbnbossjelly");
+            case 3: //bbsand
+                value = PlayerPrefs.GetInt("bbsand");
                 maxVal = PlayerPrefs.GetInt("maxHold");
                 break;
-            case 4: //dish4
-                value = PlayerPrefs.GetInt("dish4");
+            case 4: //friedmush
+                value = PlayerPrefs.GetInt("friedmush");
                 maxVal = PlayerPrefs.GetInt("maxHold");
                 break;
-            case 5: //dish5
-                value = PlayerPrefs.GetInt("dish5");
+            case 5: //bbsoup
+                value = PlayerPrefs.GetInt("bbsoup");
+                maxVal = PlayerPrefs.GetInt("maxHold");
+                break;
+            case 6: //royalbbsoup
+                value = PlayerPrefs.GetInt("royalbbsoup");
+                maxVal = PlayerPrefs.GetInt("maxHold");
+                break;
+            case 7: //bossdrink
+                value = PlayerPrefs.GetInt("bossdrink");
+                maxVal = PlayerPrefs.GetInt("maxHold");
+                break;
+            case 8: //roastbone
+                value = PlayerPrefs.GetInt("roastbone");
+                maxVal = PlayerPrefs.GetInt("maxHold");
+                break;
+            case 9: //dundinner
+                value = PlayerPrefs.GetInt("dundinner");
+                maxVal = PlayerPrefs.GetInt("maxHold");
+                break;
+            case 10: //dunfeast
+                value = PlayerPrefs.GetInt("dunfeast");
                 maxVal = PlayerPrefs.GetInt("maxHold");
                 break;
             default: //goblinSteak
@@ -189,17 +209,32 @@ public class Items : MonoBehaviour
             case 1: //use goblinSteak
                 PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak")-1);
                 break;
-            case 2: //use pbnjelly
-                PlayerPrefs.SetInt("pbnjelly", PlayerPrefs.GetInt("pbnjelly") - 1);
+            case 2: //use jellysand
+                PlayerPrefs.SetInt("jellysand", PlayerPrefs.GetInt("jellysand") - 1);
                 break;
-            case 3: //pbnbossjelly
-                PlayerPrefs.SetInt("pbnbossjelly", PlayerPrefs.GetInt("pbnbossjelly") - 1);
+            case 3: //use bbsand
+                PlayerPrefs.SetInt("bbsand", PlayerPrefs.GetInt("bbsand") - 1);
                 break;
-            case 4: //use dish4
-                PlayerPrefs.SetInt("dish4", PlayerPrefs.GetInt("dish4") - 1);
+            case 4: //use friedmush
+                PlayerPrefs.SetInt("friedmush", PlayerPrefs.GetInt("friedmush") - 1);
                 break;
-            case 5: //use dish5
-                PlayerPrefs.SetInt("dish5", PlayerPrefs.GetInt("dish5") - 1);
+            case 5: //use bbsoup
+                PlayerPrefs.SetInt("bbsoup", PlayerPrefs.GetInt("bbsoup") - 1);
+                break;
+            case 6: //use royalbbsoup
+                PlayerPrefs.SetInt("royalbbsoup", PlayerPrefs.GetInt("royalbbsoup") - 1);
+                break;
+            case 7: //use bossdrink
+                PlayerPrefs.SetInt("bossdrink", PlayerPrefs.GetInt("bossdrink") - 1);
+                break;
+            case 8: //use roastbone
+                PlayerPrefs.SetInt("roastbone", PlayerPrefs.GetInt("roastbone") - 1);
+                break;
+            case 9: //use dundinner
+                PlayerPrefs.SetInt("dundinner", PlayerPrefs.GetInt("dundinner") - 1);
+                break;
+            case 10: //use dunfeast
+                PlayerPrefs.SetInt("dunfeast", PlayerPrefs.GetInt("dunfeast") - 1);
                 break;
             default: //use goblinSteak
                 PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") - 1);

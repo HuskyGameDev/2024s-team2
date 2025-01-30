@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public string gob = "TempGoblin_TEST(Clone)";
     public string sla_b = "Slime_Boss";
     public Destructable destructable;
+    public BloodyEffect bloodyEffect; //new
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
 
@@ -42,6 +43,7 @@ public class EnemyHealth : MonoBehaviour
         ene_dam = (int)(damage * ran_dam);
         ene_HP = ene_HP - ene_dam;
         audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
+        bloodyEffect.Bloody(); //new
         if (ene_HP <= 0)
         {
             destructable.takeDamage(ene_dam);
