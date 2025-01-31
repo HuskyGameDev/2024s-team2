@@ -26,7 +26,7 @@ public class DamageScript : MonoBehaviour
             if (slam)
             {
                 damage = slamDamage;
-                Debug.Log(damage);
+                Debug.Log("Player hit with slam!");
             }
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, gameObject.name);
             if (slam == false)

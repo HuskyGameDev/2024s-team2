@@ -10,7 +10,6 @@ public class SlimeAttacks : MonoBehaviour
     [SerializeField] ParticleSystem impactParticles;
     public AudioSource audioSource;
     public AudioClip slamSound;
-    public DamageScript damageScript;
 
     public float slamDamage;
     public float slamCooldown;
@@ -26,6 +25,7 @@ public class SlimeAttacks : MonoBehaviour
     private float tweenLeniency = 0.1f;
     private float slamTimer;
     private Rigidbody rb;
+    private DamageScript damageScript;
 
     // Start is called before the first frame update
     void Start()
