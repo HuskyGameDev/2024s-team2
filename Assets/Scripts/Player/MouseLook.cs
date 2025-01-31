@@ -19,6 +19,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mouseSensitivity = PlayerPrefs.GetFloat("sensitivityVal");
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime; // Adjusting this by delta time keeps the movement at the same rate
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime; //     so that it does not change with framerate changes
         
