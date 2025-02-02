@@ -20,6 +20,14 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void NewGame()
+    {
+        //reset all playerprefs
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetFloat("sensitivityVal", 200);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void Quit()
     {
         Application.Quit();
