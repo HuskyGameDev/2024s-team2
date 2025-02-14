@@ -13,7 +13,7 @@ public class Items : MonoBehaviour
     public Sprite[] items;
     public TextMeshProUGUI displayCount;
     public PlayerHealth playerHealth;
-
+    public Animator animatorUI;
 
     // Start is called before the first frame update
     void Start()
@@ -176,6 +176,7 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot1amount", count-1);
                     count = count - 1;
+                    animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -184,6 +185,7 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot2amount", count - 1);
                     count = count - 1;
+                    animatorUI = GameObject.Find("itemCooldown2").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -192,6 +194,7 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot3amount", count - 1);
                     count = count - 1;
+                    animatorUI = GameObject.Find("itemCooldown3").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -200,6 +203,7 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot1amount", count - 1);
                     count = count - 1;
+                    animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -216,32 +220,38 @@ public class Items : MonoBehaviour
                 PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak")-1);
                 PlayerPrefs.SetInt("healingVal", 10);
                 playerHealth.AddHealth();
+                animatorUI.Play("itemCooldown5sec");
                 timeCool = 5;
                 break;
             case 2: //use jellysand, increase movement speed (carry 3 max, ~15 seconds?) (move speed 10 sprint speed 17)
                 PlayerPrefs.SetInt("jellysand", PlayerPrefs.GetInt("jellysand") - 1);
                 PlayerPrefs.SetInt("speedBoost", 3);
+                animatorUI.Play("itemCooldown15sec");
                 timeCool = 15;
                 break;
             case 3: //use bbsand, reduce damage taken (carry 3 max, ~30 seconds?)
                 PlayerPrefs.SetInt("bbsand", PlayerPrefs.GetInt("bbsand") - 1);
                 PlayerPrefs.SetFloat("defBuff", 0.8f);
+                animatorUI.Play("itemCooldown30sec");
                 timeCool = 30;
                 break;
             case 4: //use friedmush, increase damage dealt (carry 3 max, ~15 seconds?)
                 PlayerPrefs.SetInt("friedmush", PlayerPrefs.GetInt("friedmush") - 1);
                 PlayerPrefs.SetFloat("attBuff", 1.3f);
+                animatorUI.Play("itemCooldown15sec");
                 timeCool = 15;
                 break;
             case 5: //use bbsoup, regain some health  (carry 3 max, 15 hp? cooldown of 8 seconds)
                 PlayerPrefs.SetInt("bbsoup", PlayerPrefs.GetInt("bbsoup") - 1);
                 PlayerPrefs.SetInt("healingVal", 15);
                 playerHealth.AddHealth();
+                animatorUI.Play("itemCooldown8sec");
                 timeCool = 8;
                 break;
             case 6: //use royalbbsoup, increase movement speed (carry 3 max, ~25 seconds?) (move speed 10 sprint speed 17)
                 PlayerPrefs.SetInt("royalbbsoup", PlayerPrefs.GetInt("royalbbsoup") - 1);
                 PlayerPrefs.SetInt("speedBoost", 3);
+                animatorUI.Play("itemCooldown25sec");
                 timeCool = 25;
                 break;
             case 7: //use bossdrink, increase total health for a level by 50? (carry 2 max)
@@ -252,22 +262,26 @@ public class Items : MonoBehaviour
             case 8: //use roastbone, reduce damage taken (carry 3 max, ~40 seconds?)
                 PlayerPrefs.SetInt("roastbone", PlayerPrefs.GetInt("roastbone") - 1);
                 PlayerPrefs.SetFloat("defBuff", 0.7f);
+                animatorUI.Play("itemCooldown40sec");
                 timeCool = 40;
                 break;
             case 9: //use dundinner, increase damage dealt (carry 3 max, ~25 seconds?)
                 PlayerPrefs.SetInt("dundinner", PlayerPrefs.GetInt("dundinner") - 1);
                 PlayerPrefs.SetFloat("attBuff", 1.5f);
+                animatorUI.Play("itemCooldown30sec");
                 timeCool = 30;
                 break;
             case 10: //use dunfeast, completely recover health (carry 2 max, cooldown of 90 seconds?)
                 PlayerPrefs.SetInt("dunfeast", PlayerPrefs.GetInt("dunfeast") - 1);
                 playerHealth.FullRecover();
+                animatorUI.Play("itemCooldown90sec");
                 timeCool = 90;
                 break;
             default: //use goblinSteak, regain some health  (10 hp? cooldown of 5 seconds)
                 PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") - 1);
                 PlayerPrefs.SetInt("healingVal", 10);
                 playerHealth.AddHealth();
+                animatorUI.Play("itemCooldown5sec");
                 timeCool = 5;
                 break;
         }
@@ -292,6 +306,8 @@ public class Items : MonoBehaviour
                 break;
 
         }
+
+        //could start animations here?
         
         yield return new WaitForSeconds(time);
 
