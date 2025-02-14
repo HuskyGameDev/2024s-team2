@@ -137,9 +137,9 @@ public class PlayerMovement : MonoBehaviour
                     audioSource.pitch = Random.Range(0.9f, 1f);
                     audioSource.PlayOneShot(walkingClips[Random.Range(0,walkingClips.Length-1)]);
                     if(state == MovementState.sprinting){
-                        footstepTimer = stepSpeed * (walkSpeed/sprintSpeed); // Adjust by a factor of walk speed over sprint speed
+                        footstepTimer = stepSpeed * ((walkSpeed + PlayerPrefs.GetInt("speedBoost")) / sprintSpeed); // Adjust by a factor of walk speed over sprint speed
                     } else if(state == MovementState.crouching){
-                        footstepTimer = stepSpeed * (walkSpeed/crouchSpeed); // Adjust by a factor of walk speed over crouch speed
+                        footstepTimer = stepSpeed * ((walkSpeed + PlayerPrefs.GetInt("speedBoost")) / crouchSpeed); // Adjust by a factor of walk speed over crouch speed
                     } else {
                         footstepTimer = stepSpeed;
                     }

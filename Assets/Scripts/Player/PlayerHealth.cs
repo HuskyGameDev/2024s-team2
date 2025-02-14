@@ -46,10 +46,11 @@ public class PlayerHealth : MonoBehaviour
         */
     }
 
-    public void AddHealth(int amount, bool temporary)
+    //public void AddHealth(int amount, bool temporary)
+    public void AddHealth()
     {
         //need to put in code that remove the temporary health when getting out from dungeon...
-        if (temporary == true)
+        /*if (temporary == true)
         {
             if (currentHealth + amount <= maxHealth)
             {
@@ -61,7 +62,30 @@ public class PlayerHealth : MonoBehaviour
         } else
         {
             currentHealth = maxHealth;
+        }*/
+        if(currentHealth + PlayerPrefs.GetInt("healingVal") < maxHealth)
+        {
+            currentHealth = currentHealth + PlayerPrefs.GetInt("healingVal");
+            healthBar.SetHealth(currentHealth);
         }
+        else
+        {
+            currentHealth = maxHealth;
+            healthBar.SetHealth(currentHealth);
+        }
+
+    }
+
+    public void FullRecover()
+    {
+        healthBar.SetHealth(maxHealth);
+    }
+
+    public void IncMaxHP(int amount)
+    {
+        maxHealth = maxHealth + amount;
+        currentHealth = currentHealth + amount;
+        healthBar.NewMaxHealth(maxHealth, currentHealth);
     }
 
     public void TakeDamage(int damage, string enemy_name) //make public
@@ -72,11 +96,11 @@ public class PlayerHealth : MonoBehaviour
         if (String.Compare(enemy_name, gob) == 0)
         {
             ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
-            dam = (int)(damage * ran_dam);
+            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
         } else if (enemy_name == "Slime_Boss")
         {
             ran_dam = UnityEngine.Random.Range(0.7f, 1.5f);
-            dam = (int)(damage * ran_dam);
+            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
         }
         currentHealth -= dam;
         healthBar.SetHealth(currentHealth);

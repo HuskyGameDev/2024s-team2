@@ -40,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
     public void Damaging(int damage)
     {
         float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);
-        ene_dam = (int)(damage * ran_dam);
+        ene_dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("attBuff"));
         ene_HP = ene_HP - ene_dam;
         audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
         bloodyEffect.Bloody(); //new

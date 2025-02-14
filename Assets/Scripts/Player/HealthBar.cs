@@ -24,4 +24,12 @@ public class HealthBar : MonoBehaviour
 
         ChangeColor.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+    public void NewMaxHealth(int max, int current)
+    {
+        slider.maxValue = max;
+        slider.value = current;
+
+        ChangeColor.color = gradient.Evaluate(slider.normalizedValue);
+    }
 }
