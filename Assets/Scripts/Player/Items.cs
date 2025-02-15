@@ -18,6 +18,8 @@ public class Items : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("speedBoostWalk", 7);
+        PlayerPrefs.SetInt("speedBoostSprint", 14);
 
         switch (slot)
         {
@@ -25,21 +27,25 @@ public class Items : MonoBehaviour
                 type = PlayerPrefs.GetInt("slot1");
                 count = PlayerPrefs.GetInt("slot1amount");
                 PlayerPrefs.SetInt("coolDown1", 0);
+                animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                 break;
             case 2:
                 type = PlayerPrefs.GetInt("slot2");
                 count = PlayerPrefs.GetInt("slot2amount");
                 PlayerPrefs.SetInt("coolDown2", 0);
+                animatorUI = GameObject.Find("itemCooldown2").GetComponent<Animator>();
                 break;
             case 3:
                 type = PlayerPrefs.GetInt("slot3");
                 count = PlayerPrefs.GetInt("slot3amount");
                 PlayerPrefs.SetInt("coolDown3", 0);
+                animatorUI = GameObject.Find("itemCooldown3").GetComponent<Animator>();
                 break;
             default:
                 PlayerPrefs.GetInt("slot1");
                 count = PlayerPrefs.GetInt("slot1amount");
                 PlayerPrefs.SetInt("coolDown1", 0);
+                animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                 break;
         }
         if (type != 0)
@@ -176,7 +182,6 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot1amount", count-1);
                     count = count - 1;
-                    animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -185,7 +190,6 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot2amount", count - 1);
                     count = count - 1;
-                    animatorUI = GameObject.Find("itemCooldown2").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -194,7 +198,6 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot3amount", count - 1);
                     count = count - 1;
-                    animatorUI = GameObject.Find("itemCooldown3").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -203,7 +206,6 @@ public class Items : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("slot1amount", count - 1);
                     count = count - 1;
-                    animatorUI = GameObject.Find("itemCooldown1").GetComponent<Animator>();
                     useItem();
                 }
                 break;
@@ -225,7 +227,8 @@ public class Items : MonoBehaviour
                 break;
             case 2: //use jellysand, increase movement speed (carry 3 max, ~15 seconds?) (move speed 10 sprint speed 17)
                 PlayerPrefs.SetInt("jellysand", PlayerPrefs.GetInt("jellysand") - 1);
-                PlayerPrefs.SetInt("speedBoost", 3);
+                PlayerPrefs.SetInt("speedBoostWalk", 10);
+                PlayerPrefs.SetInt("speedBoostSprint", 17);
                 animatorUI.Play("itemCooldown15sec");
                 timeCool = 15;
                 break;
@@ -250,7 +253,8 @@ public class Items : MonoBehaviour
                 break;
             case 6: //use royalbbsoup, increase movement speed (carry 3 max, ~25 seconds?) (move speed 10 sprint speed 17)
                 PlayerPrefs.SetInt("royalbbsoup", PlayerPrefs.GetInt("royalbbsoup") - 1);
-                PlayerPrefs.SetInt("speedBoost", 3);
+                PlayerPrefs.SetInt("speedBoostWalk", 10);
+                PlayerPrefs.SetInt("speedBoostSprint", 17);
                 animatorUI.Play("itemCooldown25sec");
                 timeCool = 25;
                 break;
@@ -274,8 +278,8 @@ public class Items : MonoBehaviour
             case 10: //use dunfeast, completely recover health (carry 2 max, cooldown of 90 seconds?)
                 PlayerPrefs.SetInt("dunfeast", PlayerPrefs.GetInt("dunfeast") - 1);
                 playerHealth.FullRecover();
-                animatorUI.Play("itemCooldown90sec");
-                timeCool = 90;
+                animatorUI.Play("itemCooldown75sec");
+                timeCool = 75;
                 break;
             default: //use goblinSteak, regain some health  (10 hp? cooldown of 5 seconds)
                 PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") - 1);
@@ -334,7 +338,8 @@ public class Items : MonoBehaviour
                 PlayerPrefs.SetInt("healingVal", 0);
                 break;
             case 2: //used jellysand
-                PlayerPrefs.SetInt("speedBoost", 0);
+                PlayerPrefs.SetInt("speedBoostWalk", 7);
+                PlayerPrefs.SetInt("speedBoostSprint", 14);
                 break;
             case 3: //used bbsand
                 PlayerPrefs.SetFloat("defBuff", 1f);
@@ -346,7 +351,8 @@ public class Items : MonoBehaviour
                 PlayerPrefs.SetInt("healingVal", 0);
                 break;
             case 6: //used royalbbsoup
-                PlayerPrefs.SetInt("speedBoost", 0);
+                PlayerPrefs.SetInt("speedBoostWalk", 7);
+                PlayerPrefs.SetInt("speedBoostSprint", 14);
                 break;
             case 7: //used bossdrink
                 break;

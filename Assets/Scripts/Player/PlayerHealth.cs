@@ -78,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void FullRecover()
     {
+        currentHealth = maxHealth;
         healthBar.SetHealth(maxHealth);
     }
 

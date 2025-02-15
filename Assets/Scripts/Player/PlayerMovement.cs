@@ -72,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        walkSpeed = PlayerPrefs.GetInt("speedBoostWalk");
+        sprintSpeed = PlayerPrefs.GetInt("speedBoostSprint");
+
         // Ground Check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.3f, Ground); 
 
