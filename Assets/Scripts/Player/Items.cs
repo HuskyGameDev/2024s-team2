@@ -20,6 +20,8 @@ public class Items : MonoBehaviour
     {
         PlayerPrefs.SetInt("speedBoostWalk", 7);
         PlayerPrefs.SetInt("speedBoostSprint", 14);
+        PlayerPrefs.SetFloat("defBuff", 1f);
+        PlayerPrefs.SetFloat("attBuff", 1f);
 
         switch (slot)
         {
