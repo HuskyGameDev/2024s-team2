@@ -69,47 +69,47 @@ public class Items : MonoBehaviour
         {
             case 1: //goblinSteak
                 value = PlayerPrefs.GetInt("goblinSteak");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold1");
                 break;
             case 2: //jellysand
                 value = PlayerPrefs.GetInt("jellysand");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold2");
                 break;
             case 3: //bbsand
                 value = PlayerPrefs.GetInt("bbsand");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold3");
                 break;
             case 4: //friedmush
                 value = PlayerPrefs.GetInt("friedmush");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold4");
                 break;
             case 5: //bbsoup
                 value = PlayerPrefs.GetInt("bbsoup");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold5");
                 break;
             case 6: //royalbbsoup
                 value = PlayerPrefs.GetInt("royalbbsoup");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold6");
                 break;
             case 7: //bossdrink
                 value = PlayerPrefs.GetInt("bossdrink");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold7");
                 break;
             case 8: //roastbone
                 value = PlayerPrefs.GetInt("roastbone");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold8");
                 break;
             case 9: //dundinner
                 value = PlayerPrefs.GetInt("dundinner");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold9");
                 break;
             case 10: //dunfeast
                 value = PlayerPrefs.GetInt("dunfeast");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold10");
                 break;
             default: //goblinSteak
                 value = PlayerPrefs.GetInt("goblinSteak");
-                maxVal = PlayerPrefs.GetInt("maxHold");
+                maxVal = PlayerPrefs.GetInt("maxHold1");
                 break;
         }
         Debug.Log(value);
