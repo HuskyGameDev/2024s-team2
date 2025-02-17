@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
     {
         float mouseSensitivity = PlayerPrefs.GetFloat("sensitivityVal");
         sensitivitySlider.value = mouseSensitivity / 10;
+        if(PlayerPrefs.GetFloat("sensitivityVal") == 0)
+        {
+            PlayerPrefs.SetFloat("sensitivityVal", 200);
+        }
     }
 
     public void Play()

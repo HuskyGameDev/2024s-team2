@@ -5,13 +5,15 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Diagnostics;
+using System;
 
 public class RecipeMenu : MonoBehaviour
 {
     //public TextMeshProUGUI myIngredients;
     public TextMeshProUGUI recipeDescription;
     //public TextMeshProUGUI ingredientsNeeded;
-    public TextMeshProUGUI amountText;
+    //public TextMeshProUGUI amountText;
+    public TMP_InputField inputAmount;
     public TextMeshProUGUI craftResult;
     public int currentRecipe;
 
@@ -35,7 +37,7 @@ public class RecipeMenu : MonoBehaviour
         //myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t"; 
         recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
         //ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
-        amountText.text = "" + amount;
+        inputAmount.text = "" + amount;
         ingr1.text = "1(" + PlayerPrefs.GetInt("goblinMeat") + ")";
         ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
         ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
@@ -54,73 +56,10 @@ public class RecipeMenu : MonoBehaviour
         {
             craftResult.text = "";
         }
-        amountText.text = "" + amount;
+        //amountText.text = "" + amount;
+        inputAmount.text = "" + amount;
 
-        switch (PlayerPrefs.GetInt("recipeNum"))
-        {
-            case 1:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
-                ingr1.text = (1 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                break;
-            case 2:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                break;
-            case 3:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly" + (1 * amount) + " Blood Berry";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 4:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Mushroom";
-                ingr4.text = (2 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                break;
-            case 5:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Blood Berry\t" + (3 * amount) + " Slime Jelly";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 6:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + "Blood Berry \t" + (1 * amount) + " Boss Slime Jelly";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 7:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Boss Slime Jelly\t" + (3 * amount) + " Blood Berry" + (1 * amount) + " Minotaur Horn";
-                ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                break;
-            case 8:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Bone";
-                ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            case 9:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Mushroom" + (1 * amount) + " Bone";
-                ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr4.text = (3 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            case 10:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Slime Jelly" + (1 * amount)
-                 //   + " Boss Slime Jelly" + (1 * amount) + " Minotaur Horn" + (1 * amount) + " Mushroom" + (1 * amount) + " Blood Berry" + (1 * amount) + " Bone";
-                ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = (1 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            default:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " ingredientA\t" + (1 * amount) + " ingredientB";
-                ingr2.text = (1 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                break;
-        }
-        PlayerPrefs.SetInt("craftNum", amount);
+        UpdateAmount();
     }
 
     //decrease amount of dishes to craft
@@ -136,73 +75,106 @@ public class RecipeMenu : MonoBehaviour
         {
             craftResult.text = "";
         }
-        amountText.text = "" + amount;
+        //amountText.text = "" + amount;
+        inputAmount.text = "" + amount;
 
-        switch (PlayerPrefs.GetInt("recipeNum"))
+        UpdateAmount();
+    }
+
+    public void UpdateAmount()
+    {
+        int tempAmount = 0;
+        try
         {
-            case 1:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
-                ingr1.text = (1 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                break;
-            case 2:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                break;
-            case 3:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly" + (1 * amount) + " Blood Berry";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 4:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Mushroom";
-                ingr4.text = (2 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                break;
-            case 5:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Blood Berry\t" + (3 * amount) + " Slime Jelly";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 6:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + "Blood Berry \t" + (1 * amount) + " Boss Slime Jelly";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                break;
-            case 7:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Boss Slime Jelly\t" + (3 * amount) + " Blood Berry" + (1 * amount) + " Minotaur Horn";
-                ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr5.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                break;
-            case 8:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Bone";
-                ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            case 9:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Mushroom" + (1 * amount) + " Bone";
-                ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr4.text = (3 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            case 10:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Slime Jelly" + (1 * amount)
-                //    + " Boss Slime Jelly" + (1 * amount) + " Minotaur Horn" + (1 * amount) + " Mushroom" + (1 * amount) + " Blood Berry" + (1 * amount) + " Bone";
-                ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = (1 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
-                break;
-            default:
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " ingredientA\t" + (1 * amount) + " ingredientB";
-                ingr2.text = (1 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                break;
+            tempAmount = System.Convert.ToInt32(inputAmount.text);
         }
-        PlayerPrefs.SetInt("craftNum", amount);
+        catch (FormatException)
+        {
+            amount = 1;
+            craftResult.text = "Cannot craft less than 1 dish";
+            inputAmount.text = "" + amount;
+        }
+        
+        if (tempAmount <= 0)
+        {
+            amount = 1;
+            craftResult.text = "Cannot craft less than 1 dish";
+            inputAmount.text = "" + amount;
+        }
+        else
+        {
+            craftResult.text = "";
+            amount = System.Convert.ToInt32(inputAmount.text);
+
+            //UnityEngine.Debug.Log("text field: " + inputAmount.text);
+            UnityEngine.Debug.Log("saved value: " + amount);
+
+            switch (PlayerPrefs.GetInt("recipeNum"))
+            {
+                case 1:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
+                    ingr1.text = (1 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    break;
+                case 2:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    break;
+                case 3:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly" + (1 * amount) + " Blood Berry";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    break;
+                case 4:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Mushroom";
+                    ingr4.text = (2 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    break;
+                case 5:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Blood Berry\t" + (3 * amount) + " Slime Jelly";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    break;
+                case 6:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + "Blood Berry \t" + (1 * amount) + " Boss Slime Jelly";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    break;
+                case 7:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Boss Slime Jelly\t" + (3 * amount) + " Blood Berry" + (1 * amount) + " Minotaur Horn";
+                    ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
+                    break;
+                case 8:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Bone";
+                    ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                    break;
+                case 9:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Mushroom" + (1 * amount) + " Bone";
+                    ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr4.text = (3 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                    break;
+                case 10:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Slime Jelly" + (1 * amount)
+                    //    + " Boss Slime Jelly" + (1 * amount) + " Minotaur Horn" + (1 * amount) + " Mushroom" + (1 * amount) + " Blood Berry" + (1 * amount) + " Bone";
+                    ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = (1 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                    break;
+                default:
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " ingredientA\t" + (1 * amount) + " ingredientB";
+                    ingr2.text = (1 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    break;
+            }
+            PlayerPrefs.SetInt("craftNum", amount);
+        }
     }
 
     //try to craft a dish
@@ -285,12 +257,15 @@ public class RecipeMenu : MonoBehaviour
                     PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") - aNeeded);
                     PlayerPrefs.SetInt("goblinSteak", PlayerPrefs.GetInt("goblinSteak") + amount);
                     recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
+                    ingr1.text = (1 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
                     break;
                 case 2://jellysand
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
                     PlayerPrefs.SetInt("bossSlimeJelly", PlayerPrefs.GetInt("bossSlimeJelly") - cNeeded);
                     PlayerPrefs.SetInt("jellysand", PlayerPrefs.GetInt("jellysand") + amount);
                     recipeDescription.text = "Slime Jelly Sandwich: Eating this dish will increase your walk speed for a bit\nOwned: " + PlayerPrefs.GetInt("jellysand") + "\nRequired Ingredients:";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
                     break;
                 case 3://bbsand
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
@@ -298,23 +273,31 @@ public class RecipeMenu : MonoBehaviour
                     PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") - fNeeded);
                     PlayerPrefs.SetInt("bbsand", PlayerPrefs.GetInt("bbsand") + amount);
                     recipeDescription.text = "Blood Berry Slime Jelly Sandwich: Eating this dish will reduce the damage you take by 20% for 30 seconds, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bbsand") + "\nRequired Ingredients:";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
                     break;
                 case 4://friedmush
                     PlayerPrefs.SetInt("mushroom", PlayerPrefs.GetInt("mushroom") - eNeeded);
                     PlayerPrefs.SetInt("friedmush", PlayerPrefs.GetInt("friedmush") + amount);
                     recipeDescription.text = "Fried Mushroom: Eating this dish will increase the damage you deal by 30% for 15 seconds, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("friedmush") + "\nRequired Ingredients:";
+                    ingr4.text = (2 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
                     break;
                 case 5://bbsoup
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
                     PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") - fNeeded);
                     PlayerPrefs.SetInt("bbsoup", PlayerPrefs.GetInt("bbsoup") + amount);
                     recipeDescription.text = "Blood Berry Soup: Eating this dish will let you regain 15 hp (8 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup") + "\nRequired Ingredients:";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
                     break;
                 case 6://royalbbsoup
                     PlayerPrefs.SetInt("bossSlimeJelly", PlayerPrefs.GetInt("bossSlimeJelly") - cNeeded);
                     PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") - fNeeded);
                     PlayerPrefs.SetInt("royalbbsoup", PlayerPrefs.GetInt("royalbbsoup") + amount);
                     recipeDescription.text = "Royal Blood Berry Soup: Eating this dish will increase your movement speed for 25 seconds, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("royalbbsoup") + "\nRequired Ingredients:";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
                     break;
                 case 7://bossdrink
                     PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") - bNeeded);
@@ -322,11 +305,15 @@ public class RecipeMenu : MonoBehaviour
                     PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") - fNeeded);
                     PlayerPrefs.SetInt("bossdrink", PlayerPrefs.GetInt("bossdrink") + amount);
                     recipeDescription.text = "Boss Drink: Eating this dish will increase your total health by 50, you can carry 2 at a time\nOwned: " + PlayerPrefs.GetInt("bossdrink") + "\nRequired Ingredients:";
+                    ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr5.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
                     break;
                 case 8://roastbone
                     PlayerPrefs.SetInt("bone", PlayerPrefs.GetInt("bone") - gNeeded);
                     PlayerPrefs.SetInt("roastbone", PlayerPrefs.GetInt("roastbone") + amount);
                     recipeDescription.text = "Roasted Bone Marrow: Eating this dish will reduce the damage you take by 30% for 40 seconds, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("roastbone") + "\nRequired Ingredients:";
+                    ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
                     break;
                 case 9://dundinner
                     PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") - aNeeded);
@@ -334,6 +321,9 @@ public class RecipeMenu : MonoBehaviour
                     PlayerPrefs.SetInt("bone", PlayerPrefs.GetInt("bone") - gNeeded);
                     PlayerPrefs.SetInt("dundinner", PlayerPrefs.GetInt("dundinner") + amount);
                     recipeDescription.text = "Dungeon Dinner: Eating this dish will increase the damage you deal by 50% for 25 seconds, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dundinner") + "\nRequired Ingredients:";
+                    ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr4.text = (3 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
                     break;
                 case 10://dunfeast
                     PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") - aNeeded);
@@ -345,6 +335,13 @@ public class RecipeMenu : MonoBehaviour
                     PlayerPrefs.SetInt("bone", PlayerPrefs.GetInt("bone") - gNeeded);
                     PlayerPrefs.SetInt("dunfeast", PlayerPrefs.GetInt("dunfeast") + amount);
                     recipeDescription.text = "Dungeon Feast: Eating this dish will completely recover your health (75 second cooldown), you can carry 2 at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast") + "\nRequired Ingredients:";
+                    ingr1.text = (2 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = (1 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
                     break;
                 default:
                     PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") - aNeeded);
@@ -372,7 +369,7 @@ public class RecipeMenu : MonoBehaviour
             amount = 1;
             PlayerPrefs.SetInt("craftNum", amount);
         }
-        amountText.text = "" + amount;
+        inputAmount.text = "" + amount;
         craftResult.text = "";
 
         switch (currentRecipe)
