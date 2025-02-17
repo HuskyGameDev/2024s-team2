@@ -7,12 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class RecipeMenu : MonoBehaviour
 {
-    public TextMeshProUGUI myIngredients;
+    //public TextMeshProUGUI myIngredients;
     public TextMeshProUGUI recipeDescription;
     public TextMeshProUGUI ingredientsNeeded;
     public TextMeshProUGUI amountText;
     public TextMeshProUGUI craftResult;
     public int currentRecipe;
+
+    public TextMeshProUGUI ingr1;
+    public TextMeshProUGUI ingr2;
+    public TextMeshProUGUI ingr3;
+    public TextMeshProUGUI ingr4;
+    public TextMeshProUGUI ingr5;
+    public TextMeshProUGUI ingr6;
+    public TextMeshProUGUI ingr7;
 
     private int amount;
 
@@ -23,10 +31,17 @@ public class RecipeMenu : MonoBehaviour
         //initialize everything :)
         PlayerPrefs.SetInt("recipeNum", 1);
         amount = 1;
-        myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t"; 
-        recipeDescription.text = "Goblin Steak: Eating this dish will let you regain a bit of health\nOwned: " + PlayerPrefs.GetInt("goblinSteak"); 
+        //myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t"; 
+        recipeDescription.text = "Goblin Steak: Eating this dish will let you regain a bit of health\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:"; 
         ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
         amountText.text = "" + amount;
+        ingr1.text = "1(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+        ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+        ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+        ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+        ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+        ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+        ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -284,7 +299,7 @@ public class RecipeMenu : MonoBehaviour
                     break;
             }
 
-            myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t";
+            //myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t";
             craftResult.text = "Successfully crafted";
         }
 
