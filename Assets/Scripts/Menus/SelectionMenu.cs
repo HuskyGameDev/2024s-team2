@@ -805,25 +805,25 @@ public class SelectionMenu : MonoBehaviour
 
     public void LevelTwo()
     {
-        if (PlayerPrefs.GetInt("haveCleaver") == 1)
-        {
+        //if (PlayerPrefs.GetInt("haveCleaver") == 1)
+        //{
             SceneManager.LoadScene("Level Two");
-        }
+        /*}
         else
         {
             levelMessage.text = "Level not unlocked!";
-        }
+        }*/
     }
 
     public void LevelThree()
     {
-        if (PlayerPrefs.GetInt("haveW3") == 1)
-        {
+        //if (PlayerPrefs.GetInt("haveW3") == 1)
+        //{
             SceneManager.LoadScene("Level Three");
-        }
+        /*}
         else
         {
             levelMessage.text = "Level not unlocked!";
-        }
+        }*/
     }
 }
