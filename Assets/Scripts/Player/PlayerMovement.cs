@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     public MovementState state;
     public enum MovementState {walking, sprinting, crouching, air}
 
+    // Public variable for enabling/disabling jumping
+    public bool jumpEnabled = true; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         verticleInput = Input.GetAxisRaw("Vertical");
 
         // Jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded) {
+        if(Input.GetKey(jumpKey) && readyToJump && grounded && jumpEnabled) {
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown); // Wait for the jump to cooldown before allowing a second jump
@@ -197,6 +200,24 @@ public class PlayerMovement : MonoBehaviour
         // In the air
         else {
             state = MovementState.air;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Disable jumping upon entering lava
+        if (other.gameObject.CompareTag("Lava")) {
+            Debug.Log("PLAYER: Entered Lava");            
+            jumpEnabled = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Re-enable jump after leaving lava
+        if (other.gameObject.CompareTag("Lava")) {
+            Debug.Log("PLAYER: Exited Lava");
+            jumpEnabled = true;
         }
     }
 }
