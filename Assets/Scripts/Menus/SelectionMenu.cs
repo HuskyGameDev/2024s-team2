@@ -411,7 +411,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Dish 4 selected for slot " + slot;
+                selectItemConfirm.text = "Fried Mushroom selected for slot " + slot;
                 break;
             case 5:
                 switch (slot)
