@@ -8,14 +8,17 @@ public class BatWaypointNode : MonoBehaviour
     public BatWaypointManager batWaypointManager;
     public bool hideGizmo = true;
 
-    public BatWaypointNode[] connectedNodes;
+    public List<GameObject> connectedNodes = new List<GameObject>();
 
     private void OnDrawGizmos() {
+        
         if (!hideGizmo) { return;}
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.5f);
-        foreach (BatWaypointNode node in connectedNodes) {
-            if (!node) {continue;}
+        foreach (GameObject nodeObj in connectedNodes) {
+            if (nodeObj == null) { continue; }
+            BatWaypointNode node = nodeObj.GetComponent<BatWaypointNode>();
+            if (node == null) { continue; }
             Gizmos.DrawLine(transform.position, node.transform.position);
         }
     }
@@ -24,11 +27,5 @@ public class BatWaypointNode : MonoBehaviour
     void Start()
     {
         batWaypointManager = GameObject.FindGameObjectWithTag("BatWaypointManager").GetComponent<BatWaypointManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

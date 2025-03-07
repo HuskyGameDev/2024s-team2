@@ -6,7 +6,7 @@ using UnityEngine;
 public class BatAI : MonoBehaviour
 {
     public BatWaypointManager batWaypointManager;
-    private GameObject[] batWaypointNodes;
+    private List<GameObject> batWaypointNodes;
     public Transform targetNodeTransform;
 
     public float speed;
@@ -32,7 +32,7 @@ public class BatAI : MonoBehaviour
     }
 
     IEnumerator patrollingState() {
-        int randomWaypointIndex = UnityEngine.Random.Range(0, batWaypointNodes.Length-1);
+        int randomWaypointIndex = UnityEngine.Random.Range(0, batWaypointNodes.Count);
         Debug.Log("BAT: Moving to wp" + randomWaypointIndex);
         targetNodeTransform = batWaypointNodes[randomWaypointIndex].transform;
         Debug.Log("BAT: targetNodePos: " + targetNodeTransform.position);
@@ -42,7 +42,6 @@ public class BatAI : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("BAT: Reached WP!");
-        yield return null;
     }
 
     // // Update is called once per frame
