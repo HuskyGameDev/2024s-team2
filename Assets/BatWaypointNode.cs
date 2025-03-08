@@ -7,6 +7,7 @@ public class BatWaypointNode : MonoBehaviour
 {
     public BatWaypointManager batWaypointManager;
     public bool hideGizmo = true;
+    public GameObject parent;
 
     public List<GameObject> connectedNodes = new List<GameObject>();
 

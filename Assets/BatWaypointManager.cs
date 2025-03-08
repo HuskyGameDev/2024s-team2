@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BatWaypointManager : MonoBehaviour
@@ -60,19 +61,63 @@ public class BatWaypointManager : MonoBehaviour
     }
 
     // The heart of bat pathfinding technology. Finds the shortest path from one node to another.
-    public GameObject[] DFS(GameObject from, GameObject to) {
+    public GameObject[] BFS(GameObject from, GameObject to) {
+        Debug.Log("Starting from: " + from.ToString());
         BatWaypointNode fromScript = from.GetComponent<BatWaypointNode>();
         BatWaypointNode toScript = to.GetComponent<BatWaypointNode>();
 
-        GameObject[] path = null;
+        Queue<GameObject> queue = new Queue<GameObject>();
+        HashSet<GameObject> visited = new HashSet<GameObject>();
+        List<GameObject> orderedVisit = new List<GameObject>();
+
+        visited.Add(from);
+        orderedVisit.Add(from);
+        queue.Enqueue(from);
+        fromScript.parent = null;
+
+        while (queue.Count > 0) {
+            GameObject u = queue.Dequeue();
+            List<GameObject> connectedNodes = Neighbors(u);
+            foreach (GameObject node in connectedNodes) {
+                if (!visited.Contains(node)) {
+                    visited.Add(node);
+                    queue.Enqueue(node);
+                    orderedVisit.Add(node);
+                    BatWaypointNode nodeScript = node.GetComponent<BatWaypointNode>();
+                    nodeScript.parent = u; // This lets us traceback
+                }
+            }
+        }
+        
+
+        Debug.Log("ALL VISITED: " + orderedVisit.ToCommaSeparatedString());
+        GameObject[] path = backtrace(from, to);
+        Debug.Log("SHORTEST PATH: " + path.ToCommaSeparatedString());
 
         return path;
+    }
+
+    private GameObject[] backtrace(GameObject start, GameObject final) {
+        List<GameObject> path = new List<GameObject>();
+        BatWaypointNode finalScript = final.GetComponent<BatWaypointNode>();
+        BatWaypointNode cursor = finalScript;
+        while (cursor != null) {
+            Debug.Log(cursor.ToString());
+            path.Add(cursor.gameObject);
+            if (cursor == start || cursor.parent == null) {
+                break;
+            }
+            cursor = cursor.parent.GetComponent<BatWaypointNode>();
+        }
+        path.Reverse();
+        Debug.Log("Done tracing!");
+        return path.ToArray();
     }
 
     /* THESE ARE UNNECESARY (but I did them anyway for whatever reason):
 
         // add_vertex(G, x): adds the vertex x, if it is not there;
-        private bool AddVertex(GameObject node) {
+        private bool AddNode(GameObject node) {
             // BatWaypointNode nodeScript = node.GetComponent<BatWaypointNode>();
             if (batWaypointNodes.Contains(node)) {
                 return false;
@@ -82,7 +127,7 @@ public class BatWaypointManager : MonoBehaviour
         }
 
         // remove_vertex(G, x): removes the vertex x, if it is there;
-        private bool RemoveVertex(GameObject node) {
+        private bool RemoveNode(GameObject node) {
             return batWaypointNodes.Remove(node);
         }
 

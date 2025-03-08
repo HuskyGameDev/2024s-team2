@@ -17,6 +17,7 @@ public class WaypointEditor : Editor
     public BatWaypointNode _batWaypointNode;
     private Button _connectButton;
     private Button _disconnectButton;
+    private Button _pathfindButton;
 
     public VisualTreeAsset VisualTree;
 
@@ -37,7 +38,8 @@ public class WaypointEditor : Editor
         _connectButton.RegisterCallback<ClickEvent>(OnConnectButtonClick);
         _disconnectButton = root.Q<Button>("Disconnect");
         _disconnectButton.RegisterCallback<ClickEvent>(OnDisconnectButtonClick);
-
+        _pathfindButton = root.Q<Button>("Pathfind");
+        _pathfindButton.RegisterCallback<ClickEvent>(OnPathfindButtonClick);
         return root;
     }
 
@@ -88,6 +90,25 @@ public class WaypointEditor : Editor
         else {
             Debug.LogError("FAIL: Nodes are not connected: " + node1Script.name + " " + node2Script.name);
         }
+        
+        SceneView.RepaintAll();
+    }
+
+    private void OnPathfindButtonClick(ClickEvent evt) {
+        if (Selection.gameObjects.Length != 2) {
+            Debug.LogError("PLEASE SELECT ONLY TWO NODES");
+            return;
+        }
+
+        BatWaypointNode node1Script = Selection.gameObjects[0].gameObject.GetComponent<BatWaypointNode>();
+        BatWaypointNode node2Script = Selection.gameObjects[1].gameObject.GetComponent<BatWaypointNode>();
+        
+        if (!node1Script || !node2Script) {
+            Debug.LogError("ONLY SELECT WAYPOINT NODES");
+            return;
+        }
+
+        batWaypointManager.BFS(Selection.gameObjects[0], Selection.gameObjects[1]);
         
         SceneView.RepaintAll();
     }

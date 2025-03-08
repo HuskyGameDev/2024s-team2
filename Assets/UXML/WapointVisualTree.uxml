@@ -8,10 +8,12 @@
         <ui:Label tabindex="-1" text="Connect/Disconnect Nodes" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />
         <ui:Button text="Connect 2 Nodes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Connect" class="button" />
         <ui:Button text="Disconnect 2 Nodes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Disconnect" class="button" />
+        <ui:Button text="BFS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pathfind" class="button" />
     </ui:VisualElement>
     <ui:VisualElement name="Hiddens" style="flex-grow: 1;">
         <ui:Label tabindex="-1" text="Hidden Variables" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />
         <uie:PropertyField binding-path="batWaypointManager" />
         <uie:PropertyField binding-path="connectedNodes" />
+        <uie:PropertyField binding-path="parent" />
     </ui:VisualElement>
 </ui:UXML>

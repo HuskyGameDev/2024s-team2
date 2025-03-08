@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BatAI : MonoBehaviour
 {
@@ -37,8 +39,14 @@ public class BatAI : MonoBehaviour
         targetNodeTransform = batWaypointNodes[randomWaypointIndex].transform;
         Debug.Log("BAT: targetNodePos: " + targetNodeTransform.position);
         Debug.Log("BAT: targetNode instance: " + targetNodeTransform.name);
+        
+        // We need to change the x and y rotation of the bat to match the lookvec
+        Vector3 lookVec = (targetNodeTransform.position - transform.position).normalized;
+
         while (Vector3.Distance(targetNodeTransform.position, transform.position) > 1) {
-            transform.position = Vector3.MoveTowards(transform.position, targetNodeTransform.position, speed*Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation(lookVec);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, targetNodeTransform.position, speed * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("BAT: Reached WP!");
