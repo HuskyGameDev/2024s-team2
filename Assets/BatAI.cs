@@ -9,7 +9,6 @@ public class BatAI : MonoBehaviour
 {
     public BatWaypointManager batWaypointManager;
     private List<GameObject> batWaypointNodes;
-    public Transform targetNodeTransform;
 
     public float speed;
 
@@ -36,17 +35,19 @@ public class BatAI : MonoBehaviour
     IEnumerator patrollingState() {
         int randomWaypointIndex = UnityEngine.Random.Range(0, batWaypointNodes.Count);
         Debug.Log("BAT: Moving to wp" + randomWaypointIndex);
-        targetNodeTransform = batWaypointNodes[randomWaypointIndex].transform;
-        Debug.Log("BAT: targetNodePos: " + targetNodeTransform.position);
-        Debug.Log("BAT: targetNode instance: " + targetNodeTransform.name);
-        
-        // We need to change the x and y rotation of the bat to match the lookvec
-        Vector3 lookVec = (targetNodeTransform.position - transform.position).normalized;
 
-        while (Vector3.Distance(targetNodeTransform.position, transform.position) > 1) {
-            Quaternion lookRotation = Quaternion.LookRotation(lookVec);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
-            transform.position = Vector3.MoveTowards(transform.position, targetNodeTransform.position, speed * Time.deltaTime);
+        GameObject[] path = batWaypointManager.BFS(batWaypointManager.GetClosestNode(transform.position), batWaypointNodes[randomWaypointIndex]);
+        for (int i = 0; i < path.Length - 1; i++) {
+            Transform nextNodeTransform;
+            nextNodeTransform = path[i].transform;
+            // We need to change the x and y rotation of the bat to match the lookvec
+            Vector3 lookVec = (nextNodeTransform.position - transform.position).normalized;
+            while (Vector3.Distance(nextNodeTransform.position, transform.position) > 1) {
+                Quaternion lookRotation = Quaternion.LookRotation(lookVec);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, nextNodeTransform.position, speed * Time.deltaTime);
+                yield return new WaitForFixedUpdate();
+            }
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("BAT: Reached WP!");

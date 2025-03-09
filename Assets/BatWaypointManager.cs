@@ -114,6 +114,19 @@ public class BatWaypointManager : MonoBehaviour
         return path.ToArray();
     }
 
+    public GameObject GetClosestNode(Vector3 position) {
+        GameObject closestNode = null;
+        float smallestDistance = Mathf.Infinity;
+        foreach (GameObject node in batWaypointNodes) {
+            float distance = Vector3.Distance(node.transform.position, position);
+            if (distance < smallestDistance) {
+                smallestDistance = distance;
+                closestNode = node;
+            }
+        }
+        return closestNode;
+    }
+
     /* THESE ARE UNNECESARY (but I did them anyway for whatever reason):
 
         // add_vertex(G, x): adds the vertex x, if it is not there;
