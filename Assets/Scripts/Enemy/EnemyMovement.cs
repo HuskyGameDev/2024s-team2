@@ -10,7 +10,9 @@ public class EnemyMovement : MonoBehaviour
     public int enemyType;
     public AudioSource audioSource;
     public AudioClip[] stepSounds;
+    Animator animator; 
     private float footstepTimer = 0;
+    private float aggroDistance = 20; // WIP distance for aggro
 
 
     // Start is called before the first frame update
@@ -24,6 +26,19 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemy != null && enemy.enabled) {
             enemy.SetDestination(Player.position);
+        }
+
+        //aggro distance
+        //WIP: Change animation to idle when stopped
+        if (enemy.remainingDistance > aggroDistance)
+        {
+            enemy.isStopped = true;
+            //animator.SetTrigger("Stop");
+        }
+        else
+        {
+            enemy.isStopped = false;
+            //animator.SetTrigger("Run");
         }
     }
 
