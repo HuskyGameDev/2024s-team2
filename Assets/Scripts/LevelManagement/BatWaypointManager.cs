@@ -61,7 +61,7 @@ public class BatWaypointManager : MonoBehaviour
     }
 
     // The heart of bat pathfinding technology. Finds the shortest path from one node to another.
-    public GameObject[] BFS(GameObject from, GameObject to) {
+    public GameObject[] BFS(GameObject from, GameObject to, bool debug = true) {
         BatWaypointNode fromScript = from.GetComponent<BatWaypointNode>();
         BatWaypointNode toScript = to.GetComponent<BatWaypointNode>();
 
@@ -89,6 +89,28 @@ public class BatWaypointManager : MonoBehaviour
         }
         
         GameObject[] path = backtrace(from, to);
+        
+        if (debug && Application.isEditor) {
+            float pathLifeTime = 8f;
+            float startEndHeight = 5f;
+            float pathArrowHeight = 2f;
+            GameObject first = path[0];
+            GameObject last = path[path.Length-1];
+
+            // Draw little spires at the beginning and end, green and red
+            Debug.DrawLine(first.transform.position-Vector3.up*startEndHeight/2, first.transform.position+Vector3.up*startEndHeight/2, Color.green, pathLifeTime);
+            Debug.DrawLine(last.transform.position-Vector3.up*startEndHeight/2, last.transform.position+Vector3.up*startEndHeight/2, Color.red, pathLifeTime);
+
+            // Draw path for debugging
+            for (int i = 0; i < path.Length-1; i++) {
+                GameObject node = path[i];
+                GameObject nextNode = path[i+1];
+                Color lineColor = Color.white;
+                Debug.DrawLine(node.transform.position + Vector3.up*pathArrowHeight, nextNode.transform.position, lineColor, pathLifeTime);
+                Debug.DrawLine(node.transform.position + Vector3.down*pathArrowHeight, nextNode.transform.position, lineColor, pathLifeTime);
+            }
+        }
+
         Debug.Log("Pathing complete!");
         return path;
     }

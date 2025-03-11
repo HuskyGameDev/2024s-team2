@@ -6,14 +6,15 @@ using UnityEngine;
 public class BatWaypointNode : MonoBehaviour
 {
     public BatWaypointManager batWaypointManager;
-    public bool hideGizmo = true;
+    public bool showGizmo = true;
     public GameObject parent;
 
     public List<GameObject> connectedNodes = new List<GameObject>();
 
+
     private void OnDrawGizmos() {
         
-        if (!hideGizmo) { return;}
+        if (!showGizmo) { return;}
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.5f);
         foreach (GameObject nodeObj in connectedNodes) {

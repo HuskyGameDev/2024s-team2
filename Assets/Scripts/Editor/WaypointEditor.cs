@@ -113,16 +113,7 @@ public class WaypointEditor : Editor
             return;
         }
 
-        GameObject[] path = batWaypointManager.BFS(Selection.gameObjects[0], Selection.gameObjects[1]);
-        
-        // Draw path for debugging
-        for (int i = 0; i < path.Length-1; i++) {
-            GameObject node = path[i];
-            GameObject nextNode = path[i+1];
-            Color lineColor = Color.white;
-            Debug.DrawLine(node.transform.position + Vector3.up*1, nextNode.transform.position + Vector3.up*1, lineColor, 3f);
-            Debug.DrawLine(node.transform.position + Vector3.down*1, nextNode.transform.position + Vector3.down*1, lineColor, 3f);
-        }
+        GameObject[] path = batWaypointManager.BFS(Selection.gameObjects[0], Selection.gameObjects[1], true);
 
         SceneView.RepaintAll();
     }

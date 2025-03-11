@@ -139,6 +139,11 @@ public class BatAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float gizmoHeight = 0.5f;
+        Color batColor = Color.magenta;
+        Debug.DrawLine(transform.position-Vector3.up*gizmoHeight/2, transform.position+Vector3.up*gizmoHeight/2, batColor);
+        Debug.DrawLine(transform.position-Vector3.left*gizmoHeight/2, transform.position+Vector3.left*gizmoHeight/2, batColor);
+        Debug.DrawLine(transform.position-Vector3.forward*gizmoHeight/2, transform.position+Vector3.forward*gizmoHeight/2, batColor);
         if (state == State.DEAD) {
             Destroy(gameObject);
         }
