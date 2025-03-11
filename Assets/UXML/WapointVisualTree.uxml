@@ -9,6 +9,7 @@
         <ui:Button text="Connect 2 Nodes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Connect" class="button" />
         <ui:Button text="Disconnect 2 Nodes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Disconnect" class="button" />
         <ui:Button text="BFS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pathfind" class="button" />
+        <ui:Button text="Safely Delete Nodes&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DeleteNodes" enable-rich-text="true" class="button" />
     </ui:VisualElement>
     <ui:VisualElement name="Hiddens" style="flex-grow: 1;">
         <ui:Label tabindex="-1" text="Hidden Variables" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" />

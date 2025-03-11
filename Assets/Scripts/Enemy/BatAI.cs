@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class BatAI : MonoBehaviour
 {
+    public bool debugPrint;
     public BatWaypointManager batWaypointManager;
     private List<GameObject> batWaypointNodes;
 
@@ -22,7 +23,10 @@ public class BatAI : MonoBehaviour
     private enum State { PATROLLING, CHASING, FOLLOWINGPATH, DEAD };
     [SerializeField] private State state = State.PATROLLING;
 
-    private readonly Vector3 playerheadOffset = Vector3.up * 0.5f;
+    // My idea for this is that it currently targets your belly, 
+    // so it might be nice to have it target the head instead.
+    public readonly Vector3 playerheadOffset = Vector3.up * 0.5f; 
+    
     private const string playerPartTag = "PlayerPart";
     private const string playerTag = "Player";
     private Transform player;
@@ -31,6 +35,7 @@ public class BatAI : MonoBehaviour
     public float waypointReachedDistance = 0.1f;
 
     private void PatrolState() {
+        if (debugPrint) Debug.Log("BAT: Patrolling, setting new path");
         PathRandom();
 
         // Without this function call, we would stop for one frame before following the path.
@@ -44,18 +49,20 @@ public class BatAI : MonoBehaviour
             PathPlayer();
             currentPathIndex = 0;
             state = State.FOLLOWINGPATH;
+            if (debugPrint) Debug.Log("BAT: Player lost, pathing to last known node position: " + currentPath[currentPath.Count-1].ToString());
             return;
         }
 
         // Look and move towards the player
         FaceTarget(player.position);
-        transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.position+playerheadOffset, chaseSpeed * Time.deltaTime);
     }
 
     private void FollowPathState() {
         // If we can see the player, exit and start chasing
         if (CanSeePlayer()) {
             state = State.CHASING;
+            if (debugPrint) Debug.Log("BAT: Player seen, chasing!");
             return;
         }
 
@@ -80,7 +87,7 @@ public class BatAI : MonoBehaviour
 
     private void PathRandom() {
         if (batWaypointNodes.Count == 0) {
-            Debug.LogError("No waypoints available.");
+            Debug.LogError("BAT: No waypoints available.");
             return;
         }
 
@@ -91,7 +98,7 @@ public class BatAI : MonoBehaviour
 
     private void PathPlayer() {
         if (batWaypointNodes.Count == 0) {
-            Debug.LogError("No waypoints available.");
+            Debug.LogError("BAT: No waypoints available.");
             return;
         }
 

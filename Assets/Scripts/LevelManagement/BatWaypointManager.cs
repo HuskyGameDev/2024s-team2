@@ -89,6 +89,7 @@ public class BatWaypointManager : MonoBehaviour
         }
         
         GameObject[] path = backtrace(from, to);
+        Debug.Log("Pathing complete!");
         return path;
     }
 
@@ -97,7 +98,7 @@ public class BatWaypointManager : MonoBehaviour
         BatWaypointNode finalScript = final.GetComponent<BatWaypointNode>();
         BatWaypointNode cursor = finalScript;
         while (cursor != null) {
-            Debug.Log(cursor.ToString());
+            // Debug.Log(cursor.ToString());
             path.Add(cursor.gameObject);
             if (cursor == start || cursor.parent == null) {
                 break;
@@ -105,7 +106,6 @@ public class BatWaypointManager : MonoBehaviour
             cursor = cursor.parent.GetComponent<BatWaypointNode>();
         }
         path.Reverse();
-        Debug.Log("Done tracing!");
         return path.ToArray();
     }
 
@@ -122,6 +122,28 @@ public class BatWaypointManager : MonoBehaviour
         return closestNode;
     }
 
+    // remove_vertex(G, x): removes the vertex x, if it is there;
+    public bool DeleteNode(GameObject node) {
+        BatWaypointNode nodeScript = node.GetComponent<BatWaypointNode>();
+
+        GameObject[] connected = new GameObject[nodeScript.connectedNodes.Count];
+        nodeScript.connectedNodes.CopyTo(connected);
+        Debug.Log(connected.ToCommaSeparatedString());
+        for (int i = 0; i < connected.Length; i++) {
+            Debug.Log("Deleting connection to: " + i);
+            RemoveEdge(node, connected[i]);
+        }
+
+        // Remove from manager list
+        Debug.Log("Removing from waypoint list now");
+        batWaypointNodes.Remove(node);
+
+        // Destroy gameObject
+        Destroy(node);
+
+        return true;
+    }
+
     /* THESE ARE UNNECESARY (but I did them anyway for whatever reason):
 
         // add_vertex(G, x): adds the vertex x, if it is not there;
@@ -132,11 +154,6 @@ public class BatWaypointManager : MonoBehaviour
             }
             batWaypointNodes.Add(node);
             return true;
-        }
-
-        // remove_vertex(G, x): removes the vertex x, if it is there;
-        private bool RemoveNode(GameObject node) {
-            return batWaypointNodes.Remove(node);
         }
 
     */

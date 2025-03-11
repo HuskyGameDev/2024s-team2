@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using System.Linq;
 
 [CustomEditor(typeof(BatWaypointNode)), CanEditMultipleObjects]
 public class WaypointEditor : Editor
@@ -18,6 +19,7 @@ public class WaypointEditor : Editor
     private Button _connectButton;
     private Button _disconnectButton;
     private Button _pathfindButton;
+    private Button _deleteNodesButton;
 
     public VisualTreeAsset VisualTree;
 
@@ -40,6 +42,9 @@ public class WaypointEditor : Editor
         _disconnectButton.RegisterCallback<ClickEvent>(OnDisconnectButtonClick);
         _pathfindButton = root.Q<Button>("Pathfind");
         _pathfindButton.RegisterCallback<ClickEvent>(OnPathfindButtonClick);
+        _deleteNodesButton = root.Q<Button>("DeleteNodes");
+        _deleteNodesButton.RegisterCallback<ClickEvent>(OnDeleteButtonClick);
+
         return root;
     }
 
@@ -108,7 +113,32 @@ public class WaypointEditor : Editor
             return;
         }
 
-        batWaypointManager.BFS(Selection.gameObjects[0], Selection.gameObjects[1]);
+        GameObject[] path = batWaypointManager.BFS(Selection.gameObjects[0], Selection.gameObjects[1]);
+        
+        // Draw path for debugging
+        for (int i = 0; i < path.Length-1; i++) {
+            GameObject node = path[i];
+            GameObject nextNode = path[i+1];
+            Color lineColor = Color.white;
+            Debug.DrawLine(node.transform.position + Vector3.up*1, nextNode.transform.position + Vector3.up*1, lineColor, 3f);
+            Debug.DrawLine(node.transform.position + Vector3.down*1, nextNode.transform.position + Vector3.down*1, lineColor, 3f);
+        }
+
+        SceneView.RepaintAll();
+    }
+
+    private void OnDeleteButtonClick(ClickEvent evt) {
+        GameObject[] selected = Selection.gameObjects;
+
+        // Delete all selected nodes safely
+        foreach (GameObject node in selected) {
+            BatWaypointNode nodeScript = node.GetComponent<BatWaypointNode>();
+            if (!nodeScript) {
+                Debug.LogWarning("Could not delete " + node + " as it is not a waypoint");
+                continue;
+            }
+            batWaypointManager.DeleteNode(node);
+        }
         
         SceneView.RepaintAll();
     }
