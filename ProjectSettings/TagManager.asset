@@ -15,6 +15,9 @@ TagManager:
   - NotifHolder
   - Interactable
   - Lava
+  - BatWaypointManager
+  - BatWaypointNode
+  - PlayerPart
   layers:
   - Default
   - TransparentFX

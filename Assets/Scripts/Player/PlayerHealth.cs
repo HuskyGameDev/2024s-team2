@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public BloodEffect bloodEffect;
     public int dam;
     public string gob = "TempGoblin_TEST(Clone)";
+    public string bat = "Bat";
     public string sli_b = "Slime_Boss";
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
@@ -101,6 +102,13 @@ public class PlayerHealth : MonoBehaviour
         } else if (enemy_name == "Slime_Boss")
         {
             ran_dam = UnityEngine.Random.Range(0.7f, 1.5f);
+            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
+        } else if (String.Compare(enemy_name, bat) == 0)
+        {
+            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
+            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
+        } else {
+            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
             dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
         }
         currentHealth -= dam;
