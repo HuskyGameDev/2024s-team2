@@ -11,7 +11,6 @@ public class BatAI : MonoBehaviour
 {
     private Collider batCollider;
     private Rigidbody batRigidBody;
-
     public bool debugPrint;
     public BatWaypointManager batWaypointManager;
     private List<GameObject> batWaypointNodes;
@@ -23,7 +22,8 @@ public class BatAI : MonoBehaviour
     public float chaseSpeed;
     public float rotationSpeed;
 
-    public bool damaging = false;
+    private bool lethal = false;
+    public int lungeDamage = 30;
 
     private float attackTimer;
     public float windbackTime;
@@ -48,6 +48,7 @@ public class BatAI : MonoBehaviour
     public float attackRadius;
     public float waypointReachedDistance = 0.1f;
 
+    // STATE: Simply selects a random waypoint, since the player's location is unknown.
     private void PatrolState() {
         if (debugPrint) Debug.Log("BAT: Patrolling, setting new path");
         PathRandom();
@@ -58,6 +59,7 @@ public class BatAI : MonoBehaviour
         state = State.FOLLOWING_PATH;
     }
 
+    // STATE: We have seen the player and are now chasing them. If we can't see them, move to their last known location.
     private void ChaseState() {
         if (!CanSeePlayer()) {
             PathPlayer();
@@ -77,7 +79,7 @@ public class BatAI : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.position+playerheadOffset, chaseSpeed * Time.deltaTime);
     }
 
-    // First part of the bat's lunge. Slowly move back to telegraph the attack.
+    // STATE: First part of the bat's lunge. Slowly move back to telegraph the attack.
     private void WindBackState() { 
         // After a certain amount of time, stop winding back
         attackTimer += Time.deltaTime;
@@ -86,7 +88,7 @@ public class BatAI : MonoBehaviour
         if (attackTimer >= windbackTime) {
             attackTimer = 0;
             batRigidBody.AddForce(dirToPlayer * lungeForce, ForceMode.Impulse);
-            damaging = true;
+            lethal = true;
             state = State.LUNGING;    
         }
         // Check if we have room behind us, move back if we do
@@ -97,7 +99,7 @@ public class BatAI : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, -99f*dirToPlayer, moveDistance);
     }
 
-    // Second part of the bat's lunge. Force has been applied, now we just wait.
+    // STATE: After we have winded back, the transition to this function launches us forward. Now we are flying through the air, damaging on contact.
     private void LungeState() {
         // The force is applied in the transition from wind back. We just wait.
         attackTimer += Time.deltaTime;
@@ -112,13 +114,14 @@ public class BatAI : MonoBehaviour
         // We have stopped, now we are vulnerable.
         attackTimer = 0;
         state = State.VULNERABLE;
-        damaging = false;
+        lethal = false;
         // Play stun particle effects?
     }
 
-    // 
+    // STATE: After lunging, remain still and vulnerable for a short period of time.
     private void VulnerableState() {
         attackTimer += Time.deltaTime;
+        batRigidBody.velocity = Vector3.zero;
         if (attackTimer < vulnerableTime) {
             return;
         }
@@ -126,6 +129,7 @@ public class BatAI : MonoBehaviour
         state = State.CHASING;
     }
 
+    // STATE: Follow the currently held path (may be last seen location of player, may be random waypoint from patrol state)
     private void FollowPathState() {
         // If we can see the player, exit and start chasing
         if (CanSeePlayer()) {
@@ -153,6 +157,7 @@ public class BatAI : MonoBehaviour
         FaceTarget(nextNodeTransform.position);
     }
 
+    // Quick function for BFS pathing to a random waypoint
     private void PathRandom() {
         if (batWaypointNodes.Count == 0) {
             Debug.LogError("BAT: No waypoints available.");
@@ -164,6 +169,7 @@ public class BatAI : MonoBehaviour
         currentPathIndex = 0;
     }
 
+    // Quick function for BFS pathing to player
     private void PathPlayer() {
         if (batWaypointNodes.Count == 0) {
             Debug.LogError("BAT: No waypoints available.");
@@ -174,6 +180,7 @@ public class BatAI : MonoBehaviour
         currentPathIndex = 0;
     }
 
+    // Keeps our bat aligned with a target while not allowing for instantaneous, unnatural turns
     private void FaceTarget(Vector3 targetPos) {
         Vector3 dir = (targetPos - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
@@ -181,6 +188,7 @@ public class BatAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
     }
 
+    // Raycasts and returns true if player is seen
     private bool CanSeePlayer() {
         Vector3 dir = player.gameObject.GetComponent<Collider>().bounds.center - transform.position;
         Vector3 scaledDir = dir.normalized * detectionRadius;
@@ -190,6 +198,7 @@ public class BatAI : MonoBehaviour
         
         Debug.DrawLine(transform.position, transform.position + scaledDir, Color.red);
 
+        if (raycastResult.collider == null) return false;
         GameObject hitGameObject = raycastResult.collider.gameObject;
         if (hitGameObject.tag.Equals(playerTag) || hitGameObject.tag.Equals(playerPartTag)) return true;
 
@@ -214,7 +223,7 @@ public class BatAI : MonoBehaviour
         Debug.DrawLine(transform.position-Vector3.up*gizmoHeight/2, transform.position+Vector3.up*gizmoHeight/2, batColor);
         Debug.DrawLine(transform.position-Vector3.left*gizmoHeight/2, transform.position+Vector3.left*gizmoHeight/2, batColor);
         Debug.DrawLine(transform.position-Vector3.forward*gizmoHeight/2, transform.position+Vector3.forward*gizmoHeight/2, batColor);
-        if (state == State.DEAD) {
+        if (state == State.DEAD) { // Not used, currently covered by enemy health script
             Destroy(gameObject);
         }
         else if (state == State.PATROLLING) {
@@ -234,6 +243,17 @@ public class BatAI : MonoBehaviour
         }
         else if (state == State.CHASING) {
             ChaseState();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && lethal)
+        {
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(lungeDamage, gameObject.name);
+            // animator.SetTrigger("Attack");
+            // audioSource.PlayOneShot(attackSounds[Random.Range(0, attackSounds.Length - 1)]);
+            lethal = false;
         }
     }
 }

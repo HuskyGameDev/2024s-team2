@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public int ene_dam;
     public float ran_HP;
     public string gob = "TempGoblin_TEST(Clone)";
+    public string bat = "Bat";
     public string sla_b = "Slime_Boss";
     public Destructable destructable;
     public BloodyEffect bloodyEffect; //new
@@ -29,6 +30,10 @@ public class EnemyHealth : MonoBehaviour
             ran_HP = UnityEngine.Random.Range(0.7f, 1.3f);
             ene_HP = (int)(50 * ran_HP);
         }
+        else if (string.Compare(gameObject.name, bat) == 0) {
+            ran_HP = UnityEngine.Random.Range(0.7f, 1.3f);
+            ene_HP = (int)(50 * ran_HP);
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Damaging(int damage)
     {
+        Debug.Log("DAMAGE");
         float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);
         ene_dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("attBuff"));
         ene_HP = ene_HP - ene_dam;
