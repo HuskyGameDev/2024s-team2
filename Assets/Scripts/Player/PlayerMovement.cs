@@ -70,7 +70,11 @@ public class PlayerMovement : MonoBehaviour
         startYScale = transform.localScale.y;
         orientation = transform.Find("PlayerBody");
         playerHeight = orientation.localScale.y;
-        weapon = transform.Find("PlayerBody").Find("Weapon");
+        weapon = GameObject.FindGameObjectWithTag("Weapon").transform;
+        
+        // Simulate one crouch. Lazy fix!
+        weapon.localPosition = new Vector3(weapon.localPosition.x, crouchYScale - startYScale*0.9f, weapon.localPosition.z);
+        weapon.localPosition = new Vector3(weapon.localPosition.x, weapon.localPosition.y + startYScale - crouchYScale, weapon.localPosition.z);
     }
 
     // Update is called once per frame
@@ -110,13 +114,14 @@ public class PlayerMovement : MonoBehaviour
 
         // Crouch
         if(Input.GetKeyDown(crouchKey)) {
+            Vector3 startScale = transform.localScale;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             Vector3 playerScale = transform.localScale;
-            Vector3 inverseScale = new Vector3(1/playerScale.x, 1/playerScale.y, 1/playerScale.z);
+            Vector3 inverseScale = new Vector3(1/(playerScale.x/startScale.x), 1/(playerScale.y/startScale.y), 1/(playerScale.z/startScale.z));
             weapon.localScale = inverseScale;
-            weapon.localPosition = new Vector3(weapon.localPosition.x, crouchYScale - startYScale, weapon.localPosition.z);
+            weapon.localPosition = new Vector3(weapon.localPosition.x, crouchYScale - startYScale*0.9f, weapon.localPosition.z);
 
-             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // Push the player model down so they are still on the ground. 
         }
         
         // Stop crouching
