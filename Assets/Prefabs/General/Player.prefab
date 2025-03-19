@@ -191,7 +191,10 @@ MonoBehaviour:
   bloodEffect: {fileID: 0}
   dam: 0
   gob: TempGoblin_TEST(Clone)
+  bat: Bat (1)
   sli_b: Slime_Boss
+  audioSource: {fileID: 0}
+  damageSounds: []
 --- !u!114 &5640548483204426120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,13 +208,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 7
-  sprintSpeed: 14
+  sprintSpeed: 10
   crouchSpeed: 3.5
   crouchYScale: 0.65
   groundDrag: 6
-  jumpForce: 5.25
+  jumpForce: 10
   jumpCooldown: 1
-  airMultiplier: 0.1
+  airMultiplier: 0.2
+  gravityMultiplier: 1.65
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
@@ -229,6 +233,7 @@ MonoBehaviour:
   backgroundMusic: []
   levelNum: 0
   state: 0
+  jumpEnabled: 1
 --- !u!82 &6258864259520031699
 AudioSource:
   m_ObjectHideFlags: 0
@@ -811,6 +816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17de4d49cff51ab44b46f26896cf8de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
+  rollingPin: {fileID: 0}
+  cleaver: {fileID: 0}
+  rollingPinUI: {fileID: 0}
+  cleaverUI: {fileID: 0}
   rollingPinClips: []
   knifeClips: []
   myInt: 100

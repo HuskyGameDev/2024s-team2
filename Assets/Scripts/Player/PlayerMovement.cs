@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airMultiplier;
+    [SerializeField] private float gravityMultiplier;
     bool readyToJump;
 
     [Header("Keybinds")]
@@ -155,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         // in the air
         else {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
+            rb.AddForce(Physics.gravity*rb.mass*(gravityMultiplier-1f));
         }
     }
 
