@@ -93,72 +93,72 @@ public class SelectionMenu : MonoBehaviour
             case 1:
                 PlayerPrefs.SetInt("itemNum", 1);
                 itemName.text = "Goblin Steak";
-                itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
-                PlayerPrefs.SetInt("maxHold1", 3);
+                PlayerPrefs.SetInt("maxHold1", 10);
                 break;
             case 2:
                 PlayerPrefs.SetInt("itemNum", 2);
                 itemName.text = "Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will increase your movement speed for 15 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("jellysand");
+                itemDescription.text = "Eating this dish will increase your movement speed for 15 seconds, you can carry 8 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("jellysand");
                 item.sprite = items[1];
-                PlayerPrefs.SetInt("maxHold2", 3);
+                PlayerPrefs.SetInt("maxHold2", 8);
                 break;
             case 3:
                 PlayerPrefs.SetInt("itemNum", 3);
                 itemName.text = "Blood Berry Slime Jelly Sandwich";
-                itemDescription.text = "Eating this dish will reduce the damage you take by 20% for 30 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("bbsand");
+                itemDescription.text = "Eating this dish will reduce the damage you take by 20% for 30 seconds, you can carry 5 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("bbsand");
                 item.sprite = items[2];
-                PlayerPrefs.SetInt("maxHold3", 3);
+                PlayerPrefs.SetInt("maxHold3", 5);
                 break;
             case 4:
                 PlayerPrefs.SetInt("itemNum", 4);
                 itemName.text = "Fried Mushroom";
-                itemDescription.text = "Eating this dish will increase the damage you deal by 30% for 15 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("friedmush");
+                itemDescription.text = "Eating this dish will increase the damage you deal by 30% for 15 seconds, you can carry 5 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("friedmush");
                 item.sprite = items[3];
-                PlayerPrefs.SetInt("maxHold4", 3);
+                PlayerPrefs.SetInt("maxHold4", 5);
                 break;
             case 5:
                 PlayerPrefs.SetInt("itemNum", 5);
                 itemName.text = "Blood Berry Soup";
-                itemDescription.text = "Eating this dish will let you regain 15 hp (8 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup");
+                itemDescription.text = "Eating this dish will let you regain 15 hp (8 second cooldown), you can carry 8 at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup");
                 item.sprite = items[4];
-                PlayerPrefs.SetInt("maxHold5", 3);
+                PlayerPrefs.SetInt("maxHold5", 8);
                 break;
             case 6:
                 PlayerPrefs.SetInt("itemNum", 6);
                 itemName.text = "Royal Blood Berry Soup";
-                itemDescription.text = "Eating this dish will increase your movement speed for 25 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("royalbbsoup");
+                itemDescription.text = "Eating this dish will increase your movement speed for 25 seconds, you can carry 5 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("royalbbsoup");
                 item.sprite = items[5];
-                PlayerPrefs.SetInt("maxHold6", 3);
+                PlayerPrefs.SetInt("maxHold6", 5);
                 break;
             case 7:
                 PlayerPrefs.SetInt("itemNum", 7);
                 itemName.text = "Boss Drink";
-                itemDescription.text = "Eating this dish will increase your total health by 50, you can carry 2 at a time. The effect will only last for 1 level\nOwned: " + PlayerPrefs.GetInt("bossdrink");
+                itemDescription.text = "Eating this dish will increase your total health by 50, you can carry 3 at a time. The effect will only last for 1 level\nOwned: " + PlayerPrefs.GetInt("bossdrink");
                 item.sprite = items[6];
-                PlayerPrefs.SetInt("maxHold7", 2);
+                PlayerPrefs.SetInt("maxHold7", 3);
                 break;
             case 8:
                 PlayerPrefs.SetInt("itemNum", 8);
                 itemName.text = "Roasted Bone Marrow";
-                itemDescription.text = "Eating this dish will reduce the damage you take by 30% for 40 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("roastbone");
+                itemDescription.text = "Eating this dish will reduce the damage you take by 30% for 40 seconds, you can carry 5 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("roastbone");
                 item.sprite = items[7];
-                PlayerPrefs.SetInt("maxHold8", 3);
+                PlayerPrefs.SetInt("maxHold8", 5);
                 break;
             case 9:
                 PlayerPrefs.SetInt("itemNum", 9);
                 itemName.text = "Dungeon Dinner";
-                itemDescription.text = "Eating this dish will increase the damage you deal by 50% for 25 seconds, you can carry 3 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("dundinner");
+                itemDescription.text = "Eating this dish will increase the damage you deal by 50% for 25 seconds, you can carry 5 at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("dundinner");
                 item.sprite = items[8];
-                PlayerPrefs.SetInt("maxHold9", 3);
+                PlayerPrefs.SetInt("maxHold9", 5);
                 break;
             case 10:
                 PlayerPrefs.SetInt("itemNum", 10);
                 itemName.text = "Dungeon Feast";
-                itemDescription.text = "Eating this dish will completely recover your health (75 second cooldown), you can carry 2 at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast");
+                itemDescription.text = "Eating this dish will completely recover your health (75 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast");
                 item.sprite = items[9];
-                PlayerPrefs.SetInt("maxHold10", 2);
+                PlayerPrefs.SetInt("maxHold10", 3);
                 break;
             default:
                 PlayerPrefs.SetInt("itemNum", 1);

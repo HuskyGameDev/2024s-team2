@@ -67,6 +67,7 @@ public class Items : MonoBehaviour
         int value;
         int maxVal;
         int final;
+        //the maxHold values for each item can be adjusted in the SelectItem() function in the SelectionMenu script
         switch (type)
         {
             case 1: //goblinSteak
