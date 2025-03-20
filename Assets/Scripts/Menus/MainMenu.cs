@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetFloat("sensitivityVal", 200);
         }
+        GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
     }
 
     public void Play()

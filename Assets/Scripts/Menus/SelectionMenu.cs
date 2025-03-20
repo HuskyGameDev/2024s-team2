@@ -44,6 +44,7 @@ public class SelectionMenu : MonoBehaviour
         itemName.text = "Goblin Steak";
         itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
         //amountText.text = "" + amount;
+        GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
         if (currentWeapon == 0)
         {
             int type = PlayerPrefs.GetInt("slot1");

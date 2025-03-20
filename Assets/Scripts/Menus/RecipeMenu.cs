@@ -46,6 +46,7 @@ public class RecipeMenu : MonoBehaviour
         ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
         ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
         Cursor.lockState = CursorLockMode.None;
+        GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
     }
 
     //increase amount of dishes to craft

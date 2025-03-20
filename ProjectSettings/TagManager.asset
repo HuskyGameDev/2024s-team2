@@ -20,6 +20,7 @@ TagManager:
   - PlayerPart
   - Weapon
   - Torch
+  - MenuMusic
   layers:
   - Default
   - TransparentFX
