@@ -13,15 +13,22 @@ public class SelectionMenu : MonoBehaviour
     public TextMeshProUGUI selectWeaponConfirm;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
-    public TextMeshProUGUI selectItemConfirm;
-    public TextMeshProUGUI slotNum;
+    //public TextMeshProUGUI selectItemConfirm;
+    //public TextMeshProUGUI slotNum;
     public TextMeshProUGUI levelMessage;
-    public int currentWeapon;
-    public int currentItem;
     public Image item;
+    public Image slot1;
+    public Image slot1sprite;
+    public Image slot2;
+    public Image slot2sprite;
+    public Image slot3;
+    public Image slot3sprite;
     public Sprite[] items;
     public RawImage weapon;
     public RenderTexture[] weapons;
+    public int currentWeapon;
+    public int currentItem;
+    public int currentSlot;
 
     private int slot;
 
@@ -37,6 +44,60 @@ public class SelectionMenu : MonoBehaviour
         itemName.text = "Goblin Steak";
         itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
         //amountText.text = "" + amount;
+        if (currentWeapon == 0)
+        {
+            int type = PlayerPrefs.GetInt("slot1");
+            if (type != 0)
+            {
+                slot1sprite.sprite = items[type - 1];
+            }
+            type = PlayerPrefs.GetInt("slot2");
+            if (type != 0)
+            {
+                slot2sprite.sprite = items[type - 1];
+            }
+            type = PlayerPrefs.GetInt("slot3");
+            if (type != 0)
+            {
+                slot3sprite.sprite = items[type - 1];
+            }
+            currentSlot = 1;
+            PlayerPrefs.SetInt("CurrentSlot", 1);
+            slot1.color = new Color32(0, 115, 32, 255);
+        }
+
+    }
+
+    public void SelectSlot(int changeSlot)
+    {
+        currentSlot = changeSlot;
+        switch (changeSlot)
+        {
+            case 1:
+                PlayerPrefs.SetInt("CurrentSlot", 1);
+                slot1.color = new Color32(0, 115, 32, 255);
+                slot2.color = new Color32(66, 66, 66, 255);
+                slot3.color = new Color32(66, 66, 66, 255);
+                break;
+            case 2:
+                PlayerPrefs.SetInt("CurrentSlot", 2);
+                slot2.color = new Color32(0, 115, 32, 255);
+                slot1.color = new Color32(66, 66, 66, 255);
+                slot3.color = new Color32(66, 66, 66, 255);
+                break;
+            case 3:
+                PlayerPrefs.SetInt("CurrentSlot", 3);
+                slot3.color = new Color32(0, 115, 32, 255);
+                slot1.color = new Color32(66, 66, 66, 255);
+                slot2.color = new Color32(66, 66, 66, 255);
+                break;
+            default:
+                PlayerPrefs.SetInt("CurrentSlot", 1);
+                slot1.color = new Color32(66, 66, 66, 255);
+                slot2.color = new Color32(66, 66, 66, 255);
+                slot3.color = new Color32(66, 66, 66, 255);
+                break;
+        }
     }
 
     public void SelectWeapon()
@@ -76,7 +137,7 @@ public class SelectionMenu : MonoBehaviour
 
     public void SelectItem()
     {
-        if (PlayerPrefs.GetInt("craftNum") >= 1 && PlayerPrefs.GetInt("craftNum") <= 3)
+        /*if (PlayerPrefs.GetInt("craftNum") >= 1 && PlayerPrefs.GetInt("craftNum") <= 3)
         {
             slot = PlayerPrefs.GetInt("craftNum");
         }
@@ -84,9 +145,9 @@ public class SelectionMenu : MonoBehaviour
         {
             slot = 1;
             PlayerPrefs.SetInt("craftNum", slot);
-        }
+        }*/
         //amountText.text = "" + amount;
-        selectItemConfirm.text = "";
+        //selectItemConfirm.text = "";
 
         switch (currentItem)
         {
@@ -210,7 +271,7 @@ public class SelectionMenu : MonoBehaviour
 
     public void EquipItem() 
     {
-        slot = PlayerPrefs.GetInt("craftNum");
+        slot = PlayerPrefs.GetInt("CurrentSlot");
         switch (PlayerPrefs.GetInt("itemNum"))
         {
             case 1:
@@ -261,7 +322,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
+                //selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
                 break;
             case 2:
                 switch (slot)
@@ -311,7 +372,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Slime Jelly Sandwich selected for slot " + slot;
+                //selectItemConfirm.text = "Slime Jelly Sandwich selected for slot " + slot;
                 break;
             case 3:
                 switch (slot)
@@ -361,7 +422,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Blood Berry Slime Jelly Sandwich selected for slot " + slot;
+                //selectItemConfirm.text = "Blood Berry Slime Jelly Sandwich selected for slot " + slot;
                 break;
             case 4:
                 switch (slot)
@@ -411,7 +472,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Fried Mushroom selected for slot " + slot;
+                //selectItemConfirm.text = "Fried Mushroom selected for slot " + slot;
                 break;
             case 5:
                 switch (slot)
@@ -461,7 +522,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Blood Berry Soup selected for slot " + slot;
+                //selectItemConfirm.text = "Blood Berry Soup selected for slot " + slot;
                 break;
             case 6:
                 switch (slot)
@@ -511,7 +572,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Royal Blood Berry Soup selected for slot " + slot;
+                //selectItemConfirm.text = "Royal Blood Berry Soup selected for slot " + slot;
                 break;
             case 7:
                 switch (slot)
@@ -561,7 +622,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Boss Drink selected for slot " + slot;
+                //selectItemConfirm.text = "Boss Drink selected for slot " + slot;
                 break;
             case 8:
                 switch (slot)
@@ -611,7 +672,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Roasted Bone Marrow selected for slot " + slot;
+                //selectItemConfirm.text = "Roasted Bone Marrow selected for slot " + slot;
                 break;
             case 9:
                 switch (slot)
@@ -661,7 +722,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Dungeon Dinner selected for slot " + slot;
+                //selectItemConfirm.text = "Dungeon Dinner selected for slot " + slot;
                 break;
             case 10:
                 switch (slot)
@@ -711,7 +772,7 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Dungeon Feast selected for slot " + slot;
+                //selectItemConfirm.text = "Dungeon Feast selected for slot " + slot;
                 break;
             default:
                 switch (slot)
@@ -761,14 +822,39 @@ public class SelectionMenu : MonoBehaviour
                         }
                         break;
                 }
-                selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
+                //selectItemConfirm.text = "Goblin Steak selected for slot " + slot;
+                break;
+        }
+
+        int type = 0;
+        switch (slot)
+        {
+            case 1:
+                type = PlayerPrefs.GetInt("slot1");
+                UnityEngine.Debug.Log("slot 1 item " + type);
+                slot1sprite.sprite = items[type - 1];
+                break;
+            case 2:
+                type = PlayerPrefs.GetInt("slot2");
+                UnityEngine.Debug.Log("slot 2 item " + type);
+                slot2sprite.sprite = items[type - 1];
+                break;
+            case 3:
+                type = PlayerPrefs.GetInt("slot3");
+                UnityEngine.Debug.Log("slot 3 item " + type);
+                slot3sprite.sprite = items[type - 1];
+                break;
+            default:
+                type = PlayerPrefs.GetInt("slot1");
+                UnityEngine.Debug.Log("slot 1 item " + type);
+                slot1sprite.sprite = items[type - 1];
                 break;
         }
     }
 
     public void IncrAmount()
     {
-        slot++;
+        /*slot++;
         if (slot > 3)
         {
             selectItemConfirm.text = "Cannot choose a higher slot";
@@ -779,12 +865,12 @@ public class SelectionMenu : MonoBehaviour
             selectItemConfirm.text = "";
         }
         slotNum.text = "" + slot;
-        PlayerPrefs.SetInt("craftNum", slot);
+        PlayerPrefs.SetInt("craftNum", slot);*/
     }
 
     public void DecrAmount()
     {
-        slot--;
+        /*slot--;
         if (slot <= 0)
         {
             slot = 1;
@@ -795,7 +881,7 @@ public class SelectionMenu : MonoBehaviour
             selectItemConfirm.text = "";
         }
         slotNum.text = "" + slot;
-        PlayerPrefs.SetInt("craftNum", slot);
+        PlayerPrefs.SetInt("craftNum", slot);*/
     }
 
     public void LevelOne()
@@ -805,14 +891,14 @@ public class SelectionMenu : MonoBehaviour
 
     public void LevelTwo()
     {
-        //if (PlayerPrefs.GetInt("haveCleaver") == 1)
-        //{
+        if (PlayerPrefs.GetInt("haveCleaver") == 1)
+        {
             SceneManager.LoadScene("Level Two");
-        /*}
+        }
         else
         {
             levelMessage.text = "Level not unlocked!";
-        }*/
+        }
     }
 
     public void LevelThree()
