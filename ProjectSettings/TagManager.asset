@@ -19,6 +19,7 @@ TagManager:
   - BatWaypointNode
   - PlayerPart
   - Weapon
+  - Torch
   layers:
   - Default
   - TransparentFX
