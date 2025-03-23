@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void Damaging(int damage)
+    public virtual void Damaging(int damage)
     {
         Debug.Log("DAMAGE");
         float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);

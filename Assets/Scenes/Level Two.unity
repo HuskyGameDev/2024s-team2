@@ -96153,6 +96153,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 3213751801769155580, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213751801769155580, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213751801769155580, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: m_Color.r
+      value: 0.40244487
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213751801769155580, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4821827807783828774, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
       propertyPath: bloodyEffect
       value: 

@@ -90,7 +90,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea67a5da15e4a6d4e817e287f32dc001, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3051524526426675773}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ea67a5da15e4a6d4e817e287f32dc001, type: 3}
       insertIndex: -1
@@ -120,6 +123,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4517410358250765620}
   m_SourcePrefab: {fileID: 100100000, guid: ea67a5da15e4a6d4e817e287f32dc001, type: 3}
+--- !u!4 &1532420849688325992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea67a5da15e4a6d4e817e287f32dc001, type: 3}
+  m_PrefabInstance: {fileID: 1355295251353192579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2166108311209080274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ea67a5da15e4a6d4e817e287f32dc001, type: 3}
@@ -139,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugPrint: 0
   batWaypointManager: {fileID: 0}
+  impactParticles: {fileID: 3051524526411472765}
   patrolSpeed: 4
   chaseSpeed: 3
   rotationSpeed: 5
@@ -148,6 +157,8 @@ MonoBehaviour:
   vulnerableTime: 3
   windbackSpeed: 0.8
   lungeForce: 17
+  circlingTimer: 0
+  timeToCircle: 5
   state: 2
   detectionRadius: 30
   attackRadius: 5
@@ -398,3 +409,98 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1530789478065160595
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1532420849688325992}
+    m_Modifications:
+    - target: {fileID: 4154569384758745711, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154569384758745711, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154569384758745711, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_Color.r
+      value: 0.40244487
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154569384758745711, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249494926, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Firework 1 Cyan-Purple (HDR) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.30780753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.30780753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.30780753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00000029803
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000017882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+--- !u!198 &3051524526411472765 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4568696801265131246, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+  m_PrefabInstance: {fileID: 1530789478065160595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3051524526426675773 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4568696801249926062, guid: bf8f9b447c4893d4c83c47e6570010bf, type: 3}
+  m_PrefabInstance: {fileID: 1530789478065160595}
+  m_PrefabAsset: {fileID: 0}

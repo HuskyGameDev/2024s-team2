@@ -15,6 +15,8 @@ public class BatAI : MonoBehaviour
     public BatWaypointManager batWaypointManager;
     private List<GameObject> batWaypointNodes;
 
+    public ParticleSystem impactParticles;
+
     private List<GameObject> currentPath;
     private int currentPathIndex = 0;
 
@@ -33,8 +35,11 @@ public class BatAI : MonoBehaviour
     public float windbackSpeed;
     public float lungeForce;
 
-    private enum State { PATROLLING, CHASING, WINDING_BACK, LUNGING, VULNERABLE, FOLLOWING_PATH, DEAD };
-    [SerializeField] private State state = State.WINDING_BACK;
+    public float circlingTimer = 0f;
+    public float timeToCircle = 5f;
+
+    private enum BatState { PATROLLING, CHASING, WINDING_BACK, LUNGING, VULNERABLE, FOLLOWING_PATH, DEAD };
+    [SerializeField] private BatState state = BatState.WINDING_BACK;
 
     // My idea for this is that it currently targets your belly, 
     // so it might be nice to have it target the head instead.
@@ -56,7 +61,7 @@ public class BatAI : MonoBehaviour
         // Without this function call, we would stop for one frame before following the path.
         FollowPathState();
 
-        state = State.FOLLOWING_PATH;
+        state = BatState.FOLLOWING_PATH;
     }
 
     // STATE: We have seen the player and are now chasing them. If we can't see them, move to their last known location.
@@ -64,12 +69,12 @@ public class BatAI : MonoBehaviour
         if (!CanSeePlayer()) {
             PathPlayer();
             currentPathIndex = 0;
-            state = State.FOLLOWING_PATH;
+            state = BatState.FOLLOWING_PATH;
             if (debugPrint) Debug.Log("BAT: Player lost, pathing to last known node position: " + currentPath[currentPath.Count-1].ToString());
             return;
         }
         if (Vector3.Distance(player.transform.position, transform.position) < attackRadius) {
-            state = State.WINDING_BACK;
+            state = BatState.WINDING_BACK;
             if (debugPrint) Debug.Log("BAT: Attacking player");
             return;
         }
@@ -89,7 +94,7 @@ public class BatAI : MonoBehaviour
             attackTimer = 0;
             batRigidBody.AddForce(dirToPlayer * lungeForce, ForceMode.Impulse);
             lethal = true;
-            state = State.LUNGING;    
+            state = BatState.LUNGING;    
         }
         // Check if we have room behind us, move back if we do
         float moveDistance = windbackSpeed * Time.deltaTime;
@@ -106,6 +111,10 @@ public class BatAI : MonoBehaviour
         if (attackTimer < lungeTime) {
             return;
         }
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastResult, 0.5f)) {
+            batRigidBody.velocity = Vector3.zero;
+            impactParticles.Play();
+        }
         batRigidBody.velocity *= 0.7f; // Slow down
         if (batRigidBody.velocity.magnitude > 0.03f) {
             return;
@@ -113,7 +122,7 @@ public class BatAI : MonoBehaviour
         batRigidBody.velocity = Vector3.zero;
         // We have stopped, now we are vulnerable.
         attackTimer = 0;
-        state = State.VULNERABLE;
+        state = BatState.VULNERABLE;
         lethal = false;
         // Play stun particle effects?
     }
@@ -126,14 +135,14 @@ public class BatAI : MonoBehaviour
             return;
         }
         attackTimer = 0;
-        state = State.CHASING;
+        state = BatState.CHASING;
     }
 
     // STATE: Follow the currently held path (may be last seen location of player, may be random waypoint from patrol state)
     private void FollowPathState() {
         // If we can see the player, exit and start chasing
         if (CanSeePlayer()) {
-            state = State.CHASING;
+            state = BatState.CHASING;
             if (debugPrint) Debug.Log("BAT: Player seen, chasing!");
             return;
         }
@@ -209,7 +218,7 @@ public class BatAI : MonoBehaviour
     void Start()
     {
         batWaypointManager = GameObject.FindGameObjectWithTag("BatWaypointManager").GetComponent<BatWaypointManager>();
-        batWaypointNodes = batWaypointManager.batWaypointNodes;
+        batWaypointNodes = GameObject.FindGameObjectsWithTag("BatWaypointNode").ToList<GameObject>();
         batCollider = GetComponent<CapsuleCollider>();
         batRigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag(playerTag).transform;
@@ -223,25 +232,25 @@ public class BatAI : MonoBehaviour
         Debug.DrawLine(transform.position-Vector3.up*gizmoHeight/2, transform.position+Vector3.up*gizmoHeight/2, batColor);
         Debug.DrawLine(transform.position-Vector3.left*gizmoHeight/2, transform.position+Vector3.left*gizmoHeight/2, batColor);
         Debug.DrawLine(transform.position-Vector3.forward*gizmoHeight/2, transform.position+Vector3.forward*gizmoHeight/2, batColor);
-        if (state == State.DEAD) { // Not used, currently covered by enemy health script
+        if (state == BatState.DEAD) { // Not used, currently covered by enemy health script
             Destroy(gameObject);
         }
-        else if (state == State.PATROLLING) {
+        else if (state == BatState.PATROLLING) {
             PatrolState();
         }
-        else if (state == State.WINDING_BACK) {
+        else if (state == BatState.WINDING_BACK) {
             WindBackState();
         }
-        else if (state == State.LUNGING) {
+        else if (state == BatState.LUNGING) {
             LungeState();
         }
-        else if (state == State.VULNERABLE) {
+        else if (state == BatState.VULNERABLE) {
             VulnerableState();
         }
-        else if (state == State.FOLLOWING_PATH) {
+        else if (state == BatState.FOLLOWING_PATH) {
             FollowPathState();
         }
-        else if (state == State.CHASING) {
+        else if (state == BatState.CHASING) {
             ChaseState();
         }
     }

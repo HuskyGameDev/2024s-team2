@@ -21,6 +21,7 @@ TagManager:
   - Weapon
   - Torch
   - MenuMusic
+  - DragonWaypoint
   layers:
   - Default
   - TransparentFX

@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         sprintSpeed = PlayerPrefs.GetInt("speedBoostSprint");
 
         // Ground Check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.3f, Ground); 
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.6f, Ground); 
 
         MyInput();
         SpeedControl();
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer(){
         
         moveDirection = orientation.forward * verticleInput + orientation.right * horizontalInput; // Move the direction you are looking
-               
+        
         // While on the ground 
         if(grounded) {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Actually move the player in that direction
