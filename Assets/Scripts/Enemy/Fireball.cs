@@ -17,6 +17,7 @@ public class Fireball : MonoBehaviour
 
     // private string enemyTag = "Enemy";
     [SerializeField] private const string playerTag = "Player";
+    [SerializeField] private const string enemyTag = "Enemy";
 
     public Fireball(Vector3 direction) {
         this.direction = direction;
@@ -41,7 +42,7 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    private void Explode() {
+    private void DamagePlayer() {
         // Calculate damage
         GameObject player = GameObject.FindWithTag(playerTag);
         Vector3 playerPos = player.transform.position;
@@ -50,7 +51,9 @@ public class Fireball : MonoBehaviour
             int damageDealt = Mathf.RoundToInt(damage * Mathf.Clamp01((explosionRadius - distToPlayer) / explosionRadius));
             player.GetComponent<PlayerHealth>().TakeDamage(damageDealt, gameObject.name);
         }
-        
+    }
+
+    private void Explode() {
         impactParticles.transform.parent = null;
         impactParticles.GetComponent<ParticleSystem>().Play();
         Destroy(impactParticles, impactParticles.GetComponent<ParticleSystem>().main.duration);
@@ -62,12 +65,17 @@ public class Fireball : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Collision!");
         if (lifeTime < 0.5f) {
             return;
         }
-        Debug.Log("Fireball explosion!");
-
+        if (collision.gameObject.tag == enemyTag) {
+            Debug.Log("FIREBALL: Dragon hit!");
+            collision.gameObject.GetComponent<EnemyHealth>().Damaging(damage);
+        }
+        else {
+            Debug.Log("FIREBALL: Hit wall or player!");
+            DamagePlayer();
+        }
         Explode();
     }
 }

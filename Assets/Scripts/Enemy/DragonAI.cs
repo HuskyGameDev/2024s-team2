@@ -86,9 +86,10 @@ public class DragonAI : MonoBehaviour
 
     private void MoveTowardsPlayer() {
         Vector3 dir = player.position - transform.position;
-        Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + transform.position;
+        Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + (player.transform.position + Vector3.up*30); // Changed to avoid travelling up
+        // Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + transform.position;
         // transform.position = Vector3.MoveTowards(transform.position, moveTarget, circleSpeed * Time.deltaTime);
-        transform.position = Vector3.MoveTowards(transform.position, transform.position+transform.forward, circleSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position+transform.forward, circleSpeed * Time.deltaTime); // Just travel forward for more natural movement
         FaceTarget(moveTarget);
     }
 

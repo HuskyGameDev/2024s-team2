@@ -10,7 +10,7 @@ public class Destructable : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
 
-    public void takeDamage(int damageDone) {
+    public virtual void takeDamage(int damageDone) {
         audioSource.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length - 1)]);
         DropIngredient();
         AudioSource.PlayClipAtPoint(damageSounds[Random.Range(0, damageSounds.Length - 1)], gameObject.transform.position);

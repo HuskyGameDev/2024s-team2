@@ -34,6 +34,9 @@ public class EnemyHealth : MonoBehaviour
             ran_HP = UnityEngine.Random.Range(0.7f, 1.3f);
             ene_HP = (int)(50 * ran_HP);
         }
+        else {
+            ene_HP = 100;
+        }
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public virtual void Damaging(int damage)
+    public void Damaging(int damage)
     {
         Debug.Log("DAMAGE");
         float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);
@@ -54,6 +57,5 @@ public class EnemyHealth : MonoBehaviour
         {
             destructable.takeDamage(ene_dam);
         }
-        
     }
 }

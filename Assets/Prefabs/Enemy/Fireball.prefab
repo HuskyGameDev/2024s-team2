@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7790668653652947654}
   m_Layer: 0
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,11 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050b3b50dd345b54db4e60a76af9937d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactParticles: {fileID: 2504214343621411456, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
-  speed: 30
+  impactParticles: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+  speed: 10
   damage: 40
-  direction: {x: 1, y: -0.45, z: 0}
-  explosionRadius: 4.5
+  direction: {x: 1, y: 0, z: 0}
+  explosionRadius: 8
 --- !u!114 &8065558807049606358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,17 +140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0f1f8c7f4df2046917baf792e27c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ene_HP: 0
-  ene_dam: 0
-  ran_HP: 0
-  gob: TempGoblin_TEST(Clone)
-  bat: Bat
-  sla_b: Slime_Boss
-  destructable: {fileID: 0}
-  bloodyEffect: {fileID: 0}
+  enemyType: 0
   audioSource: {fileID: 0}
   damageSounds: []
+  notificationText: []
   fireball: {fileID: 0}
+  knockedBack: 0
+  knockbackSpeed: 20
+  playerCam: {fileID: 0}
 --- !u!54 &2926077984096842633
 Rigidbody:
   m_ObjectHideFlags: 0
