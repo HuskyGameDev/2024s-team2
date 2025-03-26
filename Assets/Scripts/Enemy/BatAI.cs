@@ -9,23 +9,31 @@ using UnityEngine.UIElements;
 
 public class BatAI : MonoBehaviour
 {
-    private Collider batCollider;
+    [Header("References")]
+    public ParticleSystem impactParticles;
+    // private Collider batCollider;
     private Rigidbody batRigidBody;
-    public bool debugPrint;
     public BatWaypointManager batWaypointManager;
     private List<GameObject> batWaypointNodes;
 
-    public ParticleSystem impactParticles;
+    public AudioSource idleChirpAudioSource;
 
+
+    [Header("Debug")]
+    public bool debugPrint;
+
+    [Header("Pathing")]
     private List<GameObject> currentPath;
     private int currentPathIndex = 0;
 
+    [Header("Speeds")]
     public float patrolSpeed;
     public float chaseSpeed;
     public float rotationSpeed;
 
-    private bool lethal = false;
+    [Header("Attacking")]
     public int lungeDamage = 30;
+    private bool lethal = false;
 
     private float attackTimer;
     public float windbackTime;
@@ -35,12 +43,15 @@ public class BatAI : MonoBehaviour
     public float windbackSpeed;
     public float lungeForce;
 
+    [Header("Timers")]
     public float circlingTimer = 0f;
     public float timeToCircle = 5f;
 
-    private enum BatState { PATROLLING, CHASING, WINDING_BACK, LUNGING, VULNERABLE, FOLLOWING_PATH, DEAD };
+    [Header("State")]
     [SerializeField] private BatState state = BatState.WINDING_BACK;
+    private enum BatState { PATROLLING, CHASING, WINDING_BACK, LUNGING, VULNERABLE, FOLLOWING_PATH, DEAD };
 
+    [Header("Other")]
     // My idea for this is that it currently targets your belly, 
     // so it might be nice to have it target the head instead.
     public readonly Vector3 playerheadOffset = Vector3.up * 0.1f; 
@@ -106,15 +117,20 @@ public class BatAI : MonoBehaviour
 
     // STATE: After we have winded back, the transition to this function launches us forward. Now we are flying through the air, damaging on contact.
     private void LungeState() {
+        // If we hit a wall, play effects
+        float wallDetectionDistance = 1f;
+        Debug.DrawLine(transform.position, transform.position+transform.forward*wallDetectionDistance, Color.cyan, 0.1f);
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastResult, wallDetectionDistance)) {
+            batRigidBody.velocity = Vector3.zero;
+            impactParticles.Play();
+            attackTimer  = 2*lungeTime;
+        }
         // The force is applied in the transition from wind back. We just wait.
         attackTimer += Time.deltaTime;
         if (attackTimer < lungeTime) {
             return;
         }
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastResult, 0.5f)) {
-            batRigidBody.velocity = Vector3.zero;
-            impactParticles.Play();
-        }
+
         batRigidBody.velocity *= 0.7f; // Slow down
         if (batRigidBody.velocity.magnitude > 0.03f) {
             return;
@@ -219,9 +235,10 @@ public class BatAI : MonoBehaviour
     {
         batWaypointManager = GameObject.FindGameObjectWithTag("BatWaypointManager").GetComponent<BatWaypointManager>();
         batWaypointNodes = GameObject.FindGameObjectsWithTag("BatWaypointNode").ToList<GameObject>();
-        batCollider = GetComponent<CapsuleCollider>();
+        // batCollider = GetComponent<CapsuleCollider>();
         batRigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag(playerTag).transform;
+        idleChirpAudioSource.time = UnityEngine.Random.Range(0f, idleChirpAudioSource.clip.length - 0.1f);
     }
 
     // Update is called once per frame

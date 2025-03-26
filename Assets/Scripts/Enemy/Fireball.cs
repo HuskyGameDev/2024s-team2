@@ -64,9 +64,6 @@ public class Fireball : MonoBehaviour
         impactParticles.GetComponent<ParticleSystem>().Play();
         keepAfterDestroy.GetComponent<AudioSource>().Play();
         Destroy(keepAfterDestroy, impactParticles.GetComponent<ParticleSystem>().main.duration*1.5f);
-
-        // TODO: Sound here
-
         Destroy(gameObject);
     }
 
