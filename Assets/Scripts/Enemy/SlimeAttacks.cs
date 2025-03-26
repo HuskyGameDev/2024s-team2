@@ -11,6 +11,9 @@ public class SlimeAttacks : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip slamSound;
 
+    private CameraEffects cameraEffects;
+    [SerializeField] private const string cameraTag = "MainCamera";
+
     public float slamDamage;
     public float slamCooldown;
     public float slamHoverDuration;
@@ -33,6 +36,7 @@ public class SlimeAttacks : MonoBehaviour
         damageScript = gameObject.GetComponent<DamageScript>();
         rb = GetComponent<Rigidbody>();
         Player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        cameraEffects = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<CameraEffects>();
     }
 
     // Runs on fixed delta time
@@ -71,6 +75,7 @@ public class SlimeAttacks : MonoBehaviour
 
         impactParticles.Play();
         audioSource.PlayOneShot(slamSound);
+        cameraEffects.ActivateShake(80, 1f);
 
         rb.useGravity = true;
         // rb.AddForce(Vector3.down * slamForce); // Would've been cool to use actual physics, but I don't think it would've worked with NavMeshAgent or whatever rigidbody settings.

@@ -6,7 +6,9 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     // [SerializeField] ParticleSystem fireParticles;
-    [SerializeField] GameObject impactParticles;
+    [SerializeField] private GameObject impactParticles;
+    [SerializeField] private GameObject keepAfterDestroy;
+    private CameraEffects cameraEffects;
 
     public float speed;
     public int damage;
@@ -18,6 +20,7 @@ public class Fireball : MonoBehaviour
     // private string enemyTag = "Enemy";
     [SerializeField] private const string playerTag = "Player";
     [SerializeField] private const string enemyTag = "Enemy";
+    [SerializeField] private const string cameraTag = "MainCamera";
 
     public Fireball(Vector3 direction) {
         this.direction = direction;
@@ -28,7 +31,9 @@ public class Fireball : MonoBehaviour
     void Start()
     {
         direction = direction.normalized;
-        impactParticles = gameObject.transform.GetChild(1).gameObject;
+        keepAfterDestroy = gameObject.transform.GetChild(1).gameObject;
+        impactParticles = keepAfterDestroy.transform.GetChild(0).gameObject;
+        cameraEffects = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<CameraEffects>();
         // fireParticles.Play();
     }
 
@@ -54,9 +59,11 @@ public class Fireball : MonoBehaviour
     }
 
     private void Explode() {
-        impactParticles.transform.parent = null;
+        cameraEffects.ActivateShake(30, 1f);
+        keepAfterDestroy.transform.parent = null;
         impactParticles.GetComponent<ParticleSystem>().Play();
-        Destroy(impactParticles, impactParticles.GetComponent<ParticleSystem>().main.duration);
+        keepAfterDestroy.GetComponent<AudioSource>().Play();
+        Destroy(keepAfterDestroy, impactParticles.GetComponent<ParticleSystem>().main.duration*1.5f);
 
         // TODO: Sound here
 
@@ -65,7 +72,7 @@ public class Fireball : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (lifeTime < 0.5f) {
+        if (lifeTime < 1f) {
             return;
         }
         if (collision.gameObject.tag == enemyTag) {

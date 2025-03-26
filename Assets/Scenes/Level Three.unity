@@ -3219,6 +3219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1 &197883487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,6 +4581,66 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53168ceb81c92934d9d8edab7fef6d9e, type: 3}
+--- !u!1 &254085564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 254085566}
+  - component: {fileID: 254085565}
+  m_Layer: 5
+  m_Name: Audio Reverb Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!167 &254085565
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254085564}
+  m_Enabled: 1
+  m_MinDistance: 500
+  m_MaxDistance: 500
+  m_ReverbPreset: 1
+  m_Room: -1000
+  m_RoomHF: -100
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.83
+  m_Reflections: -2602
+  m_ReflectionsDelay: 0.007
+  m_Reverb: 200
+  m_ReverbDelay: 0.011
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!224 &254085566
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254085564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 72}
+  m_LocalScale: {x: 0.465625, y: 0.465625, z: 0.465625}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 27.7, y: -35.2}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &260063616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9492,6 +9553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1 &642203054
 GameObject:
   m_ObjectHideFlags: 0
@@ -10036,8 +10098,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6296705276154112526, guid: a8b9f12bd30420d44bf5ce0a3c8b3a12, type: 3}
-      propertyPath: direction.y
+      propertyPath: direction.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296705276154112526, guid: a8b9f12bd30420d44bf5ce0a3c8b3a12, type: 3}
+      propertyPath: direction.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12492,6 +12558,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
     - target: {fileID: 1120266245792308679, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: damageSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b8106049a4c67004cb837535f238fe1e, type: 3}
+    - target: {fileID: 1120266245792308679, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
       propertyPath: notificationText.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -12539,10 +12609,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2414777204540498141, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: damageSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b8106049a4c67004cb837535f238fe1e, type: 3}
+    - target: {fileID: 3129323409929196727, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129323409929196727, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.504
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129323409929196727, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4537199649239124449, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
       propertyPath: m_Name
       value: Dragon
       objectReference: {fileID: 0}
+    - target: {fileID: 4537199649239124449, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: rotationSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: roarSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: attackSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: waypointReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: roarSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: dc26c1859d381d14b94fa940dcb0d323, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17455,7 +17565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221249129}
   m_Layer: 0
-  m_Name: DragonWaypoints (1)
+  m_Name: DragonWaypoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28036,6 +28146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1001 &1638753554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31565,6 +31676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1001 &1836866358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38071,6 +38183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1001 &1840110850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43032,6 +43145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890ddea7101e8b242b3237394661ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
 --- !u!1 &2146885822 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d9dbcc0c23014a74d9d153d1ee636e5d, type: 3}
@@ -43082,3 +43196,4 @@ SceneRoots:
   - {fileID: 830765701}
   - {fileID: 1221249129}
   - {fileID: 676425111}
+  - {fileID: 254085566}

@@ -31,6 +31,7 @@ public class DragonAI : MonoBehaviour
     [SerializeField] private DragonState state = DragonState.CIRCLING;
 
     [Header("Misc")]
+    [SerializeField] private const string cameraTag = "MainCamera";
     [SerializeField] private const string playerTag = "Player";
     [SerializeField] private Transform player;
 
@@ -44,6 +45,20 @@ public class DragonAI : MonoBehaviour
     [SerializeField] private float swoopDepthCorrection; // Bezier curve correction.
     [SerializeField] private float swoopParameter;
     [SerializeField] private float swoopRangeRadius;
+
+    [Header("Effects")]
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip[] roarSounds;
+    private CameraEffects cameraEffects;
+    private AudioSource audioSource;
+    
+
+    private void Roar() {
+        cameraEffects.ActivateFOV(1.2f, 2, 1);
+        cameraEffects.ActivateShake(60, 2);
+        // TODO: Play sound
+        audioSource.PlayOneShot(roarSounds[Random.Range(0, roarSounds.Length)]);
+    }
 
     // Keeps our dragon aligned with a target while not allowing for instantaneous, unnatural turns
     private void FaceTarget(Vector3 targetPos) {
@@ -82,11 +97,12 @@ public class DragonAI : MonoBehaviour
         GameObject fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         Fireball fireball = fireballInstance.GetComponent<Fireball>();
         fireball.direction = dir.normalized;
+        Debug.DrawLine(player.position, transform.position, Color.red, 7f);
     }
 
     private void MoveTowardsPlayer() {
         Vector3 dir = player.position - transform.position;
-        Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + (player.transform.position + Vector3.up*30); // Changed to avoid travelling up
+        Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + (player.transform.position + Vector3.up*20); // Changed to avoid travelling up
         // Vector3 moveTarget = Vector3.right * 2*dir.x + Vector3.forward * 2*dir.z + transform.position;
         // transform.position = Vector3.MoveTowards(transform.position, moveTarget, circleSpeed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, transform.position+transform.forward, circleSpeed * Time.deltaTime); // Just travel forward for more natural movement
@@ -140,6 +156,9 @@ public class DragonAI : MonoBehaviour
         currentPath = new List<GameObject>(1) {RandomWaypoint()};
         player = GameObject.FindWithTag(playerTag).transform;
         attackTimer = Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
+        audioSource = transform.GetChild(0).gameObject.GetComponent<AudioSource>();
+        cameraEffects = GameObject.FindGameObjectWithTag(cameraTag).GetComponent<CameraEffects>();
+        Roar();
     }
 
     // Update is called once per frame
@@ -147,6 +166,7 @@ public class DragonAI : MonoBehaviour
     {
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0) {
+            Roar();
             ChooseRandomAttack();
             attackTimer = Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);
         }
