@@ -18893,6 +18893,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2123922221429759694, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: shakeLerpValue
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123922221429759694, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: shakeLerpSmoothValue
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2875971645676257634, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 

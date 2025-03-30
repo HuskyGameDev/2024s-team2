@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 
@@ -24,7 +25,7 @@ public class CameraEffects : MonoBehaviour
     private float fovSpeed;
 
     [Header("Camera Shake")]
-    public float shakeLerpValue;
+    public float shakeLerpSmoothValue;
     private Stack<Shake> activeShakes;
     private class Shake {
         public float shakeStrength;
@@ -39,7 +40,7 @@ public class CameraEffects : MonoBehaviour
     // Add a new active shake. These effects stack.
     public void ActivateShake(float shakeStrength, float shakeLifetime) {
         if (debug) Debug.LogFormat("CAMERA FX: New Shake effect:", shakeStrength, shakeLifetime);
-        activeShakes.Push(new Shake(shakeStrength, shakeLifetime));
+        activeShakes.Push(new Shake(shakeStrength/80, shakeLifetime));
     }
 
     // Add a new active FOV. Overwrites old FOV lerp.
@@ -54,20 +55,29 @@ public class CameraEffects : MonoBehaviour
     private void HandleShakes() {
         // Return to center if there are no shakes
         if (activeShakes.Count <= 0) {
-            gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, originalLocalPos, shakeLerpValue*Time.deltaTime);
+            gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, originalLocalPos, shakeLerpSmoothValue*Time.deltaTime*30);
         }
-        Vector3 currentPos = originalLocalPos; // Necessary to stack effects
+        Vector3 currentPos = gameObject.transform.localPosition; // Necessary to stack effects
         for (int i = 0; i < activeShakes.Count; i++) {
             Shake shake = activeShakes.Pop();
             shake.shakeLifetime -= Time.deltaTime;
             if (shake.shakeLifetime <= 0) {
                 continue;
             }
-            Vector3 shakeVec = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
+
+            // -1 and 2 because maxExclusive
+            float randomX = Random.Range(-1f, 1f);
+            float randomY = Random.Range(-1f, 1f);
+            float randomZ = Random.Range(-1f, 1f);
+            Vector3 shakeVec = originalLocalPos + new Vector3(randomX, randomY, randomZ);
             shakeVec *= shake.shakeStrength;
-            currentPos += Vector3.Lerp(originalLocalPos, shakeVec, shakeLerpValue*Time.deltaTime);
+
+            // Debug.LogFormat("currentPos Pos: {0}", currentPos);
+            // Debug.LogFormat("shakeVec   Pos: {0}", shakeVec);
+            currentPos = Vector3.Lerp(currentPos, shakeVec, shakeLerpSmoothValue*Time.deltaTime*30);            
             activeShakes.Push(shake);
         }
+        
         gameObject.transform.localPosition = currentPos;
     }
 
@@ -88,7 +98,11 @@ public class CameraEffects : MonoBehaviour
         originalLocalPos = gameObject.transform.localPosition;
         originalFOV = cam.fieldOfView;
         activeShakes = new Stack<Shake>();
+
         // ActivateFOV(2f, 5, 1);
+
+        // Maximum desired shake:
+        // ActivateShake(100, 10);
     }
 
     // Update is called once per frame
