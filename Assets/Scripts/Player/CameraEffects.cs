@@ -40,7 +40,7 @@ public class CameraEffects : MonoBehaviour
     // Add a new active shake. These effects stack.
     public void ActivateShake(float shakeStrength, float shakeLifetime) {
         if (debug) Debug.LogFormat("CAMERA FX: New Shake effect:", shakeStrength, shakeLifetime);
-        activeShakes.Push(new Shake(shakeStrength/80, shakeLifetime));
+        activeShakes.Push(new Shake(shakeStrength/150, shakeLifetime));
     }
 
     // Add a new active FOV. Overwrites old FOV lerp.

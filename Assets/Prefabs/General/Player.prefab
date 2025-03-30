@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcb2829e7be8fb4e90ba1347498749f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeLerpValue: 0.5
+  debug: 0
+  shakeLerpSmoothValue: 0.8
 --- !u!1 &1571167951490669006
 GameObject:
   m_ObjectHideFlags: 0

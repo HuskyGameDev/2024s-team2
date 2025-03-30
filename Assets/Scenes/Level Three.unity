@@ -12634,10 +12634,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
-      propertyPath: rotationSpeed
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
       propertyPath: roarSounds.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -18897,10 +18893,6 @@ PrefabInstance:
       propertyPath: shakeLerpValue
       value: 0.8
       objectReference: {fileID: 0}
-    - target: {fileID: 2123922221429759694, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
-      propertyPath: shakeLerpSmoothValue
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2875971645676257634, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -18996,10 +18988,6 @@ PrefabInstance:
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
-      propertyPath: jumpCooldown
-      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: walkingClips.Array.size

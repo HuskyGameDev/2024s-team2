@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour 
 {
     [Header("Movement")]
     private float moveSpeed;
@@ -89,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        
+        // Apply extra gravity
+        rb.AddForce(Physics.gravity*rb.mass*(gravityMultiplier-1f));
 
         // Apply drag
         if(grounded)
@@ -161,7 +164,6 @@ public class PlayerMovement : MonoBehaviour
         // in the air
         else {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Actually move the player in that direction
-            rb.AddForce(Physics.gravity*rb.mass*(gravityMultiplier-1f));
         }
     }
 
