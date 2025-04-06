@@ -20669,6 +20669,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59890,6 +59894,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63505,6 +63513,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -66502,6 +66514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair_default: {fileID: 315107050}
   crosshair_red: {fileID: 11652436}
+  hitDistance: 3.25
 --- !u!222 &1487736858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69239,6 +69252,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94609,6 +94626,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -96229,6 +96250,10 @@ PrefabInstance:
       propertyPath: bloodyEffect
       value: 
       objectReference: {fileID: 1675557755}
+    - target: {fileID: 5915510222551198536, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+      propertyPath: enemyType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

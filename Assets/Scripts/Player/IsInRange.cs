@@ -15,6 +15,8 @@ public class IsInRange : MonoBehaviour
     //red crosshair
     public RawImage crosshair_red;
 
+    public float hitDistance = 3.25f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class IsInRange : MonoBehaviour
     void Update()
     {
         //check if enemy is in range
-        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 3f))
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, hitDistance))
         {
             //if raycast detects enemy
             if(hit.collider.tag == "Enemy")

@@ -52,6 +52,12 @@ public class Destructable : MonoBehaviour
                 enemyType = 2;
                 Notify("+" + 1 + " Slime Boss Jelly");
                 break;
+            case 3: //bat enemy
+                ingr = "bloodBerry";
+                PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") + num);
+                amount = PlayerPrefs.GetInt("bloodBerry");
+                Notify("+" + num + " Blood Berry");
+                break;
             default:
                 ingr = "A";
                 PlayerPrefs.SetInt("ingredientA", PlayerPrefs.GetInt("ingredientA") + num);

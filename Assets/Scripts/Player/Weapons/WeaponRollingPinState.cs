@@ -16,14 +16,14 @@ public class WeaponRollingPinState : WeaponBaseState
     {
         Debug.Log("Player equipped with rolling pin");
         theStateMachine = weapon;
-        primaryCooldown = 1f;
-        primaryAttackDamage = 7;
+        primaryCooldown = 1.25f; //was 1
+        primaryAttackDamage = 12; //was 7
         secondaryCooldown = 0.5f;
         secondaryAttackDamage = 1;
         chargeCooldown = 3f;
         chargeAttackDamage = 1;
         chargeTime = 3f;
-        hitDistance = 3f;
+        hitDistance = 3.25f; //changed from 3 to 3.25
         playerCam = Camera.main;
         audioSource = GameObject.Find("WeaponHolder").GetComponent<AudioSource>();
         machineScript = GameObject.Find("Weapon").GetComponent<WeaponsStateMachine>();
@@ -80,7 +80,7 @@ public class WeaponRollingPinState : WeaponBaseState
             if (hit.collider.tag == "Enemy")
             {
                 Debug.Log("An Enemy was hit");
-                hit.collider.gameObject.GetComponent<Destructable>().takeDamage(primaryAttackDamage); // Deal one damage 
+                hit.collider.gameObject.GetComponent<EnemyHealth>().Damaging(primaryAttackDamage); // Deal one damage 
             }
             else
             {
@@ -126,7 +126,7 @@ public class WeaponRollingPinState : WeaponBaseState
                 if (angle <= arcAngle / 2)
                 {
                     // Damage the enemy
-                    hitCollider.GetComponent<Destructable>().takeDamage(chargeAttackDamage);
+                    hitCollider.GetComponent<EnemyHealth>().Damaging(chargeAttackDamage);
                     Debug.Log("An Enemy was hit by charge attack");
                     enemyHit = true;
                 }

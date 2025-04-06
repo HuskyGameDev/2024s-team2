@@ -23,16 +23,18 @@ public class EnemyHealth : MonoBehaviour
     {
         if (string.Compare(gameObject.name, gob) == 0)
         {
-            ran_HP = UnityEngine.Random.Range(0.8f, 1.2f);
+            ran_HP = UnityEngine.Random.Range(0.8f, 1.3f); //was .8 / 1.2
             ene_HP = (int)(10 * ran_HP);
-        } else if (string.Compare(gameObject.name, sla_b) == 0)
+        }
+        else if (string.Compare(gameObject.name, sla_b) == 0)
         {
-            ran_HP = UnityEngine.Random.Range(0.7f, 1.3f);
+            ran_HP = UnityEngine.Random.Range(0.9f, 1.1f); //was .7 / 1.5
             ene_HP = (int)(50 * ran_HP);
         }
-        else if (string.Compare(gameObject.name, bat) == 0) {
-            ran_HP = UnityEngine.Random.Range(0.7f, 1.3f);
-            ene_HP = (int)(50 * ran_HP);
+        else if (string.Compare(gameObject.name, bat) == 0)
+        {
+            ran_HP = UnityEngine.Random.Range(0.5f, 1.3f);
+            ene_HP = (int)(8 * ran_HP); //was 10
         }
         else {
             ene_HP = 100;
@@ -48,11 +50,11 @@ public class EnemyHealth : MonoBehaviour
     public void Damaging(int damage)
     {
         Debug.Log("DAMAGE");
-        float ran_dam = UnityEngine.Random.Range(0.5f, 1.5f);
+        bloodyEffect.Bloody(); //new
+        float ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
         ene_dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("attBuff"));
         ene_HP = ene_HP - ene_dam;
         audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
-        bloodyEffect.Bloody(); //new
         if (ene_HP <= 0)
         {
             destructable.takeDamage(ene_dam);

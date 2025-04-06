@@ -17,14 +17,14 @@ public class WeaponCleaverState : WeaponBaseState
     {
         Debug.Log("Player equipped with cleaver");
         theStateMachine = weapon;
-        primaryCooldown = .8f;
-        primaryAttackDamage = 1;
+        primaryCooldown = .55f; //was .8
+        primaryAttackDamage = 6; // was 1
         secondaryCooldown = 0.5f;
         secondaryAttackDamage = 1;
         chargeCooldown = 1.5f;
         chargeAttackDamage = 1;
         chargeTime = 3f;
-        hitDistance = 3f;
+        hitDistance = 3.25f; //changed to 3.25 from 3
         playerCam = Camera.main;
         audioSource = GameObject.Find("WeaponHolder").GetComponent<AudioSource>();
         audioSource.pitch = 2;
@@ -55,7 +55,7 @@ public class WeaponCleaverState : WeaponBaseState
             if (hit.collider.tag == "Enemy")
             {
                 Debug.Log("An Enemy was hit");
-                hit.collider.gameObject.GetComponent<Destructable>().takeDamage(primaryAttackDamage); // Deal one damage 
+                hit.collider.gameObject.GetComponent<EnemyHealth>().Damaging(primaryAttackDamage); // Deal one damage 
             }
             else
             {
@@ -85,7 +85,7 @@ public class WeaponCleaverState : WeaponBaseState
             if (hit.collider.tag == "Enemy")
             {
                 Debug.Log("An Enemy was hit");
-                hit.collider.gameObject.GetComponent<Destructable>().takeDamage(primaryAttackDamage); // Deal one damage 
+                hit.collider.gameObject.GetComponent<EnemyHealth>().Damaging(primaryAttackDamage); // Deal one damage 
             }
             else
             {
@@ -125,7 +125,7 @@ public class WeaponCleaverState : WeaponBaseState
                 // Check if the enemy is within the arc in front of the player
                 if (angle <= arcAngle / 2)
                 {
-                    hitCollider.GetComponent<Destructable>().takeDamage(chargeAttackDamage);
+                    hitCollider.GetComponent<EnemyHealth>().Damaging(chargeAttackDamage);
                     Debug.Log("An Enemy was hit by charge attack");
                     enemyHit = true;
                 }

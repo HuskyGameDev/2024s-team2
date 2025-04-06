@@ -413,7 +413,7 @@ MonoBehaviour:
   ene_dam: 0
   ran_HP: 0
   gob: TempGoblin_TEST(Clone)
-  bat: Bat (1)
+  bat: Bat
   sla_b: Slime_Boss
   destructable: {fileID: 5915510222551198536}
   bloodyEffect: {fileID: 4821827807783828774}
@@ -460,6 +460,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5471a468e8438a45bc1afd6efb295d3, type: 3}
   - {fileID: 8300000, guid: 31cb1b694b4467f488dd567d35149838, type: 3}
   notificationText:
+  - {fileID: 7988736980644947080, guid: f4a4797f4b723134aa27a9b973261902, type: 3}
+  - {fileID: 8041212197288696551, guid: 9b1be302d2ecbd04caa5d192a0dc4292, type: 3}
+  - {fileID: 5435219628869937261, guid: 017f44fb774be4248813d4425bbcf9bf, type: 3}
   - {fileID: 5066150681452643900, guid: aaeb295c274045c428006bf8ceeaf31d, type: 3}
 --- !u!82 &339840472329495492
 AudioSource:

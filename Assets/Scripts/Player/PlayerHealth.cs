@@ -93,24 +93,13 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage, string enemy_name) //make public
     {
         float ran_dam = 0.0f;
-        Debug.Log("this is for the dam" + enemy_name);
+        Debug.Log("damage from source: " + enemy_name);
         //add armor, buff/debuff, item, and weapons? ability's code too.
-        if (String.Compare(enemy_name, gob) == 0)
-        {
-            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
-            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
-        } else if (enemy_name == "Slime_Boss")
-        {
-            ran_dam = UnityEngine.Random.Range(0.7f, 1.5f);
-            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
-        } else if (String.Compare(enemy_name, bat) == 0)
-        {
-            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
-            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
-        } else {
-            ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
-            dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
-        }
+
+        //simplified this to be the same for all sources of damage
+        ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
+        dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
+        
         currentHealth -= dam;
         healthBar.SetHealth(currentHealth);
         audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
