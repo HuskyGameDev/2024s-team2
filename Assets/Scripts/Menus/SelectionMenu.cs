@@ -40,7 +40,7 @@ public class SelectionMenu : MonoBehaviour
         PlayerPrefs.SetInt("craftNum", 1);
         slot = 1;
         weaponName.text = "Rolling Pin";
-        weaponDescription.text = "Your rolling pin, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
+        weaponDescription.text = "Your rolling pin, a slow but hard-hitting weapon\nDamage: 12\nCooldown: 1.25";
         itemName.text = "Goblin Steak";
         itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
         //amountText.text = "" + amount;
@@ -111,13 +111,13 @@ public class SelectionMenu : MonoBehaviour
             case 1:
                 PlayerPrefs.SetInt("weaponNum", 1);
                 weaponName.text = "Rolling Pin";
-                weaponDescription.text = "Your rolling pin, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
+                weaponDescription.text = "Your rolling pin, a slow but hard-hitting weapon\nDamage: 12\nCooldown: 1.25";
                 weapon.texture = weapons[0];
                 break;
             case 2:
                 PlayerPrefs.SetInt("weaponNum", 2);
                 weaponName.text = "Cleaver";
-                weaponDescription.text = "Your cleaver, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
+                weaponDescription.text = "Your cleaver, a light and fast weapon\nDamage: 6\nCooldown: 0.5";
                 weapon.texture = weapons[1];
                 break;
             case 3:
@@ -129,7 +129,7 @@ public class SelectionMenu : MonoBehaviour
             default:
                 PlayerPrefs.SetInt("weaponNum", 1);
                 weaponName.text = "Rolling Pin";
-                weaponDescription.text = "Your rolling pin, now being used as a melee weapon\nAttack:\nRange:\nCooldown: ";
+                weaponDescription.text = "Your rolling pin, a slow but hard-hitting weapon\nDamage: 12\nCooldown: 1.25";
                 weapon.texture = weapons[0];
                 break;
         }
