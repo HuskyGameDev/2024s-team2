@@ -46,12 +46,14 @@ public class Destructable : MonoBehaviour
                 PlayerPrefs.SetInt("goblinMeat", PlayerPrefs.GetInt("goblinMeat") + num);
                 amount = PlayerPrefs.GetInt("goblinMeat");
                 Notify("+" + num + " Goblin Meat");
+                PlayerPrefs.SetInt("found1", 1);
                 break;
             case 1: //slime enemy
                 ingr = "slimeJelly";
                 PlayerPrefs.SetInt("slimeJelly", PlayerPrefs.GetInt("slimeJelly") + num);
                 amount = PlayerPrefs.GetInt("slimeJelly");
                 Notify("+" + num + " Slime Jelly");
+                PlayerPrefs.SetInt("found2", 1);
                 break;
             case 2: //slime boss
                 int bonus = Random.Range(5, 10);
@@ -60,6 +62,8 @@ public class Destructable : MonoBehaviour
                 PlayerPrefs.SetInt("bossSlimeJelly", PlayerPrefs.GetInt("bossSlimeJelly") + 1);
                 amount = PlayerPrefs.GetInt("slimeJelly");
                 PlayerPrefs.SetInt("haveCleaver", 1);
+                PlayerPrefs.SetInt("found2", 1);
+                PlayerPrefs.SetInt("found3", 1);
                 enemyType = 1;
                 Notify("+" + (num + bonus) + " Slime Jelly");
                 enemyType = 2;
@@ -70,6 +74,28 @@ public class Destructable : MonoBehaviour
                 PlayerPrefs.SetInt("bloodBerry", PlayerPrefs.GetInt("bloodBerry") + num);
                 amount = PlayerPrefs.GetInt("bloodBerry");
                 Notify("+" + num + " Blood Berry");
+                PlayerPrefs.SetInt("found6", 1);
+                break;
+            case 4: //minotaur boss
+                ingr = "horn";
+                PlayerPrefs.SetInt("horn", PlayerPrefs.GetInt("horn") + num);
+                amount = PlayerPrefs.GetInt("horn");
+                Notify("+" + num + " Horn");
+                PlayerPrefs.SetInt("found4", 1);
+                break;
+            case 5: //mushrooom enemy
+                ingr = "mushroom";
+                PlayerPrefs.SetInt("mushroom", PlayerPrefs.GetInt("mushroom") + num);
+                amount = PlayerPrefs.GetInt("mushroom");
+                Notify("+" + num + " Mushroom");
+                PlayerPrefs.SetInt("found5", 1);
+                break;
+            case 6: //skeleton enemy
+                ingr = "bone";
+                PlayerPrefs.SetInt("bone", PlayerPrefs.GetInt("bone") + num);
+                amount = PlayerPrefs.GetInt("bone");
+                Notify("+" + num + " Bone");
+                PlayerPrefs.SetInt("found7", 1);
                 break;
             default:
                 ingr = "A";

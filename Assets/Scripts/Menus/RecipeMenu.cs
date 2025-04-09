@@ -24,8 +24,12 @@ public class RecipeMenu : MonoBehaviour
     public TextMeshProUGUI ingr5;
     public TextMeshProUGUI ingr6;
     public TextMeshProUGUI ingr7;
+    
+    public TextMeshProUGUI recipeTitle;
+    public GameObject recipeHide;
 
     private int amount;
+    private bool canCraft = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,17 +38,114 @@ public class RecipeMenu : MonoBehaviour
         //initialize everything :)
         PlayerPrefs.SetInt("recipeNum", 1);
         amount = 1;
-        //myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t"; 
-        recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
-        //ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
-        inputAmount.text = "" + amount;
-        ingr1.text = "1(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-        ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-        ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-        ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-        ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-        ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-        ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+
+        switch (currentRecipe)
+        {
+            case 1:
+                if (PlayerPrefs.GetInt("found1") != 1)
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    //myIngredients.text = "Ingredients Owned:\n" + PlayerPrefs.GetInt("goblinMeat") + " Goblin Meat\t" + PlayerPrefs.GetInt("slimeJelly") + " Slime Jelly\n" + PlayerPrefs.GetInt("bossSlimeJelly") + " Boss Slime Jelly\t"; 
+                    recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
+                    inputAmount.text = "" + amount;
+                    ingr1.text = "1(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                break;
+            case 2:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 3:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 4:
+                if (PlayerPrefs.GetInt("found5") != 1)
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 5:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 6:
+                if ((PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 7:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found4") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("found7") != 1)
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            case 9:
+                if ((PlayerPrefs.GetInt("found1") != 1) || (PlayerPrefs.GetInt("found5") != 1) || (PlayerPrefs.GetInt("found7") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+            default:
+                if ((PlayerPrefs.GetInt("found1") != 1) || (PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found4") != 1) || (PlayerPrefs.GetInt("found5") != 1) ||
+                    (PlayerPrefs.GetInt("found6") != 1) || (PlayerPrefs.GetInt("found7") != 1))
+                {
+                    recipeTitle.text = "???";
+                    recipeHide.SetActive(true);
+                    PlayerPrefs.SetInt("canCraft", 0);
+                }
+                break;
+        }
+
         Cursor.lockState = CursorLockMode.None;
         GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>().PlayMusic();
     }
@@ -244,8 +345,21 @@ public class RecipeMenu : MonoBehaviour
                 break;
         }
 
-        if (PlayerPrefs.GetInt("goblinMeat") < aNeeded || PlayerPrefs.GetInt("slimeJelly") < bNeeded || PlayerPrefs.GetInt("bossSlimeJelly") < cNeeded 
-            || PlayerPrefs.GetInt("horn") < dNeeded || PlayerPrefs.GetInt("mushroom") < eNeeded 
+        if (PlayerPrefs.GetInt("canCraft") == 0)
+        {
+            canCraft = false;
+        }
+        else
+        {
+            canCraft = true;
+        }
+
+        if (!canCraft)
+        {
+            craftResult.text = "You have not discovered this dish";
+        }
+        else if (PlayerPrefs.GetInt("goblinMeat") < aNeeded || PlayerPrefs.GetInt("slimeJelly") < bNeeded || PlayerPrefs.GetInt("bossSlimeJelly") < cNeeded
+            || PlayerPrefs.GetInt("horn") < dNeeded || PlayerPrefs.GetInt("mushroom") < eNeeded
             || PlayerPrefs.GetInt("bloodBerry") < fNeeded || PlayerPrefs.GetInt("bone") < gNeeded)
         {
             craftResult.text = "You do not have enough ingredients";
@@ -375,126 +489,340 @@ public class RecipeMenu : MonoBehaviour
 
         switch (currentRecipe)
         {
+            case 1:
+                if ((PlayerPrefs.GetInt("found1") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 2:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 3:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 4:
+                if ((PlayerPrefs.GetInt("found5") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 5:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 6:
+                if ((PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 7:
+                if ((PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found4") != 1) || (PlayerPrefs.GetInt("found6") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 8:
+                if ((PlayerPrefs.GetInt("found7") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            case 9:
+                if ((PlayerPrefs.GetInt("found1") != 1) || (PlayerPrefs.GetInt("found5") != 1) || (PlayerPrefs.GetInt("found7") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+            default:
+                if ((PlayerPrefs.GetInt("found1") != 1) || (PlayerPrefs.GetInt("found2") != 1) || (PlayerPrefs.GetInt("found3") != 1) || (PlayerPrefs.GetInt("found4") != 1) || (PlayerPrefs.GetInt("found5") != 1) ||
+                    (PlayerPrefs.GetInt("found6") != 1) || (PlayerPrefs.GetInt("found7") != 1))
+                {
+                    canCraft = false;
+                }
+                break;
+        }
+        
+        if (!canCraft)
+        {
+            PlayerPrefs.SetInt("canCraft", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("canCraft", 1);
+        }
+
+        switch (currentRecipe)
+        {
             case 1://goblinSteak
                 PlayerPrefs.SetInt("recipeNum", 1);
-                recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold1") + " at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:"; 
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
-                ingr1.text = (3 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold1") + " at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
+                    ingr1.text = (3 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 2://jellysand
                 PlayerPrefs.SetInt("recipeNum", 2);
-                recipeDescription.text = "Slime Jelly Sandwich: Eating this dish will increase your movement speed for 15 seconds, you can carry " + PlayerPrefs.GetInt("maxHold2") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("jellysand") + "\nRequired Ingredients:"; 
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Slime Jelly Sandwich: Eating this dish will increase your movement speed for 15 seconds, you can carry " + PlayerPrefs.GetInt("maxHold2") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("jellysand") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 3://bbsand
                 PlayerPrefs.SetInt("recipeNum", 3);
-                recipeDescription.text = "Blood Berry Slime Jelly Sandwich: Eating this dish will reduce the damage you take by 20% for 30 seconds, you can carry " + PlayerPrefs.GetInt("maxHold3") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("bbsand") + "\nRequired Ingredients:"; 
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly" + (1 * amount) + " Blood Berry";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Blood Berry Slime Jelly Sandwich: Eating this dish will reduce the damage you take by 20% for 30 seconds, you can carry " + PlayerPrefs.GetInt("maxHold3") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("bbsand") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly" + (1 * amount) + " Blood Berry";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 4://friedmush
                 PlayerPrefs.SetInt("recipeNum", 4);
-                recipeDescription.text = "Fried Mushroom: Eating this dish will increase the damage you deal by 30% for 15 seconds, you can carry " + PlayerPrefs.GetInt("maxHold4") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("friedmush") + "\nRequired Ingredients:"; 
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Mushroom";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Fried Mushroom: Eating this dish will increase the damage you deal by 30% for 15 seconds, you can carry " + PlayerPrefs.GetInt("maxHold4") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("friedmush") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Mushroom";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 5://bbsoup
                 PlayerPrefs.SetInt("recipeNum", 5);
-                recipeDescription.text = "Blood Berry Soup: Eating this dish will let you regain 15 hp (8 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold5") + " at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup") + "\nRequired Ingredients:"; 
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Blood Berry\t" + (3 * amount) + " Slime Jelly";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Blood Berry Soup: Eating this dish will let you regain 15 hp (8 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold5") + " at a time\nOwned: " + PlayerPrefs.GetInt("bbsoup") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Blood Berry\t" + (3 * amount) + " Slime Jelly";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (3 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 6://royalbbsoup
                 PlayerPrefs.SetInt("recipeNum", 6);
-                recipeDescription.text = "Royal Blood Berry Soup: Eating this dish will increase your movement speed for 25 seconds, you can carry " + PlayerPrefs.GetInt("maxHold6") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("royalbbsoup") + "\nRequired Ingredients:";
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + "Blood Berry \t" + (1 * amount) + " Boss Slime Jelly";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (8 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Royal Blood Berry Soup: Eating this dish will increase your movement speed for 25 seconds, you can carry " + PlayerPrefs.GetInt("maxHold6") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("royalbbsoup") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + "Blood Berry \t" + (1 * amount) + " Boss Slime Jelly";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (8 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 7://bossdrink
                 PlayerPrefs.SetInt("recipeNum", 7);
-                recipeDescription.text = "Boss Drink: Eating this dish will increase your total health by 50, you can carry " + PlayerPrefs.GetInt("maxHold7") + " at a time. The effect will only last for 1 level\nOwned: " + PlayerPrefs.GetInt("bossdrink") + "\nRequired Ingredients:";
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Boss Slime Jelly\t" + (3 * amount) + " Blood Berry" + (1 * amount) + " Minotaur Horn";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (8 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Boss Drink: Eating this dish will increase your total health by 50, you can carry " + PlayerPrefs.GetInt("maxHold7") + " at a time. The effect will only last for 1 level\nOwned: " + PlayerPrefs.GetInt("bossdrink") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Boss Slime Jelly\t" + (3 * amount) + " Blood Berry" + (1 * amount) + " Minotaur Horn";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (2 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (8 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 8://roastbone
                 PlayerPrefs.SetInt("recipeNum", 8);
-                recipeDescription.text = "Roasted Bone Marrow: Eating this dish will reduce the damage you take by 30% for 40 seconds, you can carry " + PlayerPrefs.GetInt("maxHold8") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("roastbone") + "\nRequired Ingredients:";
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Bone";
-                ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Roasted Bone Marrow: Eating this dish will reduce the damage you take by 30% for 40 seconds, you can carry " + PlayerPrefs.GetInt("maxHold8") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("roastbone") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Bone";
+                    ingr1.text = "0(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 9://dundinner
                 PlayerPrefs.SetInt("recipeNum", 9);
-                recipeDescription.text = "Dungeon Dinner: Eating this dish will increase the damage you deal by 50% for 25 seconds, you can carry " + PlayerPrefs.GetInt("maxHold9") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("dundinner") + "\nRequired Ingredients:";
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Mushroom" + (1 * amount) + " Bone";
-                ingr1.text = (8 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Dungeon Dinner: Eating this dish will increase the damage you deal by 50% for 25 seconds, you can carry " + PlayerPrefs.GetInt("maxHold9") + " at a time. The effect does not stack\nOwned: " + PlayerPrefs.GetInt("dundinner") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Mushroom" + (1 * amount) + " Bone";
+                    ingr1.text = (8 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             case 10://dunfeast
                 PlayerPrefs.SetInt("recipeNum", 10);
-                recipeDescription.text = "Dungeon Feast: Eating this dish will completely recover your health (75 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold10") + " at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast") + "\nRequired Ingredients:";
-                //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Slime Jelly" + (1 * amount) 
-                 //   + " Boss Slime Jelly" + (1 * amount) + " Minotaur Horn" + (1 * amount) + " Mushroom" + (1 * amount) + " Blood Berry" + (1 * amount) + " Bone";
-                ingr1.text = (10 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
-                ingr2.text = (8 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
-                ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
-                ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
-                ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
-                ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
-                ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                if (canCraft)
+                {
+                    recipeDescription.text = "Dungeon Feast: Eating this dish will completely recover your health (75 second cooldown), you can carry " + PlayerPrefs.GetInt("maxHold10") + " at a time\nOwned: " + PlayerPrefs.GetInt("dunfeast") + "\nRequired Ingredients:";
+                    //ingredientsNeeded.text = "Required Ingredients:\n" + (2 * amount) + " Goblin Meat\t" + (3 * amount) + " Slime Jelly" + (1 * amount) 
+                    //   + " Boss Slime Jelly" + (1 * amount) + " Minotaur Horn" + (1 * amount) + " Mushroom" + (1 * amount) + " Blood Berry" + (1 * amount) + " Bone";
+                    ingr1.text = (10 * amount) + " (" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = (8 * amount) + " (" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = (1 * amount) + " (" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = (5 * amount) + " (" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = (5 * amount) + " (" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = (1 * amount) + " (" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = (3 * amount) + " (" + PlayerPrefs.GetInt("bone") + ")";
+                }
+                else
+                {
+                    recipeDescription.text = "Unknown Dish: Discover more ingredients to unlock \nOwned: 0\nRequired Ingredients:";
+                    ingr1.text = "???(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr2.text = "???(" + PlayerPrefs.GetInt("slimeJelly") + ")";
+                    ingr3.text = "???(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
+                    ingr4.text = "???(" + PlayerPrefs.GetInt("mushroom") + ")";
+                    ingr5.text = "???(" + PlayerPrefs.GetInt("bloodBerry") + ")";
+                    ingr6.text = "???(" + PlayerPrefs.GetInt("horn") + ")";
+                    ingr7.text = "???(" + PlayerPrefs.GetInt("bone") + ")";
+                }
                 break;
             default:
                 PlayerPrefs.SetInt("recipeNum", 1);
