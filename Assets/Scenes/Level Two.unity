@@ -88171,6 +88171,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractRange: 3
+--- !u!114 &1965840147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+  m_PrefabInstance: {fileID: 1338969124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965840118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6ebf8c519c6924889f4f08a50ceb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1967899657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90688,6 +90699,8 @@ GameObject:
   - component: {fileID: 2061205364}
   - component: {fileID: 2061205363}
   - component: {fileID: 2061205367}
+  - component: {fileID: 2061205368}
+  - component: {fileID: 2061205369}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -90778,6 +90791,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6bec2740dd4b4e40b6232d734b189a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2061205368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061205362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eeeda978fda5e4c9bf9bd53ea0d8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2166108311209080274, guid: 4569265b1bc7fd746bb21742b853aaec, type: 3}
+  xpos: 0
+  zpos: 0
+  numEnemiesLeft: {fileID: 730614184}
+  level: 2
+  endLevel: {fileID: 143056970}
+--- !u!114 &2061205369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061205362}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c64c5813f693479db8201c269ace5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door1: {fileID: 0}
+  door2: {fileID: 0}
+  door3: {fileID: 0}
+  door4: {fileID: 0}
+  door5: {fileID: 0}
+  door6: {fileID: 0}
+  numEnemiesLeft: {fileID: 730614184}
+  audioSource: {fileID: 1965840128}
+  Player: {fileID: 1965840147}
+  bossEnemy: {fileID: 0}
+  bDoor1: {fileID: 0}
+  bDoor2: {fileID: 0}
+  bDoor3: {fileID: 0}
+  bDoor4: {fileID: 0}
+  bDoor5: {fileID: 0}
+  bDoor6: {fileID: 0}
+  bClosed: 0
 --- !u!1001 &2066370542
 PrefabInstance:
   m_ObjectHideFlags: 0

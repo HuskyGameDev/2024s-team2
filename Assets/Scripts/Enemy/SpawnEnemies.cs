@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Diagnostics;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -22,12 +23,34 @@ public class SpawnEnemies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("enemyCount", 0);
-        PlayerPrefs.SetInt("enemiesLeft", 20);
-        PlayerPrefs.SetInt("enemiesNotKilled", 20);
-        Debug.Log("starting");
-        StartCoroutine(SpawnEnemy());
-        PlayerPrefs.SetInt("bossKilled", 0);
+        if (level == 1)
+        {
+            PlayerPrefs.SetInt("enemyCount", 0);
+            PlayerPrefs.SetInt("enemiesLeft", 20);
+            PlayerPrefs.SetInt("enemiesNotKilled", 20);
+            //Debug.Log("starting");
+            PlayerPrefs.SetInt("bossKilled", 0);
+            //StartCoroutine(SpawnEnemy());
+        }
+        else if (level == 2)
+        {
+            PlayerPrefs.SetInt("enemyCount", 0);
+            PlayerPrefs.SetInt("enemiesLeft", 6);
+            PlayerPrefs.SetInt("enemiesNotKilled", 6);
+            //Debug.Log("starting");
+            PlayerPrefs.SetInt("bossKilled", 0);
+            //StartCoroutine(SpawnEnemy());
+        }
+        else
+        {
+            PlayerPrefs.SetInt("enemyCount", 0);
+            PlayerPrefs.SetInt("enemiesLeft", 20);
+            PlayerPrefs.SetInt("enemiesNotKilled", 20);
+            //Debug.Log("starting");
+            PlayerPrefs.SetInt("bossKilled", 0);
+            //StartCoroutine(SpawnEnemy());
+        }
+
     }
 
     // Update is called once per frame
@@ -72,7 +95,7 @@ public class SpawnEnemies : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt("enemyCount") < enemyAmount)
                 {
-                    Debug.Log("enemies < " + enemyAmount);
+                    //Debug.Log("enemies < " + enemyAmount);
                     if (Random.Range(0, 100) > 50)
                     { 
                         xpos = Random.Range(-31, -24);
@@ -88,14 +111,14 @@ public class SpawnEnemies : MonoBehaviour
                         GameObject newEnemy = Instantiate(enemy, new Vector3(xpos, 0, zpos), Quaternion.identity);
                         PlayerPrefs.SetInt("enemyCount", PlayerPrefs.GetInt("enemyCount") + 1);
                         PlayerPrefs.SetInt("enemiesLeft", PlayerPrefs.GetInt("enemiesLeft") - 1);
-                        Debug.Log("spawned");
+                        //Debug.Log("spawned");
                         yield return new WaitForSeconds(1);
-                        Debug.Log("waited");
+                        //Debug.Log("waited");
                     }
                 }
             }
             yield return new WaitForSeconds(3);
         }
-        Debug.Log("end spawn enemy");
+        //Debug.Log("end spawn enemy");
     }
 }
