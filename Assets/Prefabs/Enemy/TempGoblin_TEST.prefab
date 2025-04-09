@@ -244,6 +244,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e11e6f853ba2cb4cb7faf86aa63cd0c, type: 3}
   - {fileID: 8300000, guid: e4ea1996482d7eb45872b086278f76f3, type: 3}
   - {fileID: 8300000, guid: 89b94b98a29d4bd4289a22c85345f818, type: 3}
+  bloodyEffect: {fileID: 458778320716110155}
   notificationText:
   - {fileID: 7988736980644947080, guid: f4a4797f4b723134aa27a9b973261902, type: 3}
   - {fileID: 8041212197288696551, guid: 9b1be302d2ecbd04caa5d192a0dc4292, type: 3}
@@ -310,6 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  slamDamage: 0
   audioSource: {fileID: 6790531372417132204}
   attackSounds:
   - {fileID: 8300000, guid: a98db4d099a7e644b87b2c093fc098da, type: 3}
@@ -317,6 +319,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c929a9f48e1f3cf44aab2e0539ada2d6, type: 3}
   - {fileID: 8300000, guid: 768bf1ea029d4d84595d9f3144e1343c, type: 3}
   - {fileID: 8300000, guid: a29f0f9f5d2ee3e46ab1f5d3653083f5, type: 3}
+  slam: 0
 --- !u!95 &3278428525219639158
 Animator:
   serializedVersion: 5
@@ -450,6 +453,7 @@ MonoBehaviour:
   ene_dam: 0
   ran_HP: 0
   gob: TempGoblin_TEST(Clone)
+  bat: Bat
   sla_b: Slime_Boss
   destructable: {fileID: 1868451173784473915}
   bloodyEffect: {fileID: 187791733384971614}

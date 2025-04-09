@@ -14097,6 +14097,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
     - target: {fileID: 1120266245792308679, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
+      propertyPath: bloodyEffect
+      value: 
+      objectReference: {fileID: 1675557755}
+    - target: {fileID: 1120266245792308679, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
       propertyPath: damageSounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: b8106049a4c67004cb837535f238fe1e, type: 3}

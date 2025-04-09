@@ -9,11 +9,24 @@ public class Destructable : MonoBehaviour
     public int enemyType;
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
+    public ParticleSystem bloodyEffect;
 
     public virtual void takeDamage(int damageDone) {
         audioSource.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length - 1)]);
         DropIngredient();
         AudioSource.PlayClipAtPoint(damageSounds[Random.Range(0, damageSounds.Length - 1)], gameObject.transform.position);
+        ParticleSystem deadeffect = Instantiate(bloodyEffect)
+                                       as ParticleSystem;
+        deadeffect.transform.position = transform.position;
+
+        //play it
+        deadeffect.loop = false;
+        deadeffect.Play();
+
+        //destroy the particle system when its duration is up, right
+        //it would play a second time.
+        Destroy(deadeffect.gameObject, deadeffect.duration);
+
         Destroy(gameObject, 0f);
         if(enemyType == 2)
         {
