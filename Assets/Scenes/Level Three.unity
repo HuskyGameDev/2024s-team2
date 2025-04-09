@@ -20630,9 +20630,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: lavaBoss
+      value: 
+      objectReference: {fileID: 285744694}
+    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: lavaFire
+      value: 
+      objectReference: {fileID: 1193014403}
+    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: levelNum
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: lavaFire1
+      value: 
+      objectReference: {fileID: 1193014403}
+    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
+      propertyPath: lavaFire2
+      value: 
+      objectReference: {fileID: 1954001060}
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_Enabled
       value: 1

@@ -59,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
     // Public variable for enabling/disabling jumping
     public bool jumpEnabled = true;
 
+    // For sync with the lava fire particle
+    public LavaFire lavaFire1;
+    public LavaFire lavaFire2;
+    public LavaFire lavaBoss;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -223,8 +228,11 @@ public class PlayerMovement : MonoBehaviour
         // For the lava push up
         if (other.gameObject.CompareTag("FireLava"))
         {
-            Debug.Log("FIRE LAVA");
-            rb.AddForce(5, 15, 15, ForceMode.Impulse);
+            if (lavaFire1.OnOff || lavaFire2.OnOff || lavaBoss.OnOff)
+            {
+                Debug.Log("PLAYER: Pushed Up");
+                rb.AddForce(5, 15, 15, ForceMode.Impulse);
+            }
         }
     }
 
