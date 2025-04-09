@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public enum MovementState {walking, sprinting, crouching, air}
 
     // Public variable for enabling/disabling jumping
-    public bool jumpEnabled = true; 
+    public bool jumpEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -218,6 +218,13 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Lava")) {
             Debug.Log("PLAYER: Entered Lava");            
             jumpEnabled = false;
+        }
+
+        // For the lava push up
+        if (other.gameObject.CompareTag("FireLava"))
+        {
+            Debug.Log("FIRE LAVA");
+            rb.AddForce(5, 15, 15, ForceMode.Impulse);
         }
     }
 

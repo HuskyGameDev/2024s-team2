@@ -7,7 +7,7 @@ public class LavaFire : MonoBehaviour
 {
 
     [SerializeField] ParticleSystem lavaFire = null;
-    private bool OnOff = false;
+    public bool OnOff = false;
     private float waitTime = 4f;
     
     // Start is called before the first frame update
@@ -19,7 +19,10 @@ public class LavaFire : MonoBehaviour
     /**
     void update()
     {
-        
+        if (OnOff == true)
+        {
+            rb.AddForce(0, 0, 5.0f, ForceMode.Impulse);
+        }
     }
     **/
 
