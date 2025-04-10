@@ -62,13 +62,14 @@ public class RecipeMenu : MonoBehaviour
                     recipeDescription.text = "Goblin Steak: Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak") + "\nRequired Ingredients:";
                     //ingredientsNeeded.text = "Required Ingredients:\n" + 1 + " Goblin Meat\t"; 
                     inputAmount.text = "" + amount;
-                    ingr1.text = "1(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr1.text = "3(" + PlayerPrefs.GetInt("goblinMeat") + ")";
                     ingr2.text = "0(" + PlayerPrefs.GetInt("slimeJelly") + ")";
                     ingr3.text = "0(" + PlayerPrefs.GetInt("bossSlimeJelly") + ")";
                     ingr4.text = "0(" + PlayerPrefs.GetInt("mushroom") + ")";
                     ingr5.text = "0(" + PlayerPrefs.GetInt("bloodBerry") + ")";
                     ingr6.text = "0(" + PlayerPrefs.GetInt("horn") + ")";
                     ingr7.text = "0(" + PlayerPrefs.GetInt("bone") + ")";
+                    PlayerPrefs.SetInt("canCraft", 1);
                 }
                 break;
             case 2:
@@ -76,7 +77,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 3:
@@ -84,7 +84,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 4:
@@ -92,7 +91,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 5:
@@ -100,7 +98,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 6:
@@ -108,7 +105,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 7:
@@ -116,7 +112,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 8:
@@ -124,7 +119,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             case 9:
@@ -132,7 +126,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
             default:
@@ -141,7 +134,6 @@ public class RecipeMenu : MonoBehaviour
                 {
                     recipeTitle.text = "???";
                     recipeHide.SetActive(true);
-                    PlayerPrefs.SetInt("canCraft", 0);
                 }
                 break;
         }
@@ -215,7 +207,7 @@ public class RecipeMenu : MonoBehaviour
             {
                 case 1:
                     //ingredientsNeeded.text = "Required Ingredients:\n" + (1 * amount) + " Goblin Meat\t";
-                    ingr1.text = (1 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
+                    ingr1.text = (3 * amount) + "(" + PlayerPrefs.GetInt("goblinMeat") + ")";
                     break;
                 case 2:
                     //ingredientsNeeded.text = "Required Ingredients:\n" + (3 * amount) + " Slime Jelly\t" + (1 * amount) + " Boss Slime Jelly";
@@ -295,7 +287,7 @@ public class RecipeMenu : MonoBehaviour
         switch (PlayerPrefs.GetInt("recipeNum"))
         {
             case 1://goblin steak, a
-                aNeeded = 1 * amount;
+                aNeeded = 3 * amount;
                 break;
             case 2://slime jelly sandwich, bc
                 bNeeded = 3 * amount;
@@ -304,40 +296,40 @@ public class RecipeMenu : MonoBehaviour
             case 3://blood berry slime jelly sandwich, bcf
                 bNeeded = 3 * amount;
                 cNeeded = 1 * amount;
-                fNeeded = 1 * amount;
+                fNeeded = 5 * amount;
                 break;
             case 4://fried mushroom, e
-                eNeeded = 2 * amount;
+                eNeeded = 5 * amount;
                 break;
             case 5://blood berry soup, bf
-                bNeeded = 2 * amount;
-                fNeeded = 3 * amount;
+                bNeeded = 3 * amount;
+                fNeeded = 5 * amount;
                 break;
             case 6://royal blood berry soup, cf
-                cNeeded = 2 * amount;
-                fNeeded = 1 * amount;
+                cNeeded = 1 * amount;
+                fNeeded = 8 * amount;
                 break;
             case 7://boss drink, bdf
                 bNeeded = 2 * amount;
-                dNeeded = 3 * amount;
+                dNeeded = 8 * amount;
                 fNeeded = 1 * amount;
                 break;
             case 8://roasted bone marrow, g
-                gNeeded = 3 * amount;
+                gNeeded = 5 * amount;
                 break;
             case 9://dungeon dinner, aeg
-                aNeeded = 2 * amount;
-                eNeeded = 3 * amount;
-                gNeeded = 1 * amount;
+                aNeeded = 8 * amount;
+                eNeeded = 5 * amount;
+                gNeeded = 5 * amount;
                 break;
             case 10://dungeon feast, abcdefg
-                aNeeded = 2 * amount;
-                bNeeded = 3 * amount;
+                aNeeded = 10 * amount;
+                bNeeded = 8 * amount;
                 cNeeded = 1 * amount;
-                dNeeded = 1 * amount;
-                eNeeded = 1 * amount;
+                dNeeded = 5 * amount;
+                eNeeded = 5 * amount;
                 fNeeded = 1 * amount;
-                gNeeded = 1 * amount;
+                gNeeded = 3 * amount;
                 break;
             default:
                 aNeeded = 1 * amount;

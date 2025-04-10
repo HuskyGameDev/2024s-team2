@@ -94,7 +94,8 @@ public class SelectionMenu : MonoBehaviour
                 else
                 {
                     itemName.text = "Goblin Steak";
-                    itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                    itemDescription.text = "Eating this dish will let you regain 10 hp (5 second cooldown), you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                    PlayerPrefs.SetInt("canEquip", 1);
                 }
                 break;
             case 2:
@@ -102,9 +103,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 3:
@@ -112,9 +110,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 4:
@@ -122,9 +117,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 5:
@@ -132,9 +124,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 6:
@@ -142,9 +131,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 7:
@@ -152,9 +138,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 8:
@@ -162,9 +145,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 9:
@@ -172,9 +152,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             case 10:
@@ -183,9 +160,6 @@ public class SelectionMenu : MonoBehaviour
                 {
                     itemTitle.text = "???";
                     itemHide.SetActive(true);
-                    PlayerPrefs.SetInt("canEquip", 0);
-                    itemName.text = "Unknown Dish";
-                    itemDescription.text = "Discover more ingredients to unlock \nOwned: 0";
                 }
                 break;
             default:
@@ -607,9 +581,9 @@ public class SelectionMenu : MonoBehaviour
             default:
                 PlayerPrefs.SetInt("itemNum", 1);
                 itemName.text = "Goblin Steak";
-                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry 3 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
+                itemDescription.text = "Eating this dish will let you regain a bit of health, you can carry 10 at a time\nOwned: " + PlayerPrefs.GetInt("goblinSteak");
                 item.sprite = items[0];
-                PlayerPrefs.SetInt("maxHold1", 3);
+                PlayerPrefs.SetInt("maxHold1", 10);
                 break;
         }
 
