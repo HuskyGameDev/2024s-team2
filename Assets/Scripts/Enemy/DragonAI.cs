@@ -165,7 +165,7 @@ public class DragonAI : MonoBehaviour
     void Update()
     {
         attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0) {
+        if (attackTimer <= 0 && Vector3.Distance(transform.position, player.position) < 100f) {
             Roar();
             ChooseRandomAttack();
             attackTimer = Random.Range(timeBetweenAttacks.x, timeBetweenAttacks.y);

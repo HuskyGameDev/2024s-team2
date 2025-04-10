@@ -227,10 +227,10 @@ MonoBehaviour:
   crouchSpeed: 3.5
   crouchYScale: 0.65
   groundDrag: 6
-  jumpForce: 10
-  jumpCooldown: 0.7
-  airMultiplier: 0.2
-  gravityMultiplier: 1.65
+  jumpForce: 12
+  jumpCooldown: 0.6
+  airMultiplier: 0.15
+  gravityMultiplier: 1.5
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
@@ -249,6 +249,9 @@ MonoBehaviour:
   levelNum: 0
   state: 0
   jumpEnabled: 1
+  lavaFire1: {fileID: 0}
+  lavaFire2: {fileID: 0}
+  lavaBoss: {fileID: 0}
 --- !u!82 &6258864259520031699
 AudioSource:
   m_ObjectHideFlags: 0

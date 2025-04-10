@@ -3,7 +3,7 @@ using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class FireballKnockback : Destructable
+public class FireballKnockback : EnemyHealth
 {
     // Yes, this script must exist because we need something to extend enemyhealth to register attacks.
     [Header("IGNORE ALL OF THESE PROPERTIES, ABOVE AND BELOW!")]
@@ -20,7 +20,7 @@ public class FireballKnockback : Destructable
         fireball = gameObject.GetComponent<Fireball>();
     }
 
-    public override void takeDamage(int damage)
+    public override void Damaging(int damage)
     {
         if (knockedBack) return;
         Debug.Log("FIREBALL: KNOCK BACK!");

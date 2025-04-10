@@ -14185,10 +14185,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
-      propertyPath: waypointReachedDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5485917414748728846, guid: b2e03daed5a26b947889609c8038cbac, type: 3}
       propertyPath: roarSounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: dc26c1859d381d14b94fa940dcb0d323, type: 3}
@@ -20654,18 +20650,6 @@ PrefabInstance:
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
-      propertyPath: jumpCooldown
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
-      propertyPath: airMultiplier
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
-      propertyPath: gravityMultiplier
-      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 5640548483204426120, guid: f2844d0f3a6037141a407e3c3071bc4a, type: 3}
       propertyPath: walkingClips.Array.size

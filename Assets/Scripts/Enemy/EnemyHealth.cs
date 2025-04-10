@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void Damaging(int damage)
+    public virtual void Damaging(int damage)
     {
         Debug.Log("DAMAGE");
         bloodyEffect.Bloody(); //new
