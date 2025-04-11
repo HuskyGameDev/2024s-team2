@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DamageScript : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
     public int damage;
     public int slamDamage;
     public AudioSource audioSource;
@@ -15,6 +15,28 @@ public class DamageScript : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+    }
+    public void TakeDamage()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage, gameObject.name); // Apply damage to the player
+                Debug.Log($"Player hit by {gameObject.name}, damage dealt: {damage}");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth component not found on player.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player object not found.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

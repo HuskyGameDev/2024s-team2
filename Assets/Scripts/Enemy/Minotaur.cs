@@ -1,35 +1,36 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
-public class MinotaurAI : MonoBehaviour
+public class Minotaur : MonoBehaviour
 {
-    public Transform[] waypoints;
     public Transform player;
-    public float sightRange = 15f;
+    public float aggroRange = 15f;
     public float attackRange = 2f;
-    public float chargeMinDistance = 5f; // Minimum distance required to charge
-    public float patrolSpeed = 3f;
     public float chaseSpeed = 4.5f;
-    public float chargeSpeed = 10f;
     public float attackCooldown = 2f;
-    public float chargeCooldown = 10f;
-    public float chargeDuration = 3f;
-    public float stunDuration = 3f;
     public int attackDamage = 40;
-    private bool lethal = false;
-    private NavMeshAgent agent;
-    private int currentWaypointIndex = 0;
-    private float lastAttackTime;
+
+    public AudioSource audioSource;
+    public AudioClip[] stepSounds;
+    public AudioClip[] idleSounds;
+    public DamageScript damageScript;
+
+    public float trackingInterval = 10f;
+    public float attackArcAngle = 60f;  
+
+    private NavMeshAgent enemyAgent;
+    private Animator animator;
+    private float footstepTimer = 0;
+
     private bool isChasing = false;
-    private bool isCharging = false;
-    private bool isStunned = false;
-    private float lastChargeTime = -999f;
-    private float chargeStartTime;
     private bool isAttacking = false;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        enemyAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -37,121 +38,151 @@ public class MinotaurAI : MonoBehaviour
                 player = playerObj.transform;
         }
 
-        agent.speed = patrolSpeed;
-        PatrolToNextWaypoint();
+        if (damageScript == null)
+            damageScript = GetComponent<DamageScript>();
+
+        if (enemyAgent != null)
+            enemyAgent.speed = chaseSpeed;
+
+        StartCoroutine(TrackPlayerPositionPeriodically());
     }
 
     void Update()
     {
-        if (isStunned || isCharging) return;
+        if (player == null || enemyAgent == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool playerInSight = distanceToPlayer <= sightRange;
 
-        if (playerInSight && CanCharge(distanceToPlayer))
+        // Switch between tracking and chase mode
+        if (distanceToPlayer <= aggroRange)
         {
-            StartCharge();
+            if (!isChasing)
+                Debug.Log("Minotaur has entered aggro mode!");
+
+            isChasing = true;
+
+            if (!isAttacking)
+                enemyAgent.SetDestination(player.position);
+
+            if (distanceToPlayer <= attackRange && !isAttacking)
+            {
+                StartCoroutine(PerformAttack());
+            }
         }
-        else if (playerInSight)
+        else
         {
-            StartChase();
-        }
-        else if (!isChasing && agent.remainingDistance < 0.5f)
-        {
-            PatrolToNextWaypoint();
+            if (isChasing)
+                Debug.Log("Minotaur has exited aggro mode, back to tracking.");
+
+            isChasing = false;
         }
 
-        if (isChasing && distanceToPlayer <= attackRange && Time.time > lastAttackTime + attackCooldown)
-        {
-            Attack();
-        }
+        UpdateMovementCondition();
     }
 
-    void PatrolToNextWaypoint()
+    void FixedUpdate()
     {
-        if (waypoints.Length == 0) return;
-        agent.speed = patrolSpeed;
-        agent.SetDestination(waypoints[currentWaypointIndex].position);
-        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+        PlayFootstepSound();
+        PlayIdleSound();
     }
 
-    void StartChase()
+    IEnumerator PerformAttack()
     {
-        isChasing = true;
-        agent.speed = chaseSpeed;
-        agent.SetDestination(player.position);
-    }
+        isAttacking = true;
+        enemyAgent.isStopped = true;
 
-    bool CanCharge(float distanceToPlayer)
-    {
-        if (Time.time - lastChargeTime < chargeCooldown) return false;
-        if (distanceToPlayer < chargeMinDistance) return false; // Prevent charging when too close
+        animator.SetTrigger("Attack1");
+        Debug.Log("Minotaur is attacking!");
 
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        if (Physics.Raycast(transform.position, directionToPlayer, sightRange))
+        yield return new WaitForSeconds(0.5f); // Adjust based on animation timing
+
+        // Check if the player is within the attack arc
+        if (IsPlayerInAttackArc())
         {
-            return true;
+            ApplyDamage();
+        }
+
+        // Play attack sound
+        if (damageScript != null && damageScript.audioSource != null && damageScript.attackSounds.Length > 0)
+        {
+            damageScript.audioSource.PlayOneShot(damageScript.attackSounds[Random.Range(0, damageScript.attackSounds.Length)]);
+        }
+
+        // Wait out the rest of the cooldown
+        yield return new WaitForSeconds(attackCooldown - 0.5f);
+        isAttacking = false;
+        enemyAgent.isStopped = false;
+    }
+
+    // Check if the player is within the Minotaur's attack arc
+    bool IsPlayerInAttackArc()
+    {
+        Vector3 toPlayer = (player.position - transform.position).normalized;
+        float angle = Vector3.Angle(transform.forward, toPlayer);  
+
+        if (angle < attackArcAngle / 2f)  // If the player is within the attack arc
+        {
+            float dist = Vector3.Distance(transform.position, player.position);
+            if (dist <= attackRange)
+            {
+                return true;
+            }
         }
         return false;
     }
 
-    void StartCharge()
+    void ApplyDamage()
     {
-        isCharging = true;
-        lastChargeTime = Time.time;
-        chargeStartTime = Time.time;
-
-        agent.speed = chargeSpeed;
-        agent.SetDestination(player.position);
-        Invoke(nameof(EndCharge), chargeDuration);
-    }
-
-    void EndCharge()
-    {
-        if (!isCharging) return; // Prevent multiple calls
-
-        isCharging = false;
-        Stun();
-    }
-
-    void Attack()
-    {
-        lastAttackTime = Time.time;
-        Debug.Log("Minotaur attacks the player!");
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (isCharging && collision.gameObject.CompareTag("Wall"))
+        // Apply damage to the player directly
+        if (damageScript != null)
         {
-            Stun();
+            damageScript.damage = attackDamage;  // Set the attack damage
+            damageScript.TakeDamage(); 
+
+            Debug.Log("Player hit by Minotaur!");
         }
     }
 
-    void Stun()
+    IEnumerator TrackPlayerPositionPeriodically()
     {
-        isCharging = false;
-        isStunned = true;
-        agent.isStopped = true;
-        Debug.Log("Minotaur is stunned!");
-
-        Invoke(nameof(RecoverFromStun), stunDuration);
-    }
-
-    void RecoverFromStun()
-    {
-        isStunned = false;
-        agent.isStopped = false;
-        agent.ResetPath(); // Prevents stuck movement
-        PatrolToNextWaypoint(); // Resume normal behavior
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && isAttacking)
+        while (true)
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(attackDamage, gameObject.name);
-            isAttacking = false; // Prevent multiple damage triggers in one attack
+            if (!isChasing && enemyAgent != null && player != null)
+            {
+                enemyAgent.SetDestination(player.position);
+            }
+            yield return new WaitForSeconds(trackingInterval);
+        }
+    }
+
+    void PlayFootstepSound()
+    {
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0 && enemyAgent.velocity.magnitude > 0.1f && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(stepSounds[Random.Range(0, stepSounds.Length)]);
+            footstepTimer = Random.Range(3f, 5f);
+        }
+    }
+
+    void PlayIdleSound()
+    {
+        if (enemyAgent.velocity.magnitude < 0.1f && !isChasing)
+        {
+            if (idleSounds.Length > 0 && audioSource != null && !audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(idleSounds[Random.Range(0, idleSounds.Length)]);
+                footstepTimer = Random.Range(3f, 5f);
+            }
+        }
+    }
+
+    void UpdateMovementCondition()
+    {
+        if (enemyAgent != null)
+        {
+            float speed = enemyAgent.velocity.magnitude;
+            animator.SetFloat("Movement", speed < 0.8f ? 0f : speed);
         }
     }
 }

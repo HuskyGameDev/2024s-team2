@@ -6,13 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     public int maxHealth = 100;
     public int currentHealth;
-  //public int damage = 0;
-  //public string item = null;
-  //public bool EnterDungeonItemUse = false; //can change depending on how the item use before the dungeon is made
-  //public bool playerHit = false; //can change depending on the Player/weapon code
     public HealthBar healthBar;
     public BloodEffect bloodEffect;
     public int dam;
@@ -22,51 +17,19 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] damageSounds;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        //if statement below are for testing only
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            item = item name for the item in 1 key
-            UseItem(item);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(10);
-            Damage(damage);
-        }
-        */
-    }
-
-    //public void AddHealth(int amount, bool temporary)
     public void AddHealth()
     {
-        //need to put in code that remove the temporary health when getting out from dungeon...
-        /*if (temporary == true)
+        if (currentHealth + PlayerPrefs.GetInt("healingVal") < maxHealth)
         {
-            if (currentHealth + amount <= maxHealth)
-            {
-                currentHealth = currentHealth + amount;
-            } else
-            {
-                currentHealth = maxHealth;
-            }
-        } else
-        {
-            currentHealth = maxHealth;
-        }*/
-        if(currentHealth + PlayerPrefs.GetInt("healingVal") < maxHealth)
-        {
-            currentHealth = currentHealth + PlayerPrefs.GetInt("healingVal");
+            currentHealth += PlayerPrefs.GetInt("healingVal");
             healthBar.SetHealth(currentHealth);
         }
         else
@@ -74,7 +37,6 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetHealth(currentHealth);
         }
-
     }
 
     public void FullRecover()
@@ -90,16 +52,14 @@ public class PlayerHealth : MonoBehaviour
         healthBar.NewMaxHealth(maxHealth, currentHealth);
     }
 
-    public void TakeDamage(int damage, string enemy_name) //make public
+    public void TakeDamage(int damage, string enemy_name)
     {
         float ran_dam = 0.0f;
         Debug.Log("damage from source: " + enemy_name);
-        //add armor, buff/debuff, item, and weapons? ability's code too.
 
-        //simplified this to be the same for all sources of damage
         ran_dam = UnityEngine.Random.Range(0.8f, 1.2f);
         dam = (int)(damage * ran_dam * PlayerPrefs.GetFloat("defBuff"));
-        
+
         currentHealth -= dam;
         healthBar.SetHealth(currentHealth);
         audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length - 1)]);
@@ -110,10 +70,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+
     void KillPlayer()
     {
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
-        // above line may not be right...
     }
 }

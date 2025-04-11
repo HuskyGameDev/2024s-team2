@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public string gob = "TempGoblin_TEST(Clone)";
     public string bat = "Bat";
     public string sla_b = "Slime_Boss";
+    public string mino = "Minotaur";
     public Destructable destructable;
     public BloodyEffect bloodyEffect; //new
     public AudioSource audioSource;
@@ -35,6 +36,11 @@ public class EnemyHealth : MonoBehaviour
         {
             ran_HP = UnityEngine.Random.Range(0.5f, 1.3f);
             ene_HP = (int)(8 * ran_HP); //was 10
+        }
+        else if (string.Compare(gameObject.name, mino) == 0)
+        {
+            ran_HP = UnityEngine.Random.Range(0.9f, 1.1f); //was .7 / 1.5
+            ene_HP = (int)(50 * ran_HP);
         }
         else {
             ene_HP = 100;
