@@ -82424,7 +82424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1794247634
 Transform:
   m_ObjectHideFlags: 0
@@ -88544,8 +88544,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d7b53ca3283533446b97a7223b4d3c7c, type: 3}
   - {fileID: 8300000, guid: e9fab83e65d01404486eaedf259b578d, type: 3}
   - {fileID: 8300000, guid: 4f3fb41c135cfde42b04b45854c304d5, type: 3}
-  poisonDamage: 5
-  poisonDuration: 10
 --- !u!136 &1965840124
 CapsuleCollider:
   m_ObjectHideFlags: 0
